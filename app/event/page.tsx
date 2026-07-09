@@ -8785,15 +8785,16 @@ interface GalleryEvent {
 
 // Hero collage — swap src values to any real photos you want showcased
 const HERO_COLLAGE: { src: string; label: string }[] = [
-  { src: "/product/4T2A9983.jpg", label: "Product Launch" },
+  { src: "/product/4T2A9960 Full.jpg", label: "Product Launch" },
   { src: "/product/mh.jpeg", label: "Annual Meet" },
-  { src: "/product/kjk.jpeg", label: "Aquaex 2023" },
+  { src: "/product/hjkl.jpeg", label: "Aquaex 2023" },
   { src: "/product/SRI04682.JPG", label: "Exhibition" },
   { src: "/product/ten.jpeg", label: "Team" },
-  { src: "/product/4T2A9952.jpg", label: "Launch Event" },   // FIX: removed double slash
+  { src: "/product/gad.jpeg", label: "Launch Event" },   // FIX: removed double slash
   { src: "/product/SRI04805.JPG", label: "Celebrations" },
   { src: "/product/hg.jpeg", label: "Aquaex" },
-  { src: "/product/SRI04581.jpg", label: "Aquaex" },
+  { src: "/product/4T2A9996.jpg", label: "Aquaex" },
+  
 ];
 
 // ─── Blue palette per card ────────────────────────────────────────────────────
