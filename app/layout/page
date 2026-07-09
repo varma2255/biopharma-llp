@@ -1,0 +1,16 @@
+// {/* <script src="https://checkout.razorpay.com/v1/checkout.js"></script> */}
+
+// // app/layout.tsx
+// import { CartProvider } from "@/app/context/cart-context";
+
+// export default function RootLayout({ children }: { children: React.ReactNode }) {
+//   return (
+//     <html lang="en">
+//       <body>
+//         <CartProvider>
+//           {children}
+//         </CartProvider>
+//       </body>
+//     </html>
+//   );
+// }
