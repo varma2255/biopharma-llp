@@ -976,176 +976,365 @@
 //     </main>
 //   );
 // }
-"use client";
+// "use client";
 
-import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import Footer from "@/components/Footer";
+// import { useState, useEffect, useRef } from "react";
+// import Link from "next/link";
+// import Footer from "@/components/Footer";
 
-/* ══════════════════════════════════════════════════
-   BRAND TOKENS  (matches Innovare Biopharma site)
-══════════════════════════════════════════════════ */
-const B = {
-  blue:        "#2A5DA8",
-  blueDark:    "#1e4a8a",
-  blueDeep:    "#0f2f5e",
-  blueMid:     "#eff6ff",
-  blueLight:   "#dbeafe",
-  teal:        "#0891b2",
-  tealLight:   "#e0f2fe",
-  navy:        "#0f172a",
-  slate:       "#475569",
-  muted:       "#94a3b8",
-  border:      "#e2e8f0",
-  surface:     "#f8fafc",
-  pageBg:      "#f0f4f8",
-  green:       "#15803d",
-  greenBg:     "#f0fdf4",
-  amber:       "#d97706",
-  amberBg:     "#fffbeb",
-};
+// /* ══════════════════════════════════════════════════
+//    BRAND TOKENS  (matches Innovare Biopharma site)
+// ══════════════════════════════════════════════════ */
+// const B = {
+//   blue:        "#2A5DA8",
+//   blueDark:    "#1e4a8a",
+//   blueDeep:    "#0f2f5e",
+//   blueMid:     "#eff6ff",
+//   blueLight:   "#dbeafe",
+//   teal:        "#0891b2",
+//   tealLight:   "#e0f2fe",
+//   navy:        "#0f172a",
+//   slate:       "#475569",
+//   muted:       "#94a3b8",
+//   border:      "#e2e8f0",
+//   surface:     "#f8fafc",
+//   pageBg:      "#f0f4f8",
+//   green:       "#15803d",
+//   greenBg:     "#f0fdf4",
+//   amber:       "#d97706",
+//   amberBg:     "#fffbeb",
+// };
 
-/* ══════════════════════════════════════════════════
-   SCROLL REVEAL HOOK
-══════════════════════════════════════════════════ */
-function useReveal(threshold = 0.12) {
-  const ref  = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return [ref, visible] as const;
-}
+// /* ══════════════════════════════════════════════════
+//    SCROLL REVEAL HOOK
+// ══════════════════════════════════════════════════ */
+// function useReveal(threshold = 0.12) {
+//   const ref  = useRef<HTMLDivElement>(null);
+//   const [visible, setVisible] = useState(false);
+//   useEffect(() => {
+//     const el = ref.current; if (!el) return;
+//     const obs = new IntersectionObserver(
+//       ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+//       { threshold }
+//     );
+//     obs.observe(el);
+//     return () => obs.disconnect();
+//   }, []);
+//   return [ref, visible] as const;
+// }
 
-/* ══════════════════════════════════════════════════
-   ANIMATED COUNTER HOOK
-══════════════════════════════════════════════════ */
-function useCounter(target: number, trigger: boolean, dur = 1600) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!trigger) return;
-    let start: number | null = null;
-    const step = (ts: number) => {
-      if (!start) start = ts;
-      const p = Math.min((ts - start) / dur, 1);
-      setVal(Math.round(p * target));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }, [trigger, target]);
-  return val;
-}
+// /* ══════════════════════════════════════════════════
+//    ANIMATED COUNTER HOOK
+// ══════════════════════════════════════════════════ */
+// function useCounter(target: number, trigger: boolean, dur = 1600) {
+//   const [val, setVal] = useState(0);
+//   useEffect(() => {
+//     if (!trigger) return;
+//     let start: number | null = null;
+//     const step = (ts: number) => {
+//       if (!start) start = ts;
+//       const p = Math.min((ts - start) / dur, 1);
+//       setVal(Math.round(p * target));
+//       if (p < 1) requestAnimationFrame(step);
+//     };
+//     requestAnimationFrame(step);
+//   }, [trigger, target]);
+//   return val;
+// }
 
-/* ══════════════════════════════════════════════════
-   SECTION — HERO
-══════════════════════════════════════════════════ */
-function Hero() {
-  return (
-    // <section style={{
-    //   background: `linear-gradient(135deg, ${B.blueDeep} 0%, ${B.blue} 60%, ${B.teal} 100%)`,
-    //   position: "relative", overflow: "hidden", padding: "120px 48px 100px",
-    // }}>
-    //   {/* Dot grid overlay */}
-    //   <div style={{
-    //     position: "absolute", inset: 0, zIndex: 0,
-    //     backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
-    //     backgroundSize: "28px 28px", pointerEvents: "none",
-    //   }} />
-    //   {/* Decorative circles */}
-    //   <div style={{ position: "absolute", right: "-80px", top: "-80px", width: 400, height: 400, borderRadius: "50%", background: "rgba(255,255,255,0.04)", zIndex: 0 }} />
-    //   <div style={{ position: "absolute", right: "10%", bottom: "-60px", width: 260, height: 260, borderRadius: "50%", background: "rgba(255,255,255,0.05)", zIndex: 0 }} />
+// /* ══════════════════════════════════════════════════
+//    SECTION — HERO
+// ══════════════════════════════════════════════════ */
+// function Hero() {
+//   return (
+//     // <section style={{
+//     //   background: `linear-gradient(135deg, ${B.blueDeep} 0%, ${B.blue} 60%, ${B.teal} 100%)`,
+//     //   position: "relative", overflow: "hidden", padding: "120px 48px 100px",
+//     // }}>
+//     //   {/* Dot grid overlay */}
+//     //   <div style={{
+//     //     position: "absolute", inset: 0, zIndex: 0,
+//     //     backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+//     //     backgroundSize: "28px 28px", pointerEvents: "none",
+//     //   }} />
+//     //   {/* Decorative circles */}
+//     //   <div style={{ position: "absolute", right: "-80px", top: "-80px", width: 400, height: 400, borderRadius: "50%", background: "rgba(255,255,255,0.04)", zIndex: 0 }} />
+//     //   <div style={{ position: "absolute", right: "10%", bottom: "-60px", width: 260, height: 260, borderRadius: "50%", background: "rgba(255,255,255,0.05)", zIndex: 0 }} />
 
-    //   <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
-    //     {/* Breadcrumb */}
-    //     <div style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 32 }}>
-    //       <Link href="/" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Home</Link>
-    //       <span>/</span>
-    //       <span style={{ color: "#fff" }}>Aquaculture Nutrition</span>
-    //     </div>
+//     //   <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
+//     //     {/* Breadcrumb */}
+//     //     <div style={{ display: "flex", gap: 8, alignItems: "center", fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 32 }}>
+//     //       <Link href="/" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Home</Link>
+//     //       <span>/</span>
+//     //       <span style={{ color: "#fff" }}>Aquaculture Nutrition</span>
+//     //     </div>
 
-    //     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
-    //       <div>
-    //         <div style={{
-    //           display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 16px",
-    //           borderRadius: 100, background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)",
-    //           fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.9)", letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 28,
-    //         }}>
-    //           <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#5eead4", display: "inline-block" }} />
-    //           Innovare Biopharma — Science Division
-    //         </div>
+//     //     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+//     //       <div>
+//     //         <div style={{
+//     //           display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 16px",
+//     //           borderRadius: 100, background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)",
+//     //           fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.9)", letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 28,
+//     //         }}>
+//     //           <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#5eead4", display: "inline-block" }} />
+//     //           Innovare Biopharma — Science Division
+//     //         </div>
 
-    //         <h1 style={{ fontSize: "clamp(36px, 4.5vw, 60px)", fontWeight: 800, color: "#fff", lineHeight: 1.1, letterSpacing: -1, marginBottom: 20 }}>
-    //           Precision Nutrition<br />
-    //           <span style={{ color: "#5eead4" }}>for Aquaculture Health</span>
-    //         </h1>
+//     //         <h1 style={{ fontSize: "clamp(36px, 4.5vw, 60px)", fontWeight: 800, color: "#fff", lineHeight: 1.1, letterSpacing: -1, marginBottom: 20 }}>
+//     //           Precision Nutrition<br />
+//     //           <span style={{ color: "#5eead4" }}>for Aquaculture Health</span>
+//     //         </h1>
 
-    //         <p style={{ fontSize: 16, color: "rgba(255,255,255,0.65)", lineHeight: 1.85, marginBottom: 40, maxWidth: 480 }}>
-    //           From hatchery to harvest, Innovare Biopharma delivers scientifically formulated
-    //           feed supplements, probiotics, and mineral solutions that optimise growth,
-    //           immunity, and pond health across every production stage.
-    //         </p>
+//     //         <p style={{ fontSize: 16, color: "rgba(255,255,255,0.65)", lineHeight: 1.85, marginBottom: 40, maxWidth: 480 }}>
+//     //           From hatchery to harvest, Innovare Biopharma delivers scientifically formulated
+//     //           feed supplements, probiotics, and mineral solutions that optimise growth,
+//     //           immunity, and pond health across every production stage.
+//     //         </p>
 
-    //         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-    //           <Link href="/products" style={{
-    //             display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 28px",
-    //             borderRadius: 40, background: "#fff", color: B.blue, fontSize: 14, fontWeight: 700,
-    //             textDecoration: "none", transition: "all .2s",
-    //           }}>
-    //             View Our Products →
-    //           </Link>
-    //           <a href="#solutions" style={{
-    //             display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px",
-    //             borderRadius: 40, border: "1.5px solid rgba(255,255,255,0.35)", background: "transparent",
-    //             color: "#fff", fontSize: 14, fontWeight: 500, textDecoration: "none",
-    //           }}>
-    //             Our Solutions
-    //           </a>
-    //         </div>
-    //       </div>
+//     //         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+//     //           <Link href="/products" style={{
+//     //             display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 28px",
+//     //             borderRadius: 40, background: "#fff", color: B.blue, fontSize: 14, fontWeight: 700,
+//     //             textDecoration: "none", transition: "all .2s",
+//     //           }}>
+//     //             View Our Products →
+//     //           </Link>
+//     //           <a href="#solutions" style={{
+//     //             display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 24px",
+//     //             borderRadius: 40, border: "1.5px solid rgba(255,255,255,0.35)", background: "transparent",
+//     //             color: "#fff", fontSize: 14, fontWeight: 500, textDecoration: "none",
+//     //           }}>
+//     //             Our Solutions
+//     //           </a>
+//     //         </div>
+//     //       </div>
 
-    //       {/* Right — Key numbers */}
-    //       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-    //         {[
-    //           { icon: "🧪", n: "15+", label: "Aquaculture Products", sub: "GMP certified formulations" },
-    //           { icon: "🦐", n: "98%", label: "Customer Satisfaction", sub: "Across shrimp farms" },
-    //           { icon: "📦", n: "50+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
-    //           { icon: "🏭", n: "ISO", label: "9001 Certified", sub: "Quality assured manufacturing" },
-    //         ].map(s => (
-    //           <div key={s.label} style={{
-    //             background: "rgba(255,255,255,0.1)", borderRadius: 16,
-    //             border: "1px solid rgba(255,255,255,0.15)", padding: "22px 20px",
-    //             backdropFilter: "blur(10px)",
-    //           }}>
-    //             <span style={{ fontSize: 28, display: "block", marginBottom: 8 }}>{s.icon}</span>
-    //             <div style={{ fontSize: 28, fontWeight: 800, color: "#5eead4", lineHeight: 1 }}>{s.n}</div>
-    //             <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginTop: 4, marginBottom: 2 }}>{s.label}</div>
-    //             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{s.sub}</div>
-    //           </div>
-    //         ))}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
-//   <section style={{
+//     //       {/* Right — Key numbers */}
+//     //       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+//     //         {[
+//     //           { icon: "🧪", n: "15+", label: "Aquaculture Products", sub: "GMP certified formulations" },
+//     //           { icon: "🦐", n: "98%", label: "Customer Satisfaction", sub: "Across shrimp farms" },
+//     //           { icon: "📦", n: "50+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
+//     //           { icon: "🏭", n: "ISO", label: "9001 Certified", sub: "Quality assured manufacturing" },
+//     //         ].map(s => (
+//     //           <div key={s.label} style={{
+//     //             background: "rgba(255,255,255,0.1)", borderRadius: 16,
+//     //             border: "1px solid rgba(255,255,255,0.15)", padding: "22px 20px",
+//     //             backdropFilter: "blur(10px)",
+//     //           }}>
+//     //             <span style={{ fontSize: 28, display: "block", marginBottom: 8 }}>{s.icon}</span>
+//     //             <div style={{ fontSize: 28, fontWeight: 800, color: "#5eead4", lineHeight: 1 }}>{s.n}</div>
+//     //             <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginTop: 4, marginBottom: 2 }}>{s.label}</div>
+//     //             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{s.sub}</div>
+//     //           </div>
+//     //         ))}
+//     //       </div>
+//     //     </div>
+//     //   </div>
+//     // </section>
+// //   <section style={{
+// //   position: "relative",
+// //   overflow: "hidden",
+// //   padding: "120px 48px 100px",
+// // }}>
+
+
+// //   {/* Gradient Overlay */}
+// //   <div style={{
+// //     position: "absolute",
+// //     inset: 0,
+// //     background: `linear-gradient(135deg, ${B.blueDeep} 0%, ${B.blue} 60%, ${B.teal} 100%)`,
+// //     zIndex: 1,
+// //   }} />
+
+// //   {/* Dot grid overlay */}
+// //   <div style={{
+// //     position: "absolute",
+// //     inset: 0,
+// //     zIndex: 0,
+// //     backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+// //     backgroundSize: "28px 28px",
+// //     pointerEvents: "none",
+// //   }} />
+
+// //   {/* Decorative circles */}
+// //   <div style={{
+// //     position: "absolute",
+// //     right: "-80px",
+// //     top: "-80px",
+// //     width: 400,
+// //     height: 400,
+// //     borderRadius: "50%",
+// //     background: "rgba(255,255,255,0.04)",
+// //     zIndex: 0
+// //   }} />
+// //   <div style={{
+// //     position: "absolute",
+// //     right: "10%",
+// //     bottom: "-60px",
+// //     width: 260,
+// //     height: 260,
+// //     borderRadius: "50%",
+// //     background: "rgba(255,255,255,0.05)",
+// //     zIndex: 0
+// //   }} />
+
+// //   {/* CONTENT */}
+// //   <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, margin: "0 auto" }}>
+
+// //     {/* Breadcrumb */}
+// //     <div style={{
+// //       display: "flex",
+// //       gap: 8,
+// //       alignItems: "center",
+// //       fontSize: 13,
+// //       color: "rgba(255,255,255,0.5)",
+// //       marginBottom: 32
+// //     }}>
+// //       <Link href="/" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
+// //         Home
+// //       </Link>
+// //       <span>/</span>
+// //       <span style={{ color: "#fff" }}>Aquaculture Nutrition</span>
+// //     </div>
+
+// //     <div style={{
+// //       display: "grid",
+// //       gridTemplateColumns: "1fr 1fr",
+// //       gap: 64,
+// //       alignItems: "center"
+// //     }}>
+
+// //       {/* LEFT */}
+// //       <div>
+// //         <div style={{
+// //           display: "inline-flex",
+// //           alignItems: "center",
+// //           gap: 8,
+// //           padding: "6px 16px",
+// //           borderRadius: 100,
+// //           background: "rgba(255,255,255,0.12)",
+// //           border: "1px solid rgba(255,255,255,0.2)",
+// //           fontSize: 12,
+// //           fontWeight: 600,
+// //           color: "rgba(255,255,255,0.9)",
+// //           letterSpacing: 1.2,
+// //           textTransform: "uppercase",
+// //           marginBottom: 28,
+// //         }}>
+// //           <span style={{
+// //             width: 7,
+// //             height: 7,
+// //             borderRadius: "50%",
+// //             background: "#5eead4"
+// //           }} />
+// //           Innovare Biopharma — Science Division
+// //         </div>
+
+// //         <h1 style={{
+// //           fontSize: "clamp(36px, 4.5vw, 60px)",
+// //           fontWeight: 800,
+// //           color: "#fff",
+// //           lineHeight: 1.1,
+// //           letterSpacing: -1,
+// //           marginBottom: 20
+// //         }}>
+// //           Precision Nutrition<br />
+// //           <span style={{ color: "#5eead4" }}>
+// //             for Aquaculture Health
+// //           </span>
+// //         </h1>
+
+// //         <p style={{
+// //           fontSize: 16,
+// //           color: "rgba(255,255,255,0.65)",
+// //           lineHeight: 1.85,
+// //           marginBottom: 40,
+// //           maxWidth: 480
+// //         }}>
+// //           From hatchery to harvest, Innovare Biopharma delivers scientifically formulated
+// //           feed supplements, probiotics, and mineral solutions that optimise growth,
+// //           immunity, and pond health across every production stage.
+// //         </p>
+
+// //         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+// //           <Link href="/products" style={{
+// //             display: "inline-flex",
+// //             alignItems: "center",
+// //             gap: 8,
+// //             padding: "13px 28px",
+// //             borderRadius: 40,
+// //             background: "#fff",
+// //             color: B.blue,
+// //             fontSize: 14,
+// //             fontWeight: 700,
+// //             textDecoration: "none",
+// //           }}>
+// //             View Our Products →
+// //           </Link>
+
+// //           <a href="#solutions" style={{
+// //             display: "inline-flex",
+// //             alignItems: "center",
+// //             gap: 8,
+// //             padding: "12px 24px",
+// //             borderRadius: 40,
+// //             border: "1.5px solid rgba(255,255,255,0.35)",
+// //             background: "transparent",
+// //             color: "#fff",
+// //             fontSize: 14,
+// //             fontWeight: 500,
+// //             textDecoration: "none",
+// //           }}>
+// //             Our Solutions
+// //           </a>
+// //         </div>
+// //       </div>
+
+// //       {/* RIGHT */}
+// //       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+// //         {[
+// //           { icon: "🧪", n: "15+", label: "Aquaculture Products", sub: "GMP certified formulations" },
+// //           { icon: "🦐", n: "98%", label: "Customer Satisfaction", sub: "Across shrimp farms" },
+// //           { icon: "📦", n: "50+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
+// //           { icon: "🏭", n: "ISO", label: "9001 Certified", sub: "Quality assured manufacturing" },
+// //         ].map(s => (
+// //           <div key={s.label} style={{
+// //             background: "rgba(255,255,255,0.1)",
+// //             borderRadius: 16,
+// //             border: "1px solid rgba(255,255,255,0.15)",
+// //             padding: "22px 20px",
+// //             backdropFilter: "blur(10px)",
+// //           }}>
+// //             <span style={{ fontSize: 28, display: "block", marginBottom: 8 }}>{s.icon}</span>
+// //             <div style={{ fontSize: 28, fontWeight: 800, color: "#5eead4" }}>{s.n}</div>
+// //             <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginTop: 4 }}>{s.label}</div>
+// //             <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{s.sub}</div>
+// //           </div>
+// //         ))}
+// //       </div>
+
+// //     </div>
+// //   </div>
+// // </section>
+// <section style={{
 //   position: "relative",
 //   overflow: "hidden",
 //   padding: "120px 48px 100px",
+
+//   // ✅ ADD THIS
+//   minHeight: "100vh",   // full screen height
+//   display: "flex",
+//   alignItems: "center",
+//   // ✅ Correct background setup
+//   backgroundImage: `
+//     linear-gradient(135deg, rgba(30,58,138,0.75), rgba(37,99,235,0.65), rgba(14,165,233,0.6)),
+//     url('/images/nut.png')
+//   `,
+//   backgroundSize: "cover",
+//   backgroundPosition: "center",
+//   backgroundRepeat: "no-repeat",
 // }}>
-
-
-//   {/* Gradient Overlay */}
-//   <div style={{
-//     position: "absolute",
-//     inset: 0,
-//     background: `linear-gradient(135deg, ${B.blueDeep} 0%, ${B.blue} 60%, ${B.teal} 100%)`,
-//     zIndex: 1,
-//   }} />
 
 //   {/* Dot grid overlay */}
 //   <div style={{
@@ -1168,6 +1357,7 @@ function Hero() {
 //     background: "rgba(255,255,255,0.04)",
 //     zIndex: 0
 //   }} />
+
 //   <div style={{
 //     position: "absolute",
 //     right: "10%",
@@ -1180,7 +1370,7 @@ function Hero() {
 //   }} />
 
 //   {/* CONTENT */}
-//   <div style={{ position: "relative", zIndex: 2, maxWidth: 1100, margin: "0 auto" }}>
+//   <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
 
 //     {/* Breadcrumb */}
 //     <div style={{
@@ -1294,10 +1484,16 @@ function Hero() {
 //       {/* RIGHT */}
 //       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
 //         {[
-//           { icon: "🧪", n: "15+", label: "Aquaculture Products", sub: "GMP certified formulations" },
+//           { icon: "🧪", n: "33+", label: "Aquaculture Products", sub: "GMP certified formulations" },
 //           { icon: "🦐", n: "98%", label: "Customer Satisfaction", sub: "Across shrimp farms" },
-//           { icon: "📦", n: "50+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
-//           { icon: "🏭", n: "ISO", label: "9001 Certified", sub: "Quality assured manufacturing" },
+//           { icon: "📦", n: "1000+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
+//           // { icon: "🏭", n: "ISO", label: "9001 Certified", sub: "Quality assured manufacturing" },
+//           {
+//   icon: "🔬",
+//   n: "Lab Tested",
+//   label: "Quality Assured",
+//   sub: "Scientifically validated formulations"
+// },
 //         ].map(s => (
 //           <div key={s.label} style={{
 //             background: "rgba(255,255,255,0.1)",
@@ -1317,203 +1513,1067 @@ function Hero() {
 //     </div>
 //   </div>
 // </section>
-<section style={{
-  position: "relative",
-  overflow: "hidden",
-  padding: "120px 48px 100px",
+// );
+// }
 
-  // ✅ ADD THIS
-  minHeight: "100vh",   // full screen height
-  display: "flex",
-  alignItems: "center",
-  // ✅ Correct background setup
-  backgroundImage: `
-    linear-gradient(135deg, rgba(30,58,138,0.75), rgba(37,99,235,0.65), rgba(14,165,233,0.6)),
-    url('/images/nut.png')
-  `,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-}}>
+// /* ══════════════════════════════════════════════════
+//    SECTION — WHAT IS AQUACULTURE NUTRITION?
+// ══════════════════════════════════════════════════ */
+// function WhatIsSection() {
+//   const [ref, vis] = useReveal(0.1);
+//   return (
+//     <section style={{ background: "#fff", padding: "100px 48px" }}>
+//       <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
+//         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
+//           <div style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(-32px)", transition: "all .8s ease" }}>
+//             <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>The Foundation</span>
+//             <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 20 }}>
+//               Why Aquaculture Nutrition Matters
+//             </h2>
+//             <p style={{ fontSize: 15, color: B.slate, lineHeight: 1.9, marginBottom: 18 }}>
+//               Aquaculture accounts for more than half of the world's seafood supply. The productivity
+//               and health of farmed shrimp, fish, and other aquatic species depend directly on the
+//               quality and balance of the nutrients they receive throughout their life cycle.
+//             </p>
+//             <p style={{ fontSize: 15, color: B.slate, lineHeight: 1.9, marginBottom: 28 }}>
+//               Poor nutrition leads to slow growth, weakened immunity, increased disease susceptibility,
+//               and high feed conversion ratios — all of which directly impact profitability and
+//               sustainability. At Innovare Biopharma, we develop targeted nutritional solutions that
+//               address these challenges at every production stage.
+//             </p>
+//             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+//               {[
+//                 "Optimised FCR (Feed Conversion Ratio) through precision mineral and vitamin blends",
+//                 "Enhanced immunity reducing disease-related mortality",
+//                 "Healthy pond ecology via water & soil probiotic management",
+//                 "Faster, uniform growth cycles from larval to harvest stage",
+//               ].map((point, i) => (
+//                 <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+//                   <div style={{
+//                     width: 22, height: 22, borderRadius: "50%", background: B.tealLight,
+//                     border: `1px solid ${B.teal}40`, flexShrink: 0, marginTop: 1,
+//                     display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: B.teal,
+//                   }}>✓</div>
+//                   <span style={{ fontSize: 14, color: B.slate, lineHeight: 1.6 }}>{point}</span>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
 
-  {/* Dot grid overlay */}
-  <div style={{
-    position: "absolute",
-    inset: 0,
-    zIndex: 0,
-    backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
-    backgroundSize: "28px 28px",
-    pointerEvents: "none",
-  }} />
+//           {/* Right — visual blocks */}
+//           <div style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(32px)", transition: "all .8s ease .15s" }}>
+//             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+//               {[
+//                 { icon: "🦠", title: "Gut Microbiome Health", desc: "A balanced gut microbiome improves digestion, nutrient absorption and natural immunity — reducing antibiotic dependency on farms.", color: B.teal },
+//                 { icon: "🧬", title: "Mineral & Vitamin Balance", desc: "Deficiencies in calcium, phosphorus, magnesium or vitamin C impair moulting, bone formation and stress response in shrimp and fish.", color: B.blue },
+//                 { icon: "💧", title: "Water Quality & Pond Ecology", desc: "Ammonia and H₂S build-up from overfeeding and poor digestion create toxic environments. Probiotic pond treatments restore healthy chemistry.", color: "#7c3aed" },
+//               ].map((item, i) => (
+//                 <div key={i} style={{
+//                   padding: "22px 24px", borderRadius: 16, background: B.surface,
+//                   border: `1px solid ${B.border}`, display: "flex", gap: 18, alignItems: "flex-start",
+//                   transition: "transform .2s, box-shadow .2s",
+//                   transitionDelay: `${i * 0.1}s`,
+//                 }}>
+//                   <div style={{
+//                     width: 48, height: 48, borderRadius: 12, flexShrink: 0,
+//                     background: `${item.color}14`, border: `1px solid ${item.color}30`,
+//                     display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22,
+//                   }}>{item.icon}</div>
+//                   <div>
+//                     <div style={{ fontSize: 14, fontWeight: 700, color: B.navy, marginBottom: 6 }}>{item.title}</div>
+//                     <div style={{ fontSize: 13, color: B.slate, lineHeight: 1.65 }}>{item.desc}</div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
-  {/* Decorative circles */}
-  <div style={{
-    position: "absolute",
-    right: "-80px",
-    top: "-80px",
-    width: 400,
-    height: 400,
-    borderRadius: "50%",
-    background: "rgba(255,255,255,0.04)",
-    zIndex: 0
-  }} />
+// /* ══════════════════════════════════════════════════
+//    SECTION — NUTRITION LIFECYCLE (growth stages)
+// ══════════════════════════════════════════════════ */
+// const STAGES = [
+//   {
+//     stage: "Hatchery",
+//     icon: "🥚",
+//     days: "Day 0–15",
+//     focus: "Larval nutrition & pond preparation",
+//     products: ["Pond Minerals (i-MINVARE PM)", "Vitamin C (i-CEEVARE)", "Water Probiotics (i-PROPONDVARE)"],
+//     desc: "Optimal water chemistry and mineral balance are critical from day one. Vitamin C supplementation supports stress resistance, while pond probiotics establish a healthy microbial baseline.",
+//     color: "#0891b2",
+//     pct: 16,
+//   },
+//   {
+//     stage: "Post-Larvae",
+//     icon: "🦐",
+//     days: "Day 15–45",
+//     focus: "Immunity building & moulting support",
+//     products: ["Feed Minerals (i-MINVARE FM)", "Gut Probiotics (i-PROVARE GUT)", "i-IMMUNOVARE"],
+//     desc: "Rapid moulting cycles demand calcium, phosphorus, and magnesium. Feed mineral premixes and gut probiotics improve nutrient uptake and reinforce the innate immune system.",
+//     color: "#2A5DA8",
+//     pct: 32,
+//   },
+//   {
+//     stage: "Juvenile",
+//     icon: "🐟",
+//     days: "Day 45–90",
+//     focus: "Growth acceleration & disease prevention",
+//     products: ["i-VIBRIOVARE", "i-PHYTOVARE", "i-HEPTOPANCVARE"],
+//     desc: "The juvenile phase is highest-risk for Vibrio and EHP infections. Targeted probiotics competitively exclude pathogens, while phytogenic additives stimulate appetite and reduce oxidative stress.",
+//     color: "#7c3aed",
+//     pct: 62,
+//   },
+//   {
+//     stage: "Grow-out",
+//     icon: "🦑",
+//     days: "Day 90–120",
+//     focus: "FCR optimisation & biomass gain",
+//     products: ["i-LIVOVARE GEL", "i-BIO'YEAST'VARE", "i-CEEVARE"],
+//     desc: "During grow-out, feed efficiency determines profitability. Liver-support gels, active yeast, and stable vitamin C work together to maximise feed utilisation and uniform weight gain.",
+//     color: B.green,
+//     pct: 80,
+//   },
+//   {
+//     stage: "Pre-Harvest",
+//     icon: "🏆",
+//     days: "Day 120+",
+//     focus: "Quality finish & stress management",
+//     products: ["i-OXYVARE", "POTASSIUM CHLORIDE", "i-IMMUNOVARE"],
+//     desc: "Harvesting is a high-stress event. Oxygen granules maintain dissolved oxygen during crowding, potassium chloride restores ionic balance, and immunity boosters reduce handling mortality.",
+//     color: B.amber,
+//     pct: 100,
+//   },
+// ];
 
-  <div style={{
-    position: "absolute",
-    right: "10%",
-    bottom: "-60px",
-    width: 260,
-    height: 260,
-    borderRadius: "50%",
-    background: "rgba(255,255,255,0.05)",
-    zIndex: 0
-  }} />
+// function LifecycleSection() {
+//   const [ref, vis] = useReveal(0.06);
+//   const [active, setActive] = useState(0);
+//   const stage = STAGES[active];
 
-  {/* CONTENT */}
-  <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto" }}>
+//   return (
+//     <section id="solutions" style={{ background: B.pageBg, padding: "100px 48px" }}>
+//       <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
+//         {/* Header */}
+//         <div style={{ textAlign: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
+//           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>Life-Stage Nutrition</span>
+//           <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
+//             The Right Nutrition at Every Stage
+//           </h2>
+//           <p style={{ fontSize: 15, color: B.slate, maxWidth: 560, margin: "0 auto", lineHeight: 1.75 }}>
+//             Shrimp and fish have different nutritional needs at each production stage.
+//             Our product range is designed to cover every phase from hatchery to harvest.
+//           </p>
+//         </div>
 
-    {/* Breadcrumb */}
-    <div style={{
+//         {/* Progress bar timeline */}
+//         <div style={{ marginBottom: 40, opacity: vis ? 1 : 0, transition: "opacity .7s .2s" }}>
+//           <div style={{ position: "relative", height: 4, background: B.border, borderRadius: 2, marginBottom: 0 }}>
+//             <div style={{
+//               position: "absolute", left: 0, top: 0, height: "100%", borderRadius: 2,
+//               background: `linear-gradient(90deg, ${B.teal}, ${B.blue})`,
+//               width: vis ? `${stage.pct}%` : "0%",
+//               transition: "width .6s cubic-bezier(.22,.68,0,1.2)",
+//             }} />
+//           </div>
+//           <div style={{ display: "flex", justifyContent: "space-between", marginTop: 0 }}>
+//             {STAGES.map((s, i) => (
+//               <button key={s.stage} onClick={() => setActive(i)}
+//                 style={{
+//                   display: "flex", flexDirection: "column", alignItems: "center", gap: 0,
+//                   background: "none", border: "none", cursor: "pointer", padding: "12px 8px",
+//                   flex: 1,
+//                 }}>
+//                 <div style={{
+//                   width: 40, height: 40, borderRadius: "50%", fontSize: 18,
+//                   display: "flex", alignItems: "center", justifyContent: "center",
+//                   background: active === i ? s.color : "#fff",
+//                   border: `2px solid ${active === i ? s.color : B.border}`,
+//                   boxShadow: active === i ? `0 4px 14px ${s.color}44` : "0 2px 6px rgba(0,0,0,0.06)",
+//                   transition: "all .25s", marginBottom: 8,
+//                 }}>{s.icon}</div>
+//                 <span style={{ fontSize: 11, fontWeight: 700, color: active === i ? s.color : B.muted, textAlign: "center", lineHeight: 1.3 }}>{s.stage}</span>
+//                 <span style={{ fontSize: 10, color: B.muted, marginTop: 2 }}>{s.days}</span>
+//               </button>
+//             ))}
+//           </div>
+//         </div>
+
+//         {/* Detail panel */}
+//         <div style={{
+//           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28,
+//           opacity: vis ? 1 : 0, transition: "opacity .7s .3s",
+//         }}>
+//           {/* Left */}
+//           <div style={{
+//             background: "#fff", borderRadius: 20, padding: "36px",
+//             border: `1px solid ${stage.color}30`,
+//             boxShadow: `0 4px 24px ${stage.color}12`,
+//           }}>
+//             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
+//               <div style={{
+//                 width: 56, height: 56, borderRadius: 16, background: `${stage.color}14`,
+//                 border: `1.5px solid ${stage.color}30`, display: "flex",
+//                 alignItems: "center", justifyContent: "center", fontSize: 28,
+//               }}>{stage.icon}</div>
+//               <div>
+//                 <div style={{ fontSize: 11, color: B.muted, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase" }}>{stage.days}</div>
+//                 <div style={{ fontSize: 20, fontWeight: 800, color: B.navy }}>{stage.stage} Stage</div>
+//               </div>
+//             </div>
+
+//             <div style={{ padding: "12px 16px", borderRadius: 10, background: `${stage.color}0f`, border: `1px solid ${stage.color}25`, marginBottom: 20 }}>
+//               <div style={{ fontSize: 12, fontWeight: 700, color: stage.color, marginBottom: 4 }}>Primary Focus</div>
+//               <div style={{ fontSize: 14, color: B.slate, fontWeight: 600 }}>{stage.focus}</div>
+//             </div>
+
+//             <p style={{ fontSize: 14, color: B.slate, lineHeight: 1.8, marginBottom: 24 }}>{stage.desc}</p>
+
+//             <Link href="/products" style={{
+//               display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 22px",
+//               borderRadius: 10, background: `linear-gradient(135deg, ${B.blue}, ${B.teal})`,
+//               color: "#fff", fontSize: 13, fontWeight: 700, textDecoration: "none",
+//             }}>
+//               View Related Products →
+//             </Link>
+//           </div>
+
+//           {/* Right — recommended products */}
+//           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+//             <div style={{ fontSize: 12, fontWeight: 700, color: B.muted, letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 4 }}>
+//               Recommended Innovare Products
+//             </div>
+//             {stage.products.map((p, i) => (
+//               <div key={p} style={{
+//                 padding: "16px 20px", borderRadius: 14, background: "#fff",
+//                 border: `1px solid ${B.border}`, display: "flex", alignItems: "center", gap: 14,
+//                 opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(20px)",
+//                 transition: `all .4s ${0.4 + i * 0.1}s`,
+//               }}>
+//                 <div style={{
+//                   width: 38, height: 38, borderRadius: 10, background: `${stage.color}12`,
+//                   border: `1px solid ${stage.color}25`, display: "flex",
+//                   alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0,
+//                 }}>💊</div>
+//                 <div style={{ flex: 1 }}>
+//                   <div style={{ fontSize: 13, fontWeight: 700, color: B.navy }}>{p}</div>
+//                   <div style={{ fontSize: 11, color: B.muted, marginTop: 2 }}>Innovare Biopharma</div>
+//                 </div>
+//                 <div style={{
+//                   fontSize: 10, padding: "3px 10px", borderRadius: 100,
+//                   background: `${stage.color}12`, color: stage.color, fontWeight: 700,
+//                 }}>GMP ✓</div>
+//               </div>
+//             ))}
+
+//             {/* Nutrition tip card */}
+//             <div style={{
+//               padding: "18px 20px", borderRadius: 14, background: B.amberBg,
+//               border: `1px solid ${B.amber}40`, marginTop: 4,
+//             }}>
+//               <div style={{ fontSize: 12, fontWeight: 700, color: B.amber, marginBottom: 6 }}>⚠ Technical Tip</div>
+//               <div style={{ fontSize: 13, color: "#78350f", lineHeight: 1.65 }}>
+//                 Always consult an Innovare Biopharma field technician to confirm dosage rates
+//                 for your specific pond density, salinity, and temperature conditions.
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// /* ══════════════════════════════════════════════════
+//    SECTION — NUTRIENT CATEGORIES (wheel replaced by grid)
+// ══════════════════════════════════════════════════ */
+// const NUTRIENTS = [
+//   {
+//     icon: "🪨",
+//     title: "Pond Minerals",
+//     items: ["Calcium — shell & exoskeleton formation", "Phosphorus — energy metabolism & bone structure", "Magnesium — enzyme activation & osmoregulation", "Potassium — muscle contraction & ionic balance"],
+//     color: B.teal,
+//     product: "i.MINVARE PM / AM / WS / LIQ",
+//   },
+//   {
+//     icon: "🌿",
+//     title: "Feed Minerals & Vitamins",
+//     items: ["Ascorbic acid (Vit C) — immunity & wound healing", "Mineral premix — complete micronutrient profile", "Trace elements — enzyme co-factors", "Anti-oxidants — oxidative stress protection"],
+//     color: B.blue,
+//     product: "i.MINVARE FM · i.CEEVARE",
+//   },
+//   {
+//     icon: "🦠",
+//     title: "Probiotics",
+//     items: ["Bacillus strains — competitive pathogen exclusion", "Lactic acid bacteria — gut microflora balance", "Anti-Vibrio strains — EMS/AHPND prevention", "Soil & water probiotics — pond bottom health"],
+//     color: "#7c3aed",
+//     product: "i.VIBRIOVARE · i.PROVARE GUT",
+//   },
+//   {
+//     icon: "🌱",
+//     title: "Growth Promoters",
+//     items: ["Phytogenic plant extracts — appetite stimulation", "Yeast beta-glucans — immune modulation", "Hepatoprotective agents — liver & digestive gland support", "Gel-form boosters — high feed adhesion coating"],
+//     color: B.green,
+//     product: "i.LIVOVARE GEL",
+//   },
+//   {
+//     icon: "💧",
+//     title: "Water & Soil Treatments",
+//     items: ["Dissolved oxygen granules — emergency O₂ release", "Zeolite-based products — ammonia adsorption", "EDTA — heavy metal chelation", "Potassium chloride — ionic balance restoration"],
+//     color: B.amber,
+//     product: "i.OXYVARE · Potassium Chloride",
+//   },
+//   {
+//     icon: "🛡️",
+//     title: "Disease Management",
+//     items: ["Hepatopancreas protectors — EHP impact reduction", "Vibrio control programs — farm biosecurity", "Yucca powder — ammonia toxicity reduction", "Immune stack programmes — seasonal disease cycles"],
+//     color: "#dc2626",
+//     product: "i.HEPTOPANCVARE · i.IMMUNOVARE · i.PHYTOVARE",
+//   },
+// ];
+
+// function NutrientSection() {
+//   const [ref, vis] = useReveal(0.06);
+//   const [active, setActive] = useState<number | null>(null);
+
+//   return (
+//     <section style={{ background: "#fff", padding: "100px 48px" }}>
+//       <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
+//         <div style={{ textAlign: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
+//           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>Our Product Categories</span>
+//           <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
+//             Six Pillars of Aquaculture Nutrition
+//           </h2>
+//           <p style={{ fontSize: 15, color: B.slate, maxWidth: 540, margin: "0 auto", lineHeight: 1.75 }}>
+//             Every Innovare Biopharma product is developed with a specific nutritional or
+//             health function in mind — building a complete system for farm success.
+//           </p>
+//         </div>
+
+//         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+//           {NUTRIENTS.map((n, i) => (
+//             <div
+//               key={n.title}
+//               onClick={() => setActive(active === i ? null : i)}
+//               style={{
+//                 padding: "28px 24px", borderRadius: 18,
+//                 background: active === i ? `${n.color}08` : B.surface,
+//                 border: `1.5px solid ${active === i ? n.color : B.border}`,
+//                 cursor: "pointer", transition: "all .25s",
+//                 boxShadow: active === i ? `0 8px 24px ${n.color}18` : "0 2px 8px rgba(0,0,0,0.04)",
+//                 opacity: vis ? 1 : 0,
+//                 transform: vis ? "none" : "translateY(20px)",
+//                 transitionDelay: `${i * 0.07}s`,
+//               }}
+//             >
+//               <div style={{
+//                 width: 48, height: 48, borderRadius: 12, background: `${n.color}14`,
+//                 border: `1.5px solid ${n.color}30`, display: "flex", alignItems: "center",
+//                 justifyContent: "center", fontSize: 22, marginBottom: 16,
+//               }}>{n.icon}</div>
+
+//               <div style={{ fontSize: 15, fontWeight: 800, color: B.navy, marginBottom: 8 }}>{n.title}</div>
+
+//               <div style={{
+//                 maxHeight: active === i ? 300 : 0, overflow: "hidden",
+//                 transition: "max-height .4s ease",
+//               }}>
+//                 <div style={{ display: "flex", flexDirection: "column", gap: 7, marginBottom: 16, paddingTop: 4 }}>
+//                   {n.items.map((item, j) => (
+//                     <div key={j} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+//                       <div style={{ width: 6, height: 6, borderRadius: "50%", background: n.color, flexShrink: 0, marginTop: 6 }} />
+//                       <span style={{ fontSize: 12.5, color: B.slate, lineHeight: 1.55 }}>{item}</span>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               <div style={{
+//                 fontSize: 11, padding: "4px 12px", borderRadius: 100, display: "inline-flex",
+//                 background: `${n.color}12`, color: n.color, fontWeight: 700, letterSpacing: 0.5, marginTop: 4,
+//               }}>
+//                 {n.product}
+//               </div>
+
+//               <div style={{ fontSize: 12, color: n.color, fontWeight: 600, marginTop: 12 }}>
+//                 {active === i ? "▲ Show less" : "▼ View nutrients"}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// /* ══════════════════════════════════════════════════
+//    SECTION — STATS COUNTER BANNER
+// ══════════════════════════════════════════════════ */
+// const STATS = [
+//   { icon: "🧪", n: 33, suffix: "+", label: "Aquaculture products", color: B.teal },
+//   { icon: "🦐", n: 1000, suffix: "+", label: "Active farm partners", color: B.blue },
+//   { icon: "📉", n: 35, suffix: "%", label: "Avg. FCR improvement", color: "#7c3aed" },
+//   { icon: "🌿", n: 100, suffix: "%", label: "GMP certified range", color: B.green },
+// ];
+
+// function StatsSection() {
+//   const [ref, vis] = useReveal(0.15);
+//   return (
+//     <section style={{
+//       background: `linear-gradient(135deg, ${B.blueDeep} 0%, ${B.blue} 100%)`,
+//       padding: "80px 48px", position: "relative", overflow: "hidden",
+//     }}>
+//       <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
+//       <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
+//         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+//           {STATS.map((s, i) => {
+//             const count = useCounter(s.n, vis);
+//             return (
+//               <div key={s.label} style={{
+//                 textAlign: "center", padding: "36px 20px",
+//                 background: "rgba(255,255,255,0.08)", borderRadius: 20,
+//                 border: "1px solid rgba(255,255,255,0.12)",
+//                 opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(20px)",
+//                 transition: `all .6s ${i * 0.1}s`,
+//               }}>
+//                 <span style={{ fontSize: 32, display: "block", marginBottom: 12 }}>{s.icon}</span>
+//                 <div style={{ fontSize: 48, fontWeight: 800, color: "#fff", lineHeight: 1 }}>
+//                   {count}{s.suffix}
+//                 </div>
+//                 <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 10 }}>{s.label}</div>
+//               </div>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// /* ══════════════════════════════════════════════════
+//    SECTION — WHY INNOVARE BIOPHARMA
+// ══════════════════════════════════════════════════ */
+// const PILLARS = [
+//   // { icon: "🏭", title: "GMP Certified Manufacturing", body: "All Innovare Biopharma products are manufactured under Good Manufacturing Practice standards, ensuring consistent quality, purity, and safety in every batch.", color: B.blue },
+//   // { icon: "📋", title: "CAA Registered Products", body: "Our aquaculture products carry valid Coastal Aquaculture Authority (CAA) registrations, making them fully compliant for use in shrimp and fish farms across India.", color: B.teal },
+//   { icon: "🔬", title: "Science-Backed Formulations", body: "Each product is developed by aquaculture and veterinary science specialists, with field-validated efficacy data from partner farms across Andhra Pradesh and Telangana.", color: "#7c3aed" },
+//   { icon: "📞", title: "On-Farm Technical Support", body: "Our team of aquaculture technicians provides direct on-farm consultation — from pond preparation through grow-out — ensuring protocols are correctly implemented.", color: B.green },
+//   { icon: "🌿", title: "Natural & Safe Ingredients", body: "Innovare Biopharma prioritises natural, non-antibiotic solutions: probiotics, phytogenics, and mineral supplements that improve outcomes without chemical residue risks.", color: B.amber },
+//   { icon: "📦", title: "Full Product Ecosystem", body: "From pond minerals and feed premixes to gut probiotics and oxygen granules, we provide a complete, integrated nutrition and health system for every farm type.", color: "#dc2626" },
+// ];
+
+// function WhyUsSection() {
+//   const [ref, vis] = useReveal(0.06);
+//   return (
+//     <section style={{ background: B.pageBg, padding: "100px 48px" }}>
+//       <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
+//         <div style={{ textAlign: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
+//           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>Why Choose Us</span>
+//           <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
+//             The Innovare Biopharma Advantage
+//           </h2>
+//         </div>
+//         {/* <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+//           {PILLARS.map((p, i) => (
+//             <div key={p.title} style={{
+//               padding: "28px 24px", borderRadius: 18, background: "#fff",
+//               border: `1px solid ${B.border}`,
+//               boxShadow: "0 2px 8px rgba(15,23,42,0.05)",
+//               opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(20px)",
+//               transition: `all .6s ${i * 0.08}s`,
+//             }}>
+//               <div style={{
+//                 width: 48, height: 48, borderRadius: 12, background: `${p.color}12`,
+//                 border: `1.5px solid ${p.color}28`, display: "flex", alignItems: "center",
+//                 justifyContent: "center", fontSize: 22, marginBottom: 18,
+//               }}>{p.icon}</div>
+//               <h3 style={{ fontSize: 15, fontWeight: 800, color: B.navy, marginBottom: 10 }}>{p.title}</h3>
+//               <p style={{ fontSize: 13.5, color: B.slate, lineHeight: 1.75 }}>{p.body}</p>
+//               <div style={{ height: 2, marginTop: 20, borderRadius: 1, background: `linear-gradient(90deg, ${p.color}60, transparent)` }} />
+//             </div>
+//           ))}
+//         </div> */}
+//         <div style={{
+//   display: "grid",
+//   gridTemplateColumns: "repeat(4, 1fr)", // ✅ 4 equal boxes
+//   gap: 32,
+//   width: "100%",
+//   maxWidth: 1200,
+//   margin: "0 auto",
+// }}>
+//   {PILLARS.map((p, i) => (
+//     <div
+//       key={p.title}
+//       style={{
+//         padding: "36px 28px",
+//         borderRadius: 20,
+//         background: "#fff",
+//         border: `1px solid ${B.border}`,
+//         boxShadow: "0 10px 30px rgba(15,23,42,0.06)",
+
+//         height: "100%", // ✅ full height
+//         display: "flex",
+//         flexDirection: "column",
+//         justifyContent: "space-between",
+
+//         transition: "all .3s",
+//         cursor: "pointer",
+
+//         opacity: vis ? 1 : 0,
+//         transform: vis ? "translateY(0)" : "translateY(20px)",
+//       }}
+//       onMouseEnter={(e) => {
+//         e.currentTarget.style.transform = "translateY(-6px)";
+//       }}
+//       onMouseLeave={(e) => {
+//         e.currentTarget.style.transform = "translateY(0)";
+//       }}
+//     >
+
+//       {/* ICON */}
+//       <div style={{
+//         width: 56,
+//         height: 56,
+//         borderRadius: 14,
+//         background: `${p.color}12`,
+//         border: `1.5px solid ${p.color}28`,
+//         display: "flex",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         fontSize: 26,
+//         marginBottom: 20,
+//       }}>
+//         {p.icon}
+//       </div>
+
+//       {/* CONTENT */}
+//       <div style={{ flex: 1 }}>
+//         <h3 style={{
+//           fontSize: 16,
+//           fontWeight: 800,
+//           color: B.navy,
+//           marginBottom: 12,
+//         }}>
+//           {p.title}
+//         </h3>
+
+//         <p style={{
+//           fontSize: 14,
+//           color: B.slate,
+//           lineHeight: 1.8,
+//         }}>
+//           {p.body}
+//         </p>
+//       </div>
+
+//       {/* BOTTOM LINE */}
+//       <div style={{
+//         height: 2,
+//         marginTop: 20,
+//         borderRadius: 1,
+//         background: `linear-gradient(90deg, ${p.color}60, transparent)`
+//       }} />
+//     </div>
+//   ))}
+// </div>
+//       </div>
+//     </section>
+//   );
+// }
+
+// /* ══════════════════════════════════════════════════
+//    SECTION — FAQ
+// ══════════════════════════════════════════════════ */
+// const NUTRITION_FAQS = [
+//   {
+//     icon: "🐟",
+//     q: "What is the optimal protein-to-energy ratio for farmed salmon at different life stages?",
+//     a: "Protein-to-energy (P/E) ratios shift significantly across life stages. Fry and smolts require a higher P/E (~21–23 mg protein/kcal) to support rapid tissue growth, while larger harvest-size fish perform better at lower P/E ratios (~18–20 mg protein/kcal) as dietary energy is increasingly partitioned toward lipid deposition. Over-supplying protein beyond requirement elevates ammonia excretion and feed costs without improving growth.",
+//   },
+//   {
+//     icon: "🌿",
+//     q: "How much fishmeal can be replaced with plant-based proteins without impacting performance?",
+//     a: "Modern diets can reduce fishmeal to 5–15% inclusion while maintaining growth parity, provided anti-nutritional factors such as saponins, phytate, and trypsin inhibitors are adequately processed. Soy protein concentrate, canola meal, and insect meal are leading alternatives. Amino acid balancing — especially lysine, methionine, and threonine — is essential when transitioning away from fishmeal.",
+//   },
+//   {
+//     icon: "⚗️",
+//     q: "What role do nucleotides play in aquafeed, and when are they worth including?",
+//     a: "Nucleotides support intestinal cell proliferation and mucosal integrity, particularly under stress conditions such as first-feeding, disease challenge, or after antibiotic treatment. Their benefit is most pronounced in fast-growing larval and juvenile stages. Typical inclusion rates are 0.1–0.5%, and ROI is highest during health challenges rather than standard grow-out.",
+//   },
+//   {
+//     icon: "💊",
+//     q: "How should vitamin and mineral premixes be adjusted for high-oil diets?",
+//     a: "High dietary lipid levels elevate the requirement for fat-soluble antioxidants — primarily vitamin E and vitamin C — to protect PUFA-rich tissues from lipid peroxidation. Selenium should also be reviewed for its antioxidant synergy with vitamin E. Fat-soluble vitamin bioavailability (A, D, K) is enhanced in high-oil diets, so over-supplementation should be monitored.",
+//   },
+//   {
+//     icon: "📊",
+//     q: "How do feed conversion ratios (FCR) vary between species and how should targets be set?",
+//     a: "FCR benchmarks differ substantially: Atlantic salmon typically achieve 1.0–1.2; rainbow trout 0.9–1.15; shrimp (L. vannamei) 1.5–2.2 due to broadcast feeding losses. Targets should be set relative to species baseline, water temperature, fish size, and feeding technology. Automated feeding systems with feed-waste sensors can reduce FCR by 10–20% versus manual regimes.",
+//   },
+//   {
+//     icon: "🧪",
+//     q: "What are the signs of nutritional deficiency vs. infectious disease in farmed fish?",
+//     a: "Nutritional deficiencies tend to present gradually and symmetrically: lordosis/scoliosis (vitamin C or phosphorus), cataracts (riboflavin or zinc), fin erosion (pantothenic acid), pale musculature (selenium/vitamin E). Infectious disease more often presents asymmetrically with focal lesions and sudden mortality spikes. Histopathology and feed audit in parallel is the most reliable diagnostic approach.",
+//   },
+// ];
+
+// function FAQSection() {
+//   const [openNutritionFaq, setOpenNutritionFaq] = useState<number | null>(null);
+//   const [ref, vis] = useReveal(0.1);
+
+//   return (
+//     <section style={{ background: "#fff", padding: "100px 48px" }}>
+//       <div ref={ref} style={{ maxWidth: 860, margin: "0 auto" }}>
+
+//         {/* Header */}
+//         <div style={{ textAlign: "center", marginBottom: 52, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
+//           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>
+//             Technical FAQs
+//           </span>
+//           <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12 }}>
+//             Common Nutrition<br />
+//             <span style={{ color: B.blue }}>Questions Answered</span>
+//           </h2>
+//           <p style={{ fontSize: 15, color: B.slate, maxWidth: 480, margin: "14px auto 0", lineHeight: 1.75 }}>
+//             Science-backed answers to the most common aquaculture nutrition questions from our partner farms.
+//           </p>
+//         </div>
+
+//         {/* Accordion */}
+//         <div style={{ opacity: vis ? 1 : 0, transition: "opacity .7s .2s" }}>
+//           {NUTRITION_FAQS.map((faq, i) => {
+//             const isOpen = openNutritionFaq === i;
+//             return (
+//               <div
+//                 key={i}
+//                 onClick={() => setOpenNutritionFaq(isOpen ? null : i)}
+//                 style={{
+//                   background: isOpen ? "#f0f9ff" : "#fff",
+//                   border: `1.5px solid ${isOpen ? B.blue : B.border}`,
+//                   borderRadius: 16,
+//                   marginBottom: 12,
+//                   cursor: "pointer",
+//                   transition: "border-color .25s, background .25s, box-shadow .25s",
+//                   boxShadow: isOpen ? "0 4px 32px rgba(14,165,233,0.10)" : "0 2px 8px rgba(14,165,233,0.04)",
+//                   overflow: "hidden",
+//                 }}
+//               >
+//                 {/* Question row */}
+//                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 26px", gap: 16 }}>
+//                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+//                     <div style={{
+//                       width: 36, height: 36, borderRadius: 10,
+//                       background: isOpen ? "rgba(42,93,168,0.12)" : B.tealLight,
+//                       border: `1px solid ${isOpen ? "rgba(42,93,168,0.28)" : B.blueLight}`,
+//                       display: "flex", alignItems: "center", justifyContent: "center",
+//                       fontSize: 16, flexShrink: 0, transition: "background .25s, border-color .25s",
+//                     }}>
+//                       {faq.icon}
+//                     </div>
+//                     <span style={{ fontSize: 14, fontWeight: 700, color: B.navy, lineHeight: 1.4 }}>
+//                       {faq.q}
+//                     </span>
+//                   </div>
+//                   <span style={{
+//                     fontSize: 20, color: B.blue, flexShrink: 0, fontWeight: 300, lineHeight: 1,
+//                     transition: "transform .3s",
+//                     transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+//                     display: "inline-block",
+//                   }}>+</span>
+//                 </div>
+
+//                 {/* Answer */}
+//                 <div style={{ maxHeight: isOpen ? 400 : 0, overflow: "hidden", transition: "max-height .38s cubic-bezier(.4,0,.2,1)" }}>
+//                   <div style={{ padding: "0 26px 22px", fontSize: 14, color: B.slate, lineHeight: 1.85, borderTop: `1px solid ${B.border}`, paddingTop: 16 }}>
+//                     {faq.a}
+//                   </div>
+//                 </div>
+//               </div>
+//             );
+//           })}
+//         </div>
+
+//         {/* Still have questions card */}
+//         <div style={{
+//           marginTop: 28,
+//           background: B.tealLight,
+//           border: `1px solid ${B.blueLight}`,
+//           borderRadius: 16, padding: "26px 32px",
+//           display: "flex", alignItems: "center",
+//           justifyContent: "space-between", flexWrap: "wrap", gap: 16,
+//           opacity: vis ? 1 : 0, transition: "opacity .7s .4s",
+//         }}>
+//           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+//             <div style={{
+//               width: 44, height: 44, borderRadius: 12,
+//               background: `linear-gradient(135deg, ${B.teal}, ${B.blue})`,
+//               display: "flex", alignItems: "center", justifyContent: "center",
+//               fontSize: 20, flexShrink: 0, boxShadow: "0 4px 14px rgba(14,165,233,0.30)",
+//             }}>🥗</div>
+//             <div>
+//               <div style={{ fontSize: 14, fontWeight: 700, color: B.navy }}>Still have a nutrition question?</div>
+//               <div style={{ fontSize: 12, color: B.slate, marginTop: 2 }}>Our aquaculture nutritionists are available to advise your farm directly.</div>
+//             </div>
+//           </div>
+//           <a href="mailto:info@innovarebiopharma.com" style={{
+//             display: "inline-flex", alignItems: "center", gap: 8,
+//             padding: "11px 26px", borderRadius: 40,
+//             background: `linear-gradient(135deg, ${B.blue}, ${B.teal})`,
+//             color: "#fff", fontSize: 13, fontWeight: 700,
+//             textDecoration: "none", whiteSpace: "nowrap",
+//           }}>
+//             Ask a Nutritionist →
+//           </a>
+//         </div>
+
+//       </div>
+//     </section>
+//   );
+// }
+
+// export default function NutritionPage() {
+//   return (
+//     <main style={{ position: "relative", background: B.pageBg }}>
+//       <Hero />
+//       <WhatIsSection />
+//       <LifecycleSection />
+//       <NutrientSection />
+//       <StatsSection />
+//       <WhyUsSection />
+//       <FAQSection />   {/* ← moved above CTA */}
+//       {/* <CTASection /> */}
+//       <Footer />
+//     </main>
+//   );
+// }
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import Footer from "@/components/Footer";
+
+/* ══════════════════════════════════════════════════
+   BRAND TOKENS  (matches Innovare Biopharma site)
+══════════════════════════════════════════════════ */
+const B = {
+  blue:        "#2A5DA8",
+  blueDark:    "#1e4a8a",
+  blueDeep:    "#0f2f5e",
+  blueMid:     "#eff6ff",
+  blueLight:   "#dbeafe",
+  teal:        "#0891b2",
+  tealLight:   "#e0f2fe",
+  navy:        "#0f172a",
+  slate:       "#475569",
+  muted:       "#94a3b8",
+  border:      "#e2e8f0",
+  surface:     "#f8fafc",
+  pageBg:      "#f0f4f8",
+  green:       "#15803d",
+  greenBg:     "#f0fdf4",
+  amber:       "#d97706",
+  amberBg:     "#fffbeb",
+};
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE STYLESHEET
+   (Since this page is built with inline styles, these
+   rules use !important to override inline grid/padding
+   values at each breakpoint. classNames are attached
+   alongside the existing style={{}} props below.)
+══════════════════════════════════════════════════ */
+const RESPONSIVE_CSS = `
+  .nut-page img { max-width: 100%; }
+  .nut-page * { box-sizing: border-box; }
+
+  /* ── Large desktop ── */
+  @media (min-width: 1440px) {
+    .nut-hero-inner, .nut-inner-1100, .nut-inner-860 { max-width: 1200px; }
+  }
+
+  /* ── Small laptops / large tablets ── */
+  @media (max-width: 1100px) {
+    .nut-section-pad-100 { padding: 84px 40px !important; }
+    .nut-section-pad-80  { padding: 68px 40px !important; }
+    .nut-hero-section    { padding: 100px 40px 80px !important; }
+  }
+
+  /* ── Tablets ── */
+  @media (max-width: 900px) {
+    .nut-hero-grid        { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .nut-whatis-grid      { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .nut-lifecycle-detail { grid-template-columns: 1fr !important; }
+    .nut-nutrient-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+    .nut-stats-grid       { grid-template-columns: repeat(2, 1fr) !important; }
+    .nut-whyus-grid       { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .nut-section-pad-100 { padding: 56px 20px !important; }
+    .nut-section-pad-80  { padding: 48px 20px !important; }
+    .nut-hero-section    { padding: 88px 20px 56px !important; }
+    .nut-hero-right-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .nut-nutrient-grid   { grid-template-columns: 1fr !important; }
+    .nut-stats-grid      { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+    .nut-whyus-grid      { grid-template-columns: 1fr !important; gap: 18px !important; }
+    .nut-stage-row       { overflow-x: auto !important; justify-content: flex-start !important; padding-bottom: 4px !important; }
+    .nut-stage-row > button { flex: 0 0 auto !important; min-width: 72px !important; }
+    .nut-faq-card        { flex-direction: column !important; align-items: flex-start !important; }
+    .nut-faq-card a      { width: 100%; justify-content: center; }
+  }
+
+  /* ── Small phones ── */
+  @media (max-width: 480px) {
+    .nut-hero-right-grid { grid-template-columns: 1fr !important; }
+    .nut-stats-grid      { grid-template-columns: 1fr 1fr !important; }
+    .nut-breadcrumb      { flex-wrap: wrap; }
+    .nut-hero-btns       { width: 100%; }
+    .nut-hero-btns a     { flex: 1 1 auto; justify-content: center; text-align: center; }
+  }
+`;
+
+/* ══════════════════════════════════════════════════
+   SCROLL REVEAL HOOK
+══════════════════════════════════════════════════ */
+function useReveal(threshold = 0.12) {
+  const ref  = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, visible] as const;
+}
+
+/* ══════════════════════════════════════════════════
+   ANIMATED COUNTER HOOK
+══════════════════════════════════════════════════ */
+function useCounter(target: number, trigger: boolean, dur = 1600) {
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!trigger) return;
+    let start: number | null = null;
+    const step = (ts: number) => {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / dur, 1);
+      setVal(Math.round(p * target));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [trigger, target]);
+  return val;
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION — HERO
+══════════════════════════════════════════════════ */
+function Hero() {
+  return (
+    <section className="nut-hero-section" style={{
+      position: "relative",
+      overflow: "hidden",
+      padding: "120px 48px 100px",
+      minHeight: "100vh",
       display: "flex",
-      gap: 8,
       alignItems: "center",
-      fontSize: 13,
-      color: "rgba(255,255,255,0.5)",
-      marginBottom: 32
-    }}>
-      <Link href="/" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
-        Home
-      </Link>
-      <span>/</span>
-      <span style={{ color: "#fff" }}>Aquaculture Nutrition</span>
-    </div>
-
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 64,
-      alignItems: "center"
+      backgroundImage: `
+        linear-gradient(135deg, rgba(30,58,138,0.75), rgba(37,99,235,0.65), rgba(14,165,233,0.6)),
+        url('/images/nut.png')
+      `,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
     }}>
 
-      {/* LEFT */}
-      <div>
-        <div style={{
-          display: "inline-flex",
-          alignItems: "center",
+      {/* Dot grid overlay */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        zIndex: 0,
+        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+        backgroundSize: "28px 28px",
+        pointerEvents: "none",
+      }} />
+
+      {/* Decorative circles */}
+      <div style={{
+        position: "absolute",
+        right: "-80px",
+        top: "-80px",
+        width: 400,
+        height: 400,
+        borderRadius: "50%",
+        background: "rgba(255,255,255,0.04)",
+        zIndex: 0
+      }} />
+
+      <div style={{
+        position: "absolute",
+        right: "10%",
+        bottom: "-60px",
+        width: 260,
+        height: 260,
+        borderRadius: "50%",
+        background: "rgba(255,255,255,0.05)",
+        zIndex: 0
+      }} />
+
+      {/* CONTENT */}
+      <div className="nut-hero-inner" style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+
+        {/* Breadcrumb */}
+        <div className="nut-breadcrumb" style={{
+          display: "flex",
           gap: 8,
-          padding: "6px 16px",
-          borderRadius: 100,
-          background: "rgba(255,255,255,0.12)",
-          border: "1px solid rgba(255,255,255,0.2)",
-          fontSize: 12,
-          fontWeight: 600,
-          color: "rgba(255,255,255,0.9)",
-          letterSpacing: 1.2,
-          textTransform: "uppercase",
-          marginBottom: 28,
+          alignItems: "center",
+          fontSize: 13,
+          color: "rgba(255,255,255,0.5)",
+          marginBottom: 32
         }}>
-          <span style={{
-            width: 7,
-            height: 7,
-            borderRadius: "50%",
-            background: "#5eead4"
-          }} />
-          Innovare Biopharma — Science Division
-        </div>
-
-        <h1 style={{
-          fontSize: "clamp(36px, 4.5vw, 60px)",
-          fontWeight: 800,
-          color: "#fff",
-          lineHeight: 1.1,
-          letterSpacing: -1,
-          marginBottom: 20
-        }}>
-          Precision Nutrition<br />
-          <span style={{ color: "#5eead4" }}>
-            for Aquaculture Health
-          </span>
-        </h1>
-
-        <p style={{
-          fontSize: 16,
-          color: "rgba(255,255,255,0.65)",
-          lineHeight: 1.85,
-          marginBottom: 40,
-          maxWidth: 480
-        }}>
-          From hatchery to harvest, Innovare Biopharma delivers scientifically formulated
-          feed supplements, probiotics, and mineral solutions that optimise growth,
-          immunity, and pond health across every production stage.
-        </p>
-
-        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <Link href="/products" style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "13px 28px",
-            borderRadius: 40,
-            background: "#fff",
-            color: B.blue,
-            fontSize: 14,
-            fontWeight: 700,
-            textDecoration: "none",
-          }}>
-            View Our Products →
+          <Link href="/" style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
+            Home
           </Link>
+          <span>/</span>
+          <span style={{ color: "#fff" }}>Aquaculture Nutrition</span>
+        </div>
 
-          <a href="#solutions" style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "12px 24px",
-            borderRadius: 40,
-            border: "1.5px solid rgba(255,255,255,0.35)",
-            background: "transparent",
-            color: "#fff",
-            fontSize: 14,
-            fontWeight: 500,
-            textDecoration: "none",
-          }}>
-            Our Solutions
-          </a>
+        <div className="nut-hero-grid" style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 64,
+          alignItems: "center"
+        }}>
+
+          {/* LEFT */}
+          <div>
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "6px 16px",
+              borderRadius: 100,
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              fontSize: 12,
+              fontWeight: 600,
+              color: "rgba(255,255,255,0.9)",
+              letterSpacing: 1.2,
+              textTransform: "uppercase",
+              marginBottom: 28,
+              maxWidth: "100%",
+            }}>
+              <span style={{
+                width: 7,
+                height: 7,
+                borderRadius: "50%",
+                background: "#5eead4",
+                flexShrink: 0,
+              }} />
+              Innovare Biopharma — Science Division
+            </div>
+
+            <h1 style={{
+              fontSize: "clamp(32px, 4.5vw, 60px)",
+              fontWeight: 800,
+              color: "#fff",
+              lineHeight: 1.1,
+              letterSpacing: -1,
+              marginBottom: 20
+            }}>
+              Precision Nutrition<br />
+              <span style={{ color: "#5eead4" }}>
+                for Aquaculture Health
+              </span>
+            </h1>
+
+            <p style={{
+              fontSize: "clamp(14px, 1.6vw, 16px)",
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: 1.85,
+              marginBottom: 40,
+              maxWidth: 480
+            }}>
+              From hatchery to harvest, Innovare Biopharma delivers scientifically formulated
+              feed supplements, probiotics, and mineral solutions that optimise growth,
+              immunity, and pond health across every production stage.
+            </p>
+
+            <div className="nut-hero-btns" style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <Link href="/products" style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "13px 28px",
+                borderRadius: 40,
+                background: "#fff",
+                color: B.blue,
+                fontSize: 14,
+                fontWeight: 700,
+                textDecoration: "none",
+              }}>
+                View Our Products →
+              </Link>
+
+              <a href="#solutions" style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "12px 24px",
+                borderRadius: 40,
+                border: "1.5px solid rgba(255,255,255,0.35)",
+                background: "transparent",
+                color: "#fff",
+                fontSize: 14,
+                fontWeight: 500,
+                textDecoration: "none",
+              }}>
+                Our Solutions
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT */}
+          <div className="nut-hero-right-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, minWidth: 0 }}>
+            {[
+              { icon: "🧪", n: "33+", label: "Aquaculture Products", sub: "GMP certified formulations" },
+              { icon: "🦐", n: "98%", label: "Customer Satisfaction", sub: "Across shrimp farms" },
+              { icon: "📦", n: "1000+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
+              {
+                icon: "🔬",
+                n: "Lab Tested",
+                label: "Quality Assured",
+                sub: "Scientifically validated formulations"
+              },
+            ].map(s => (
+              <div key={s.label} style={{
+                background: "rgba(255,255,255,0.1)",
+                borderRadius: 16,
+                border: "1px solid rgba(255,255,255,0.15)",
+                padding: "22px 20px",
+                backdropFilter: "blur(10px)",
+                minWidth: 0,
+              }}>
+                <span style={{ fontSize: 28, display: "block", marginBottom: 8 }}>{s.icon}</span>
+                <div style={{ fontSize: 24, fontWeight: 800, color: "#5eead4" }}>{s.n}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginTop: 4 }}>{s.label}</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{s.sub}</div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
-
-      {/* RIGHT */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-        {[
-          { icon: "🧪", n: "33+", label: "Aquaculture Products", sub: "GMP certified formulations" },
-          { icon: "🦐", n: "98%", label: "Customer Satisfaction", sub: "Across shrimp farms" },
-          { icon: "📦", n: "1000+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
-          // { icon: "🏭", n: "ISO", label: "9001 Certified", sub: "Quality assured manufacturing" },
-          {
-  icon: "🔬",
-  n: "Lab Tested",
-  label: "Quality Assured",
-  sub: "Scientifically validated formulations"
-},
-        ].map(s => (
-          <div key={s.label} style={{
-            background: "rgba(255,255,255,0.1)",
-            borderRadius: 16,
-            border: "1px solid rgba(255,255,255,0.15)",
-            padding: "22px 20px",
-            backdropFilter: "blur(10px)",
-          }}>
-            <span style={{ fontSize: 28, display: "block", marginBottom: 8 }}>{s.icon}</span>
-            <div style={{ fontSize: 28, fontWeight: 800, color: "#5eead4" }}>{s.n}</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginTop: 4 }}>{s.label}</div>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{s.sub}</div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </div>
-</section>
-);
+    </section>
+  );
 }
 
 /* ══════════════════════════════════════════════════
@@ -1522,12 +2582,12 @@ function Hero() {
 function WhatIsSection() {
   const [ref, vis] = useReveal(0.1);
   return (
-    <section style={{ background: "#fff", padding: "100px 48px" }}>
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
-          <div style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(-32px)", transition: "all .8s ease" }}>
+    <section className="nut-section-pad-100" style={{ background: "#fff", padding: "100px 48px" }}>
+      <div ref={ref} className="nut-inner-1100" style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div className="nut-whatis-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
+          <div style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(-32px)", transition: "all .8s ease", minWidth: 0 }}>
             <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>The Foundation</span>
-            <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 20 }}>
+            <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 20 }}>
               Why Aquaculture Nutrition Matters
             </h2>
             <p style={{ fontSize: 15, color: B.slate, lineHeight: 1.9, marginBottom: 18 }}>
@@ -1561,7 +2621,7 @@ function WhatIsSection() {
           </div>
 
           {/* Right — visual blocks */}
-          <div style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(32px)", transition: "all .8s ease .15s" }}>
+          <div style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(32px)", transition: "all .8s ease .15s", minWidth: 0 }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[
                 { icon: "🦠", title: "Gut Microbiome Health", desc: "A balanced gut microbiome improves digestion, nutrient absorption and natural immunity — reducing antibiotic dependency on farms.", color: B.teal },
@@ -1573,13 +2633,14 @@ function WhatIsSection() {
                   border: `1px solid ${B.border}`, display: "flex", gap: 18, alignItems: "flex-start",
                   transition: "transform .2s, box-shadow .2s",
                   transitionDelay: `${i * 0.1}s`,
+                  minWidth: 0,
                 }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 12, flexShrink: 0,
                     background: `${item.color}14`, border: `1px solid ${item.color}30`,
                     display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22,
                   }}>{item.icon}</div>
-                  <div>
+                  <div style={{ minWidth: 0 }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: B.navy, marginBottom: 6 }}>{item.title}</div>
                     <div style={{ fontSize: 13, color: B.slate, lineHeight: 1.65 }}>{item.desc}</div>
                   </div>
@@ -1655,12 +2716,12 @@ function LifecycleSection() {
   const stage = STAGES[active];
 
   return (
-    <section id="solutions" style={{ background: B.pageBg, padding: "100px 48px" }}>
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
+    <section id="solutions" className="nut-section-pad-100" style={{ background: B.pageBg, padding: "100px 48px" }}>
+      <div ref={ref} className="nut-inner-1100" style={{ maxWidth: 1100, margin: "0 auto" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>Life-Stage Nutrition</span>
-          <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
+          <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
             The Right Nutrition at Every Stage
           </h2>
           <p style={{ fontSize: 15, color: B.slate, maxWidth: 560, margin: "0 auto", lineHeight: 1.75 }}>
@@ -1679,7 +2740,7 @@ function LifecycleSection() {
               transition: "width .6s cubic-bezier(.22,.68,0,1.2)",
             }} />
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 0 }}>
+          <div className="nut-stage-row" style={{ display: "flex", justifyContent: "space-between", marginTop: 0 }}>
             {STAGES.map((s, i) => (
               <button key={s.stage} onClick={() => setActive(i)}
                 style={{
@@ -1695,15 +2756,15 @@ function LifecycleSection() {
                   boxShadow: active === i ? `0 4px 14px ${s.color}44` : "0 2px 6px rgba(0,0,0,0.06)",
                   transition: "all .25s", marginBottom: 8,
                 }}>{s.icon}</div>
-                <span style={{ fontSize: 11, fontWeight: 700, color: active === i ? s.color : B.muted, textAlign: "center", lineHeight: 1.3 }}>{s.stage}</span>
-                <span style={{ fontSize: 10, color: B.muted, marginTop: 2 }}>{s.days}</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: active === i ? s.color : B.muted, textAlign: "center", lineHeight: 1.3, whiteSpace: "nowrap" }}>{s.stage}</span>
+                <span style={{ fontSize: 10, color: B.muted, marginTop: 2, whiteSpace: "nowrap" }}>{s.days}</span>
               </button>
             ))}
           </div>
         </div>
 
         {/* Detail panel */}
-        <div style={{
+        <div className="nut-lifecycle-detail" style={{
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28,
           opacity: vis ? 1 : 0, transition: "opacity .7s .3s",
         }}>
@@ -1712,14 +2773,15 @@ function LifecycleSection() {
             background: "#fff", borderRadius: 20, padding: "36px",
             border: `1px solid ${stage.color}30`,
             boxShadow: `0 4px 24px ${stage.color}12`,
+            minWidth: 0,
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
               <div style={{
                 width: 56, height: 56, borderRadius: 16, background: `${stage.color}14`,
                 border: `1.5px solid ${stage.color}30`, display: "flex",
-                alignItems: "center", justifyContent: "center", fontSize: 28,
+                alignItems: "center", justifyContent: "center", fontSize: 28, flexShrink: 0,
               }}>{stage.icon}</div>
-              <div>
+              <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: 11, color: B.muted, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase" }}>{stage.days}</div>
                 <div style={{ fontSize: 20, fontWeight: 800, color: B.navy }}>{stage.stage} Stage</div>
               </div>
@@ -1742,7 +2804,7 @@ function LifecycleSection() {
           </div>
 
           {/* Right — recommended products */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 0 }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: B.muted, letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 4 }}>
               Recommended Innovare Products
             </div>
@@ -1752,19 +2814,20 @@ function LifecycleSection() {
                 border: `1px solid ${B.border}`, display: "flex", alignItems: "center", gap: 14,
                 opacity: vis ? 1 : 0, transform: vis ? "none" : "translateX(20px)",
                 transition: `all .4s ${0.4 + i * 0.1}s`,
+                minWidth: 0,
               }}>
                 <div style={{
                   width: 38, height: 38, borderRadius: 10, background: `${stage.color}12`,
                   border: `1px solid ${stage.color}25`, display: "flex",
                   alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0,
                 }}>💊</div>
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: B.navy }}>{p}</div>
                   <div style={{ fontSize: 11, color: B.muted, marginTop: 2 }}>Innovare Biopharma</div>
                 </div>
                 <div style={{
                   fontSize: 10, padding: "3px 10px", borderRadius: 100,
-                  background: `${stage.color}12`, color: stage.color, fontWeight: 700,
+                  background: `${stage.color}12`, color: stage.color, fontWeight: 700, flexShrink: 0,
                 }}>GMP ✓</div>
               </div>
             ))}
@@ -1840,11 +2903,11 @@ function NutrientSection() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section style={{ background: "#fff", padding: "100px 48px" }}>
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
+    <section className="nut-section-pad-100" style={{ background: "#fff", padding: "100px 48px" }}>
+      <div ref={ref} className="nut-inner-1100" style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>Our Product Categories</span>
-          <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
+          <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
             Six Pillars of Aquaculture Nutrition
           </h2>
           <p style={{ fontSize: 15, color: B.slate, maxWidth: 540, margin: "0 auto", lineHeight: 1.75 }}>
@@ -1853,7 +2916,7 @@ function NutrientSection() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+        <div className="nut-nutrient-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
           {NUTRIENTS.map((n, i) => (
             <div
               key={n.title}
@@ -1867,6 +2930,7 @@ function NutrientSection() {
                 opacity: vis ? 1 : 0,
                 transform: vis ? "none" : "translateY(20px)",
                 transitionDelay: `${i * 0.07}s`,
+                minWidth: 0,
               }}
             >
               <div style={{
@@ -1922,13 +2986,13 @@ const STATS = [
 function StatsSection() {
   const [ref, vis] = useReveal(0.15);
   return (
-    <section style={{
+    <section className="nut-section-pad-80" style={{
       background: `linear-gradient(135deg, ${B.blueDeep} 0%, ${B.blue} 100%)`,
       padding: "80px 48px", position: "relative", overflow: "hidden",
     }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+      <div ref={ref} className="nut-inner-1100" style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div className="nut-stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
           {STATS.map((s, i) => {
             const count = useCounter(s.n, vis);
             return (
@@ -1938,9 +3002,10 @@ function StatsSection() {
                 border: "1px solid rgba(255,255,255,0.12)",
                 opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(20px)",
                 transition: `all .6s ${i * 0.1}s`,
+                minWidth: 0,
               }}>
                 <span style={{ fontSize: 32, display: "block", marginBottom: 12 }}>{s.icon}</span>
-                <div style={{ fontSize: 48, fontWeight: 800, color: "#fff", lineHeight: 1 }}>
+                <div style={{ fontSize: "clamp(30px,4vw,48px)", fontWeight: 800, color: "#fff", lineHeight: 1 }}>
                   {count}{s.suffix}
                 </div>
                 <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 10 }}>{s.label}</div>
@@ -1957,8 +3022,6 @@ function StatsSection() {
    SECTION — WHY INNOVARE BIOPHARMA
 ══════════════════════════════════════════════════ */
 const PILLARS = [
-  // { icon: "🏭", title: "GMP Certified Manufacturing", body: "All Innovare Biopharma products are manufactured under Good Manufacturing Practice standards, ensuring consistent quality, purity, and safety in every batch.", color: B.blue },
-  // { icon: "📋", title: "CAA Registered Products", body: "Our aquaculture products carry valid Coastal Aquaculture Authority (CAA) registrations, making them fully compliant for use in shrimp and fish farms across India.", color: B.teal },
   { icon: "🔬", title: "Science-Backed Formulations", body: "Each product is developed by aquaculture and veterinary science specialists, with field-validated efficacy data from partner farms across Andhra Pradesh and Telangana.", color: "#7c3aed" },
   { icon: "📞", title: "On-Farm Technical Support", body: "Our team of aquaculture technicians provides direct on-farm consultation — from pond preparation through grow-out — ensuring protocols are correctly implemented.", color: B.green },
   { icon: "🌿", title: "Natural & Safe Ingredients", body: "Innovare Biopharma prioritises natural, non-antibiotic solutions: probiotics, phytogenics, and mineral supplements that improve outcomes without chemical residue risks.", color: B.amber },
@@ -1968,117 +3031,99 @@ const PILLARS = [
 function WhyUsSection() {
   const [ref, vis] = useReveal(0.06);
   return (
-    <section style={{ background: B.pageBg, padding: "100px 48px" }}>
-      <div ref={ref} style={{ maxWidth: 1100, margin: "0 auto" }}>
+    <section className="nut-section-pad-100" style={{ background: B.pageBg, padding: "100px 48px" }}>
+      <div ref={ref} className="nut-inner-1100" style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 56, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>Why Choose Us</span>
-          <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
+          <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12, marginBottom: 16 }}>
             The Innovare Biopharma Advantage
           </h2>
         </div>
-        {/* <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+
+        <div className="nut-whyus-grid" style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 32,
+          width: "100%",
+          maxWidth: 1200,
+          margin: "0 auto",
+        }}>
           {PILLARS.map((p, i) => (
-            <div key={p.title} style={{
-              padding: "28px 24px", borderRadius: 18, background: "#fff",
-              border: `1px solid ${B.border}`,
-              boxShadow: "0 2px 8px rgba(15,23,42,0.05)",
-              opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(20px)",
-              transition: `all .6s ${i * 0.08}s`,
-            }}>
+            <div
+              key={p.title}
+              style={{
+                padding: "36px 28px",
+                borderRadius: 20,
+                background: "#fff",
+                border: `1px solid ${B.border}`,
+                boxShadow: "0 10px 30px rgba(15,23,42,0.06)",
+
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                minWidth: 0,
+
+                transition: "all .3s",
+                cursor: "pointer",
+
+                opacity: vis ? 1 : 0,
+                transform: vis ? "translateY(0)" : "translateY(20px)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-6px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+
+              {/* ICON */}
               <div style={{
-                width: 48, height: 48, borderRadius: 12, background: `${p.color}12`,
-                border: `1.5px solid ${p.color}28`, display: "flex", alignItems: "center",
-                justifyContent: "center", fontSize: 22, marginBottom: 18,
-              }}>{p.icon}</div>
-              <h3 style={{ fontSize: 15, fontWeight: 800, color: B.navy, marginBottom: 10 }}>{p.title}</h3>
-              <p style={{ fontSize: 13.5, color: B.slate, lineHeight: 1.75 }}>{p.body}</p>
-              <div style={{ height: 2, marginTop: 20, borderRadius: 1, background: `linear-gradient(90deg, ${p.color}60, transparent)` }} />
+                width: 56,
+                height: 56,
+                borderRadius: 14,
+                background: `${p.color}12`,
+                border: `1.5px solid ${p.color}28`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 26,
+                marginBottom: 20,
+              }}>
+                {p.icon}
+              </div>
+
+              {/* CONTENT */}
+              <div style={{ flex: 1 }}>
+                <h3 style={{
+                  fontSize: 16,
+                  fontWeight: 800,
+                  color: B.navy,
+                  marginBottom: 12,
+                }}>
+                  {p.title}
+                </h3>
+
+                <p style={{
+                  fontSize: 14,
+                  color: B.slate,
+                  lineHeight: 1.8,
+                }}>
+                  {p.body}
+                </p>
+              </div>
+
+              {/* BOTTOM LINE */}
+              <div style={{
+                height: 2,
+                marginTop: 20,
+                borderRadius: 1,
+                background: `linear-gradient(90deg, ${p.color}60, transparent)`
+              }} />
             </div>
           ))}
-        </div> */}
-        <div style={{
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)", // ✅ 4 equal boxes
-  gap: 32,
-  width: "100%",
-  maxWidth: 1200,
-  margin: "0 auto",
-}}>
-  {PILLARS.map((p, i) => (
-    <div
-      key={p.title}
-      style={{
-        padding: "36px 28px",
-        borderRadius: 20,
-        background: "#fff",
-        border: `1px solid ${B.border}`,
-        boxShadow: "0 10px 30px rgba(15,23,42,0.06)",
-
-        height: "100%", // ✅ full height
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-
-        transition: "all .3s",
-        cursor: "pointer",
-
-        opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(0)" : "translateY(20px)",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-6px)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-      }}
-    >
-
-      {/* ICON */}
-      <div style={{
-        width: 56,
-        height: 56,
-        borderRadius: 14,
-        background: `${p.color}12`,
-        border: `1.5px solid ${p.color}28`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: 26,
-        marginBottom: 20,
-      }}>
-        {p.icon}
-      </div>
-
-      {/* CONTENT */}
-      <div style={{ flex: 1 }}>
-        <h3 style={{
-          fontSize: 16,
-          fontWeight: 800,
-          color: B.navy,
-          marginBottom: 12,
-        }}>
-          {p.title}
-        </h3>
-
-        <p style={{
-          fontSize: 14,
-          color: B.slate,
-          lineHeight: 1.8,
-        }}>
-          {p.body}
-        </p>
-      </div>
-
-      {/* BOTTOM LINE */}
-      <div style={{
-        height: 2,
-        marginTop: 20,
-        borderRadius: 1,
-        background: `linear-gradient(90deg, ${p.color}60, transparent)`
-      }} />
-    </div>
-  ))}
-</div>
+        </div>
       </div>
     </section>
   );
@@ -2125,15 +3170,15 @@ function FAQSection() {
   const [ref, vis] = useReveal(0.1);
 
   return (
-    <section style={{ background: "#fff", padding: "100px 48px" }}>
-      <div ref={ref} style={{ maxWidth: 860, margin: "0 auto" }}>
+    <section className="nut-section-pad-100" style={{ background: "#fff", padding: "100px 48px" }}>
+      <div ref={ref} className="nut-inner-860" style={{ maxWidth: 860, margin: "0 auto" }}>
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 52, opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(24px)", transition: "all .7s" }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: B.teal, letterSpacing: 2, textTransform: "uppercase" }}>
             Technical FAQs
           </span>
-          <h2 style={{ fontSize: "clamp(28px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12 }}>
+          <h2 style={{ fontSize: "clamp(26px,3.5vw,44px)", fontWeight: 800, color: B.navy, lineHeight: 1.15, letterSpacing: -0.5, marginTop: 12 }}>
             Common Nutrition<br />
             <span style={{ color: B.blue }}>Questions Answered</span>
           </h2>
@@ -2163,7 +3208,7 @@ function FAQSection() {
               >
                 {/* Question row */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "22px 26px", gap: 16 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
                     <div style={{
                       width: 36, height: 36, borderRadius: 10,
                       background: isOpen ? "rgba(42,93,168,0.12)" : B.tealLight,
@@ -2197,7 +3242,7 @@ function FAQSection() {
         </div>
 
         {/* Still have questions card */}
-        <div style={{
+        <div className="nut-faq-card" style={{
           marginTop: 28,
           background: B.tealLight,
           border: `1px solid ${B.blueLight}`,
@@ -2206,14 +3251,14 @@ function FAQSection() {
           justifyContent: "space-between", flexWrap: "wrap", gap: 16,
           opacity: vis ? 1 : 0, transition: "opacity .7s .4s",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
             <div style={{
               width: 44, height: 44, borderRadius: 12,
               background: `linear-gradient(135deg, ${B.teal}, ${B.blue})`,
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 20, flexShrink: 0, boxShadow: "0 4px 14px rgba(14,165,233,0.30)",
             }}>🥗</div>
-            <div>
+            <div style={{ minWidth: 0 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: B.navy }}>Still have a nutrition question?</div>
               <div style={{ fontSize: 12, color: B.slate, marginTop: 2 }}>Our aquaculture nutritionists are available to advise your farm directly.</div>
             </div>
@@ -2236,15 +3281,15 @@ function FAQSection() {
 
 export default function NutritionPage() {
   return (
-    <main style={{ position: "relative", background: B.pageBg }}>
+    <main className="nut-page" style={{ position: "relative", background: B.pageBg }}>
+      <style>{RESPONSIVE_CSS}</style>
       <Hero />
       <WhatIsSection />
       <LifecycleSection />
       <NutrientSection />
       <StatsSection />
       <WhyUsSection />
-      <FAQSection />   {/* ← moved above CTA */}
-      {/* <CTASection /> */}
+      <FAQSection />
       <Footer />
     </main>
   );
