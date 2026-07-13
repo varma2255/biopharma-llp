@@ -23211,7 +23211,7 @@ export default function InnovareLanding() {
                             From advanced <strong>probiotics &amp; minerals</strong> to eco-friendly farm solutions — dedicated to healthier aquatic ecosystems and <strong>sustainable aquaculture</strong> across India and beyond.
                         </p>
                         <div className="hero-stats">
-                            {[["5+", "Years"],["3", "Solutions Doamin"], ["1000+", "Clients"], ["33+", "Products"]].map(([n, l]) => (
+                            {[["5+", "Years"],["3", "Solutions Domain"], ["1000+", "Clients"], ["33+", "Products"]].map(([n, l]) => (
                                 <div key={l} className="hstat"><span className="hstat-num">{n}</span><span className="hstat-lbl">{l}</span></div>
                             ))}
                         </div>
@@ -23373,7 +23373,7 @@ export default function InnovareLanding() {
                 <h2 className="sec-h2" style={{ color: "#07273d" }}>Get in <span className="sec-h2-it" style={{ color: "#1d9cff" }}>Touch</span></h2>
                 <p className="sec-desc" style={{ color: "#547086", maxWidth: 760, marginInline: "auto", lineHeight: 1.9, fontSize: "1.05rem" }}>Have questions about our products or want to explore a partnership? Our team is ready to help you build healthier aquaculture ecosystems.</p>
                 <div className="contact-btns">
-                    <a href="https://wa.me/919848019985" target="_blank" rel="noopener noreferrer"
+                    <a href="https://wa.me/917799872555" target="_blank" rel="noopener noreferrer"
                         className="contact-btn"
                         style={{ background: "linear-gradient(135deg,#1f9fff,#0077ff)", color: "white", border: "none", boxShadow: "0 10px 25px rgba(0,119,255,0.25)" }}>
                         Send a Message <Icons.ArrowRight />
