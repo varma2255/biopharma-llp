@@ -23242,11 +23242,26 @@ export default function InnovareLanding() {
                         </div>
                     </div>
                 </div>
-                <div className="stats-row">
-                    {[["5+", "YEARS GROWTH"], ["3", "SOLUTION DOMAINS"],["1000+", "CLIENTS"],["33+", "PRODUCTS"], ].map(([n, l]) => (
-                        <div key={l} className="stat-box"><span className="stat-num">{n}</span><span className="stat-lbl">{l}</span></div>
-                    ))}
-                </div>
+               <div className="stats-row">
+    {[
+        ["5+", "YEARS GROWTH"],
+        ["3", "SOLUTION DOMAINS"],
+        ["1000+", "CLIENTS"],
+        ["33+", "PRODUCTS"],
+    ].map(([n, l]) => (
+        <div
+            key={l}
+            className="stat-box"
+            onClick={l === "PRODUCTS" ? () => router.push("/products") : undefined}
+            style={{
+                cursor: l === "PRODUCTS" ? "pointer" : "default",
+            }}
+        >
+            <span className="stat-num">{n}</span>
+            <span className="stat-lbl">{l}</span>
+        </div>
+    ))}
+</div>
             </section>
 
             {/* ══ SOLUTIONS ══ */}
