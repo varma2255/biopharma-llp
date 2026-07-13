@@ -23211,7 +23211,7 @@ export default function InnovareLanding() {
                             From advanced <strong>probiotics &amp; minerals</strong> to eco-friendly farm solutions — dedicated to healthier aquatic ecosystems and <strong>sustainable aquaculture</strong> across India and beyond.
                         </p>
                         <div className="hero-stats">
-                            {[["5+", "Years"],["3", "Solutions Domain"], ["1000+", "Clients"], ["33+", "Products"]].map(([n, l]) => (
+                            {[["5+", "Years"],["3", "Solution Domains"], ["1000+", "Clients"], ["33+", "Products"]].map(([n, l]) => (
                                 <div key={l} className="hstat"><span className="hstat-num">{n}</span><span className="hstat-lbl">{l}</span></div>
                             ))}
                         </div>
