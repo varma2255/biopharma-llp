@@ -2559,8 +2559,8 @@ import {
 } from "lucide-react";
 
 // ─── CONFIG — update these ────────────────────────────────────────────────────
-const WHATSAPP_NUMBER = "919876543210"; // country code + number, no +
-const CONTACT_EMAIL   = "sales@innovarebiopharma.com";
+const WHATSAPP_NUMBER = "7799872555"; // country code + number, no +
+const CONTACT_EMAIL   = "info@innovarebiopharma.com";
 const COMPANY_NAME    = "Innovare Biopharma LLP";
 
 const T = {

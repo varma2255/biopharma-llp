@@ -8503,7 +8503,47 @@ function Packshot({ product }: { product: Product }) {
       style={{ height: 196, background: "#eef4fb" }}
     >
       {/* Hex frame: fixed 180×160, centred */}
-    
+      <div className="relative flex items-center justify-center" style={{ width: 180, height: 160 }}>
+        <svg
+          viewBox="0 0 180 160"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute inset-0 pointer-events-none"
+          style={{ width: "100%", height: "100%" }}
+        >
+          <path d={hexPath} fill="white" />
+          <path
+            d={hexPath}
+            fill="none"
+            stroke={cfg.hexStroke}
+            strokeWidth="3"
+            strokeOpacity="0.85"
+          />
+        </svg>
+
+        {/* Product image — centred inside hex */}
+        {imgSrc ? (
+          <div
+            className="relative z-10 group-hover:scale-105 transition-transform duration-300 ease-out"
+            style={{ width: 96, height: 96 }}
+          >
+            <Image
+              src={imgSrc}
+              alt={product.name}
+              fill
+              className="object-contain drop-shadow-md"
+              sizes="96px"
+            />
+          </div>
+        ) : (
+          <div
+            className="relative z-10 group-hover:scale-105 transition-transform duration-300"
+            style={{ width: 80, height: 80, color: cfg.hexStroke, opacity: 0.5 }}
+          >
+            <PlaceholderIcon form={product.form} />
+          </div>
+        )}
+      </div>
 
       {/* Form pill */}
       <div className="absolute bottom-2.5 left-3 z-20">
