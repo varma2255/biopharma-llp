@@ -5699,6 +5699,7 @@ const navLinks = [
   },
   { label: "EVENTS", href: "/event" },
   { label: "CAREERS", href: "/careers" },
+  { label: "BLOG", href: "/blog" },
   { label: "CONTACT", href: "/contact" },
 ];
 
