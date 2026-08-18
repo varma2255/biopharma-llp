@@ -2399,7 +2399,7 @@ export const blogs: BlogPost[] = [
       {
         id: "preventive-strategy",
         heading: "Building a Preventive Ammonia Management Strategy",
-        image: "/images/Preventive.png",
+        image: "/images/prevent.png",
         imageAlt: "Well-managed shrimp pond using paddlewheel aerators",
         paragraphs: [
           "A stronger long-term strategy focuses on managing the conditions that allow ammonia to accumulate instead of relying only on corrective action after ammonia has increased.",

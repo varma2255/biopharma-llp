@@ -1,2 +1,5 @@
 node_modules
 .next
+# Local payment demo - do not push
+/app/payment/
+/public/videos/pay.mp4
