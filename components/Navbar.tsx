@@ -5719,7 +5719,9 @@ export default function Navbar() {
     >
       {/* Same max-width + horizontal padding as page sections below, so the navbar's
           logo/edges line up exactly with section content instead of drifting. */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-[76px] lg:h-[84px] xl:h-[92px]">
+      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-[76px] lg:h-[84px] xl:h-[92px]">
+       */}
+       <div className="max-w-[1440px] mx-auto px-6 lg:px-8 xl:px-10 flex items-center justify-between h-[84px] xl:h-[92px]">
 
         {/* ── Logo ── */}
         <Link
