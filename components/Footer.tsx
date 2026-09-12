@@ -5755,7 +5755,7 @@ export default function Footer() {
       ),
     },
     {
-      label: "Facebook", href: "#", hoverBg: "#1877F2",
+      label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592578942241", hoverBg: "#1877F2",
       icon: (
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#1877F2"/>
