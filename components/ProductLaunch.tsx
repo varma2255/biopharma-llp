@@ -1,623 +1,6153 @@
+// // // // // // // // // // // // // "use client";
+
+// // // // // // // // // // // // // import { useEffect, useState } from "react";
+// // // // // // // // // // // // // import {
+// // // // // // // // // // // // //   Leaf,
+// // // // // // // // // // // // //   ShieldCheck,
+// // // // // // // // // // // // //   BarChart3,
+// // // // // // // // // // // // //   Droplets,
+// // // // // // // // // // // // //   ArrowRight,
+// // // // // // // // // // // // // } from "lucide-react";
+
+// // // // // // // // // // // // // const LAUNCH_DATE = new Date("2026-09-23T00:00:00+05:30").getTime();
+
+// // // // // // // // // // // // // function getTimeLeft() {
+// // // // // // // // // // // // //   const difference = LAUNCH_DATE - Date.now();
+
+// // // // // // // // // // // // //   if (difference <= 0) {
+// // // // // // // // // // // // //     return {
+// // // // // // // // // // // // //       days: 0,
+// // // // // // // // // // // // //       hours: 0,
+// // // // // // // // // // // // //       minutes: 0,
+// // // // // // // // // // // // //       seconds: 0,
+// // // // // // // // // // // // //     };
+// // // // // // // // // // // // //   }
+
+// // // // // // // // // // // // //   return {
+// // // // // // // // // // // // //     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+// // // // // // // // // // // // //     hours: Math.floor(
+// // // // // // // // // // // // //       (difference / (1000 * 60 * 60)) % 24
+// // // // // // // // // // // // //     ),
+// // // // // // // // // // // // //     minutes: Math.floor(
+// // // // // // // // // // // // //       (difference / (1000 * 60)) % 60
+// // // // // // // // // // // // //     ),
+// // // // // // // // // // // // //     seconds: Math.floor(
+// // // // // // // // // // // // //       (difference / 1000) % 60
+// // // // // // // // // // // // //     ),
+// // // // // // // // // // // // //   };
+// // // // // // // // // // // // // }
+
+// // // // // // // // // // // // // export default function ProductLaunch() {
+// // // // // // // // // // // // //   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+
+// // // // // // // // // // // // //   useEffect(() => {
+// // // // // // // // // // // // //     const timer = setInterval(() => {
+// // // // // // // // // // // // //       setTimeLeft(getTimeLeft());
+// // // // // // // // // // // // //     }, 1000);
+
+// // // // // // // // // // // // //     return () => clearInterval(timer);
+// // // // // // // // // // // // //   }, []);
+
+// // // // // // // // // // // // //   const features = [
+// // // // // // // // // // // // //     {
+// // // // // // // // // // // // //       icon: Leaf,
+// // // // // // // // // // // // //       title: "Healthier",
+// // // // // // // // // // // // //       subtitle: "Ponds",
+// // // // // // // // // // // // //     },
+// // // // // // // // // // // // //     {
+// // // // // // // // // // // // //       icon: ShieldCheck,
+// // // // // // // // // // // // //       title: "Stronger",
+// // // // // // // // // // // // //       subtitle: "Immunity",
+// // // // // // // // // // // // //     },
+// // // // // // // // // // // // //     {
+// // // // // // // // // // // // //       icon: BarChart3,
+// // // // // // // // // // // // //       title: "Better",
+// // // // // // // // // // // // //       subtitle: "Productivity",
+// // // // // // // // // // // // //     },
+// // // // // // // // // // // // //     {
+// // // // // // // // // // // // //       icon: Droplets,
+// // // // // // // // // // // // //       title: "Cleaner",
+// // // // // // // // // // // // //       subtitle: "Water Ecosystems",
+// // // // // // // // // // // // //     },
+// // // // // // // // // // // // //   ];
+
+// // // // // // // // // // // // //   return (
+// // // // // // // // // // // // //     <section className="relative w-full overflow-hidden bg-[#031b2c] text-white">
+// // // // // // // // // // // // //       {/* Background */}
+// // // // // // // // // // // // //       <div className="absolute inset-0">
+// // // // // // // // // // // // //         <div
+// // // // // // // // // // // // //           className="absolute inset-0"
+// // // // // // // // // // // // //           style={{
+// // // // // // // // // // // // //             background:
+// // // // // // // // // // // // //               "radial-gradient(circle at 72% 40%, rgba(26,150,210,0.32), transparent 38%), linear-gradient(110deg, #021625 0%, #06304a 48%, #075d7d 100%)",
+// // // // // // // // // // // // //           }}
+// // // // // // // // // // // // //         />
+
+// // // // // // // // // // // // //         {/* Water glow */}
+// // // // // // // // // // // // //         <div
+// // // // // // // // // // // // //           className="absolute right-[-10%] top-[-20%] h-[700px] w-[700px] rounded-full opacity-40 blur-3xl"
+// // // // // // // // // // // // //           style={{
+// // // // // // // // // // // // //             background:
+// // // // // // // // // // // // //               "radial-gradient(circle, #37b9ee 0%, transparent 65%)",
+// // // // // // // // // // // // //           }}
+// // // // // // // // // // // // //         />
+
+// // // // // // // // // // // // //         <div
+// // // // // // // // // // // // //           className="absolute bottom-[-30%] left-[35%] h-[500px] w-[700px] rounded-full opacity-30 blur-3xl"
+// // // // // // // // // // // // //           style={{
+// // // // // // // // // // // // //             background:
+// // // // // // // // // // // // //               "radial-gradient(circle, #087ba5 0%, transparent 70%)",
+// // // // // // // // // // // // //           }}
+// // // // // // // // // // // // //         />
+// // // // // // // // // // // // //       </div>
+
+// // // // // // // // // // // // //       {/* Main content */}
+// // // // // // // // // // // // //       <div className="relative z-10 mx-auto flex min-h-[760px] max-w-[1600px] items-center px-6 py-16 sm:px-10 lg:px-16">
+// // // // // // // // // // // // //         <div className="grid w-full items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+// // // // // // // // // // // // //           {/* LEFT */}
+// // // // // // // // // // // // //           <div className="max-w-[780px]">
+// // // // // // // // // // // // //             {/* Small heading */}
+// // // // // // // // // // // // //             <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.45em] text-white sm:text-[15px]">
+// // // // // // // // // // // // //               Something Powerful Is Coming
+// // // // // // // // // // // // //             </p>
+
+// // // // // // // // // // // // //             {/* Main heading */}
+// // // // // // // // // // // // //             <h2 className="text-5xl font-extrabold leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[76px]">
+// // // // // // // // // // // // //               <span className="text-white">New </span>
+// // // // // // // // // // // // //               <span className="text-[#45b9f3]">
+// // // // // // // // // // // // //                 Product Launch
+// // // // // // // // // // // // //               </span>
+// // // // // // // // // // // // //             </h2>
+
+// // // // // // // // // // // // //             {/* Description */}
+// // // // // // // // // // // // //             <div className="mt-6 max-w-[720px]">
+// // // // // // // // // // // // //               <p className="text-xl leading-relaxed text-[#e3f5ff] sm:text-2xl">
+// // // // // // // // // // // // //                 A breakthrough in{" "}
+// // // // // // // // // // // // //                 <span className="font-semibold text-[#54c8ff]">
+// // // // // // // // // // // // //                   aquaculture health
+// // // // // // // // // // // // //                 </span>{" "}
+// // // // // // // // // // // // //                 is on its way.
+// // // // // // // // // // // // //               </p>
+
+// // // // // // // // // // // // //               <p className="mt-1 text-lg leading-relaxed text-[#a9ddf6] sm:text-xl">
+// // // // // // // // // // // // //                 Science-driven solutions for healthier ponds
+// // // // // // // // // // // // //                 and a more sustainable tomorrow.
+// // // // // // // // // // // // //               </p>
+// // // // // // // // // // // // //             </div>
+
+// // // // // // // // // // // // //             {/* Features */}
+// // // // // // // // // // // // //             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4">
+// // // // // // // // // // // // //               {features.map((feature, index) => {
+// // // // // // // // // // // // //                 const Icon = feature.icon;
+
+// // // // // // // // // // // // //                 return (
+// // // // // // // // // // // // //                   <div
+// // // // // // // // // // // // //                     key={feature.title}
+// // // // // // // // // // // // //                     className={`flex min-h-[100px] flex-col items-center justify-center px-3 text-center
+// // // // // // // // // // // // //                     ${
+// // // // // // // // // // // // //                       index !== 0
+// // // // // // // // // // // // //                         ? "border-l border-white/20"
+// // // // // // // // // // // // //                         : ""
+// // // // // // // // // // // // //                     }`}
+// // // // // // // // // // // // //                   >
+// // // // // // // // // // // // //                     <Icon
+// // // // // // // // // // // // //                       size={38}
+// // // // // // // // // // // // //                       strokeWidth={1.8}
+// // // // // // // // // // // // //                       className="mb-3 text-white"
+// // // // // // // // // // // // //                     />
+
+// // // // // // // // // // // // //                     <span className="text-sm font-semibold sm:text-base">
+// // // // // // // // // // // // //                       {feature.title}
+// // // // // // // // // // // // //                     </span>
+
+// // // // // // // // // // // // //                     <span className="text-sm font-semibold sm:text-base">
+// // // // // // // // // // // // //                       {feature.subtitle}
+// // // // // // // // // // // // //                     </span>
+// // // // // // // // // // // // //                   </div>
+// // // // // // // // // // // // //                 );
+// // // // // // // // // // // // //               })}
+// // // // // // // // // // // // //             </div>
+
+// // // // // // // // // // // // //             {/* Countdown */}
+// // // // // // // // // // // // //             <div className="mt-8 max-w-[680px] rounded-2xl border border-white/20 bg-white/[0.06] px-4 py-5 backdrop-blur-md sm:px-6">
+// // // // // // // // // // // // //               <div className="grid grid-cols-4">
+// // // // // // // // // // // // //                 <CountdownItem
+// // // // // // // // // // // // //                   value={timeLeft.days}
+// // // // // // // // // // // // //                   label="Days"
+// // // // // // // // // // // // //                 />
+
+// // // // // // // // // // // // //                 <CountdownItem
+// // // // // // // // // // // // //                   value={timeLeft.hours}
+// // // // // // // // // // // // //                   label="Hours"
+// // // // // // // // // // // // //                   bordered
+// // // // // // // // // // // // //                 />
+
+// // // // // // // // // // // // //                 <CountdownItem
+// // // // // // // // // // // // //                   value={timeLeft.minutes}
+// // // // // // // // // // // // //                   label="Minutes"
+// // // // // // // // // // // // //                   bordered
+// // // // // // // // // // // // //                 />
+
+// // // // // // // // // // // // //                 <CountdownItem
+// // // // // // // // // // // // //                   value={timeLeft.seconds}
+// // // // // // // // // // // // //                   label="Seconds"
+// // // // // // // // // // // // //                   bordered
+// // // // // // // // // // // // //                 />
+// // // // // // // // // // // // //               </div>
+// // // // // // // // // // // // //             </div>
+
+// // // // // // // // // // // // //             {/* CTA */}
+// // // // // // // // // // // // //             <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center">
+// // // // // // // // // // // // //               <a
+// // // // // // // // // // // // //                 href="#launch-notify"
+// // // // // // // // // // // // //                 className="inline-flex h-16 items-center justify-center gap-4 rounded-xl bg-[#168cf0] px-8 text-base font-bold text-white shadow-lg shadow-blue-950/30 transition hover:bg-[#2aa2ff] sm:min-w-[290px]"
+// // // // // // // // // // // // //               >
+// // // // // // // // // // // // //                 Be the First to Know
+// // // // // // // // // // // // //                 <ArrowRight size={21} />
+// // // // // // // // // // // // //               </a>
+
+// // // // // // // // // // // // //               <div className="hidden h-12 w-px bg-white/30 sm:block" />
+
+// // // // // // // // // // // // //               <p className="text-sm leading-relaxed text-[#d1ebf8]">
+// // // // // // // // // // // // //                 Get launch updates, product details
+// // // // // // // // // // // // //                 <br className="hidden sm:block" />
+// // // // // // // // // // // // //                 and exclusive early access.
+// // // // // // // // // // // // //               </p>
+// // // // // // // // // // // // //             </div>
+// // // // // // // // // // // // //           </div>
+
+// // // // // // // // // // // // //           {/* RIGHT PRODUCT */}
+// // // // // // // // // // // // //           <div className="relative flex min-h-[560px] items-center justify-center lg:min-h-[650px]">
+// // // // // // // // // // // // //             {/* Light beam */}
+// // // // // // // // // // // // //             <div
+// // // // // // // // // // // // //               className="absolute top-[-10%] h-[580px] w-[320px] opacity-30 blur-2xl"
+// // // // // // // // // // // // //               style={{
+// // // // // // // // // // // // //                 background:
+// // // // // // // // // // // // //                   "linear-gradient(180deg, rgba(126,220,255,0.9), transparent)",
+// // // // // // // // // // // // //                 clipPath:
+// // // // // // // // // // // // //                   "polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%)",
+// // // // // // // // // // // // //               }}
+// // // // // // // // // // // // //             />
+
+// // // // // // // // // // // // //             {/* Product glow */}
+// // // // // // // // // // // // //             <div className="absolute h-[430px] w-[430px] rounded-full bg-cyan-400/20 blur-[90px]" />
+
+// // // // // // // // // // // // //             {/* Product pedestal */}
+// // // // // // // // // // // // //             <div className="absolute bottom-[4%] h-[105px] w-[75%] rounded-[50%] bg-[#061d32] shadow-[0_20px_70px_rgba(0,0,0,0.6)] sm:h-[125px]" />
+
+// // // // // // // // // // // // //             <div className="absolute bottom-[10%] h-[60px] w-[70%] rounded-[50%] border border-cyan-200/30 bg-[#0a304a] shadow-[0_0_50px_rgba(41,188,245,0.35)]" />
+
+// // // // // // // // // // // // //             {/* Covered product */}
+// // // // // // // // // // // // //             <div className="relative z-10 mb-16 h-[440px] w-[300px] sm:h-[500px] sm:w-[360px]">
+// // // // // // // // // // // // //               {/* Main cover */}
+// // // // // // // // // // // // //               <div
+// // // // // // // // // // // // //                 className="absolute inset-x-[8%] top-[8%] bottom-0 rounded-t-[45%] rounded-b-[20%]"
+// // // // // // // // // // // // //                 style={{
+// // // // // // // // // // // // //                   background:
+// // // // // // // // // // // // //                     "linear-gradient(100deg, #061c34 0%, #073e67 32%, #020f24 62%, #0a4772 100%)",
+// // // // // // // // // // // // //                   boxShadow:
+// // // // // // // // // // // // //                     "inset 25px 0 45px rgba(80,190,255,.12), inset -25px 0 40px rgba(0,0,0,.45), 0 20px 50px rgba(0,0,0,.4)",
+// // // // // // // // // // // // //                 }}
+// // // // // // // // // // // // //               />
+
+// // // // // // // // // // // // //               {/* Cloth highlight */}
+// // // // // // // // // // // // //               <div
+// // // // // // // // // // // // //                 className="absolute left-[12%] top-[10%] h-[70%] w-[30%] rounded-full opacity-30 blur-xl"
+// // // // // // // // // // // // //                 style={{
+// // // // // // // // // // // // //                   background:
+// // // // // // // // // // // // //                     "linear-gradient(90deg, #72d8ff, transparent)",
+// // // // // // // // // // // // //                 }}
+// // // // // // // // // // // // //               />
+
+// // // // // // // // // // // // //               {/* Product logo */}
+// // // // // // // // // // // // //               <div className="absolute left-1/2 top-[26%] z-20 -translate-x-1/2 text-center">
+// // // // // // // // // // // // //                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#168cf0] bg-[#0872bd] shadow-lg">
+// // // // // // // // // // // // //                   <span className="font-serif text-4xl italic text-white">
+// // // // // // // // // // // // //                     i
+// // // // // // // // // // // // //                   </span>
+// // // // // // // // // // // // //                 </div>
+
+// // // // // // // // // // // // //                 <p className="mt-4 whitespace-nowrap text-xl font-semibold text-white">
+// // // // // // // // // // // // //                   Innovare
+// // // // // // // // // // // // //                 </p>
+
+// // // // // // // // // // // // //                 <p className="whitespace-nowrap text-lg text-[#c5eaff]">
+// // // // // // // // // // // // //                   Biopharma LLP
+// // // // // // // // // // // // //                 </p>
+
+// // // // // // // // // // // // //                 <div className="mx-auto mt-6 h-1 w-10 bg-[#36d8dc]" />
+
+// // // // // // // // // // // // //                 <p className="mt-6 whitespace-nowrap text-[10px] tracking-[0.4em] text-white/70">
+// // // // // // // // // // // // //                   A HEALTHIER
+// // // // // // // // // // // // //                 </p>
+
+// // // // // // // // // // // // //                 <p className="mt-1 whitespace-nowrap text-[10px] tracking-[0.4em] text-white/70">
+// // // // // // // // // // // // //                   AQUATIC TOMORROW
+// // // // // // // // // // // // //                 </p>
+// // // // // // // // // // // // //               </div>
+// // // // // // // // // // // // //             </div>
+
+// // // // // // // // // // // // //             {/* Water-like bottom */}
+// // // // // // // // // // // // //             <div className="absolute bottom-0 left-0 right-0 h-24 opacity-50">
+// // // // // // // // // // // // //               <div className="absolute bottom-5 left-[10%] h-px w-[80%] bg-cyan-200/40" />
+// // // // // // // // // // // // //               <div className="absolute bottom-10 left-[20%] h-px w-[60%] bg-cyan-200/20" />
+// // // // // // // // // // // // //             </div>
+// // // // // // // // // // // // //           </div>
+// // // // // // // // // // // // //         </div>
+// // // // // // // // // // // // //       </div>
+
+// // // // // // // // // // // // //       {/* Bottom tagline */}
+// // // // // // // // // // // // //       <div className="relative z-10 pb-7 text-center text-[10px] font-medium uppercase tracking-[0.4em] text-white/80 sm:text-xs">
+// // // // // // // // // // // // //         Science
+// // // // // // // // // // // // //         <span className="mx-4">|</span>
+// // // // // // // // // // // // //         Sustainability
+// // // // // // // // // // // // //         <span className="mx-4">|</span>
+// // // // // // // // // // // // //         Stronger Farms
+// // // // // // // // // // // // //       </div>
+// // // // // // // // // // // // //     </section>
+// // // // // // // // // // // // //   );
+// // // // // // // // // // // // // }
+
+// // // // // // // // // // // // // function CountdownItem({
+// // // // // // // // // // // // //   value,
+// // // // // // // // // // // // //   label,
+// // // // // // // // // // // // //   bordered = false,
+// // // // // // // // // // // // // }: {
+// // // // // // // // // // // // //   value: number;
+// // // // // // // // // // // // //   label: string;
+// // // // // // // // // // // // //   bordered?: boolean;
+// // // // // // // // // // // // // }) {
+// // // // // // // // // // // // //   return (
+// // // // // // // // // // // // //     <div
+// // // // // // // // // // // // //       className={`text-center ${
+// // // // // // // // // // // // //         bordered ? "border-l border-white/25" : ""
+// // // // // // // // // // // // //       }`}
+// // // // // // // // // // // // //     >
+// // // // // // // // // // // // //       <div className="text-3xl font-bold tracking-tight sm:text-4xl">
+// // // // // // // // // // // // //         {String(value).padStart(2, "0")}
+// // // // // // // // // // // // //       </div>
+
+// // // // // // // // // // // // //       <div className="mt-1 text-sm text-white/90 sm:text-base">
+// // // // // // // // // // // // //         {label}
+// // // // // // // // // // // // //       </div>
+// // // // // // // // // // // // //     </div>
+// // // // // // // // // // // // //   );
+// // // // // // // // // // // // // }
+// // // // // // // // // // // // "use client";
+
+// // // // // // // // // // // // import { useEffect, useState } from "react";
+
+// // // // // // // // // // // // const LAUNCH_DATE = new Date(
+// // // // // // // // // // // //   "2026-10-01T12:00:00+05:30"
+// // // // // // // // // // // // ).getTime();
+
+// // // // // // // // // // // // export default function ProductLaunch() {
+// // // // // // // // // // // //   const [timeLeft, setTimeLeft] = useState({
+// // // // // // // // // // // //     days: 0,
+// // // // // // // // // // // //     hours: 0,
+// // // // // // // // // // // //     minutes: 0,
+// // // // // // // // // // // //     seconds: 0,
+// // // // // // // // // // // //   });
+
+// // // // // // // // // // // //   useEffect(() => {
+// // // // // // // // // // // //     const updateCountdown = () => {
+// // // // // // // // // // // //       const difference = LAUNCH_DATE - Date.now();
+
+// // // // // // // // // // // //       if (difference <= 0) {
+// // // // // // // // // // // //         setTimeLeft({
+// // // // // // // // // // // //           days: 0,
+// // // // // // // // // // // //           hours: 0,
+// // // // // // // // // // // //           minutes: 0,
+// // // // // // // // // // // //           seconds: 0,
+// // // // // // // // // // // //         });
+// // // // // // // // // // // //         return;
+// // // // // // // // // // // //       }
+
+// // // // // // // // // // // //       setTimeLeft({
+// // // // // // // // // // // //         days: Math.floor(
+// // // // // // // // // // // //           difference / (1000 * 60 * 60 * 24)
+// // // // // // // // // // // //         ),
+// // // // // // // // // // // //         hours: Math.floor(
+// // // // // // // // // // // //           (difference / (1000 * 60 * 60)) % 24
+// // // // // // // // // // // //         ),
+// // // // // // // // // // // //         minutes: Math.floor(
+// // // // // // // // // // // //           (difference / (1000 * 60)) % 60
+// // // // // // // // // // // //         ),
+// // // // // // // // // // // //         seconds: Math.floor(
+// // // // // // // // // // // //           (difference / 1000) % 60
+// // // // // // // // // // // //         ),
+// // // // // // // // // // // //       });
+// // // // // // // // // // // //     };
+
+// // // // // // // // // // // //     updateCountdown();
+
+// // // // // // // // // // // //     const timer = setInterval(updateCountdown, 1000);
+
+// // // // // // // // // // // //     return () => clearInterval(timer);
+// // // // // // // // // // // //   }, []);
+
+// // // // // // // // // // // //   return (
+// // // // // // // // // // // //     <section className="relative min-h-[720px] w-full overflow-hidden bg-[#021b2d]">
+      
+// // // // // // // // // // // //       {/* BACKGROUND IMAGE */}
+// // // // // // // // // // // //       <img
+// // // // // // // // // // // //         src="/images/wide_cinematic_promotional_banner_scene_clean_cor.png"
+// // // // // // // // // // // //         alt="Innovare Biopharma product launch"
+// // // // // // // // // // // //         className="absolute inset-0 h-full w-full object-cover"
+// // // // // // // // // // // //       />
+
+// // // // // // // // // // // //       {/* DARK GRADIENT OVERLAY */}
+// // // // // // // // // // // //       <div className="absolute inset-0 bg-gradient-to-r from-[#001525]/80 via-[#00243a]/30 to-transparent" />
+
+// // // // // // // // // // // //       {/* CONTENT */}
+// // // // // // // // // // // //       <div className="relative z-10 mx-auto flex min-h-[720px] max-w-[1920px] items-center px-6 py-16 sm:px-10 lg:px-[5%]">
+
+// // // // // // // // // // // //         <div className="w-full max-w-[850px]">
+
+// // // // // // // // // // // //           {/* TOP LABEL */}
+// // // // // // // // // // // //           <p className="mb-4 text-sm font-medium tracking-[0.45em] text-white sm:text-base">
+// // // // // // // // // // // //             SOMETHING POWERFUL IS COMING
+// // // // // // // // // // // //           </p>
+
+// // // // // // // // // // // //           {/* TITLE */}
+// // // // // // // // // // // //           <h2 className="text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+// // // // // // // // // // // //             <span className="text-white">
+// // // // // // // // // // // //               New{" "}
+// // // // // // // // // // // //             </span>
+
+// // // // // // // // // // // //             <span className="text-[#45b9f2]">
+// // // // // // // // // // // //               Product Launch
+// // // // // // // // // // // //             </span>
+// // // // // // // // // // // //           </h2>
+
+// // // // // // // // // // // //           {/* DESCRIPTION */}
+// // // // // // // // // // // //           <div className="mt-5">
+// // // // // // // // // // // //             <p className="text-xl font-medium leading-relaxed text-white sm:text-2xl">
+// // // // // // // // // // // //               A breakthrough in{" "}
+// // // // // // // // // // // //               <span className="text-[#4bc6ff]">
+// // // // // // // // // // // //                 aquaculture health
+// // // // // // // // // // // //               </span>{" "}
+// // // // // // // // // // // //               is on its way.
+// // // // // // // // // // // //             </p>
+
+// // // // // // // // // // // //             <p className="mt-1 text-base leading-relaxed text-[#a9ddf7] sm:text-xl">
+// // // // // // // // // // // //               Science-driven solutions for healthier ponds and
+// // // // // // // // // // // //               a more sustainable tomorrow.
+// // // // // // // // // // // //             </p>
+// // // // // // // // // // // //           </div>
+
+// // // // // // // // // // // //           {/* BENEFITS */}
+// // // // // // // // // // // //           <div className="mt-8 grid max-w-[720px] grid-cols-2 sm:grid-cols-4">
+
+// // // // // // // // // // // //             <Benefit
+// // // // // // // // // // // //               icon="◯"
+// // // // // // // // // // // //               title="Healthier"
+// // // // // // // // // // // //               subtitle="Ponds"
+// // // // // // // // // // // //             />
+
+// // // // // // // // // // // //             <Benefit
+// // // // // // // // // // // //               icon="♢"
+// // // // // // // // // // // //               title="Stronger"
+// // // // // // // // // // // //               subtitle="Immunity"
+// // // // // // // // // // // //             />
+
+// // // // // // // // // // // //             <Benefit
+// // // // // // // // // // // //               icon="▥"
+// // // // // // // // // // // //               title="Better"
+// // // // // // // // // // // //               subtitle="Productivity"
+// // // // // // // // // // // //             />
+
+// // // // // // // // // // // //             <Benefit
+// // // // // // // // // // // //               icon="♧"
+// // // // // // // // // // // //               title="Cleaner"
+// // // // // // // // // // // //               subtitle="Water Ecosystems"
+// // // // // // // // // // // //             />
+
+// // // // // // // // // // // //           </div>
+
+// // // // // // // // // // // //           {/* LIVE COUNTDOWN */}
+// // // // // // // // // // // //           <div className="mt-8 max-w-[670px] overflow-hidden rounded-2xl border border-white/20 bg-[#06243a]/75 backdrop-blur-md">
+
+// // // // // // // // // // // //             <div className="grid grid-cols-4">
+
+// // // // // // // // // // // //               <CountdownItem
+// // // // // // // // // // // //                 value={timeLeft.days}
+// // // // // // // // // // // //                 label="Days"
+// // // // // // // // // // // //               />
+
+// // // // // // // // // // // //               <CountdownItem
+// // // // // // // // // // // //                 value={timeLeft.hours}
+// // // // // // // // // // // //                 label="Hours"
+// // // // // // // // // // // //               />
+
+// // // // // // // // // // // //               <CountdownItem
+// // // // // // // // // // // //                 value={timeLeft.minutes}
+// // // // // // // // // // // //                 label="Minutes"
+// // // // // // // // // // // //               />
+
+// // // // // // // // // // // //               <CountdownItem
+// // // // // // // // // // // //                 value={timeLeft.seconds}
+// // // // // // // // // // // //                 label="Seconds"
+// // // // // // // // // // // //                 last
+// // // // // // // // // // // //               />
+
+// // // // // // // // // // // //             </div>
+
+// // // // // // // // // // // //           </div>
+
+// // // // // // // // // // // //           {/* CTA */}
+// // // // // // // // // // // //           <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center">
+
+// // // // // // // // // // // //             <button
+// // // // // // // // // // // //               type="button"
+// // // // // // // // // // // //               className="flex h-16 w-fit items-center gap-8 rounded-xl bg-[#078cff] px-10 text-lg font-semibold text-white shadow-xl transition hover:bg-[#087edb]"
+// // // // // // // // // // // //             >
+// // // // // // // // // // // //               Be the First to Know
+
+// // // // // // // // // // // //               <span className="text-2xl">
+// // // // // // // // // // // //                 →
+// // // // // // // // // // // //               </span>
+// // // // // // // // // // // //             </button>
+
+// // // // // // // // // // // //             <div className="hidden h-10 w-px bg-white/40 sm:block" />
+
+// // // // // // // // // // // //             <p className="max-w-[450px] text-sm text-white sm:text-base">
+// // // // // // // // // // // //               Get launch updates, product details and
+// // // // // // // // // // // //               exclusive early access.
+// // // // // // // // // // // //             </p>
+
+// // // // // // // // // // // //           </div>
+
+// // // // // // // // // // // //         </div>
+
+// // // // // // // // // // // //       </div>
+
+// // // // // // // // // // // //       {/* BOTTOM SLOGAN */}
+// // // // // // // // // // // //       <div className="absolute bottom-6 right-6 z-20 hidden text-xs font-medium tracking-[0.35em] text-white md:block lg:right-10">
+// // // // // // // // // // // //         SCIENCE
+// // // // // // // // // // // //         <span className="mx-3">|</span>
+// // // // // // // // // // // //         SUSTAINABILITY
+// // // // // // // // // // // //         <span className="mx-3">|</span>
+// // // // // // // // // // // //         STRONGER FARMS
+// // // // // // // // // // // //       </div>
+
+// // // // // // // // // // // //     </section>
+// // // // // // // // // // // //   );
+// // // // // // // // // // // // }
+
+
+// // // // // // // // // // // // /* --------------------------------
+// // // // // // // // // // // //    COUNTDOWN ITEM
+// // // // // // // // // // // // -------------------------------- */
+
+// // // // // // // // // // // // function CountdownItem({
+// // // // // // // // // // // //   value,
+// // // // // // // // // // // //   label,
+// // // // // // // // // // // //   last = false,
+// // // // // // // // // // // // }: {
+// // // // // // // // // // // //   value: number;
+// // // // // // // // // // // //   label: string;
+// // // // // // // // // // // //   last?: boolean;
+// // // // // // // // // // // // }) {
+// // // // // // // // // // // //   return (
+// // // // // // // // // // // //     <div
+// // // // // // // // // // // //       className={`flex flex-col items-center justify-center py-5 sm:py-6 ${
+// // // // // // // // // // // //         !last
+// // // // // // // // // // // //           ? "border-r border-white/20"
+// // // // // // // // // // // //           : ""
+// // // // // // // // // // // //       }`}
+// // // // // // // // // // // //     >
+// // // // // // // // // // // //       <span className="text-3xl font-semibold text-white sm:text-4xl">
+// // // // // // // // // // // //         {String(value).padStart(2, "0")}
+// // // // // // // // // // // //       </span>
+
+// // // // // // // // // // // //       <span className="mt-1 text-sm text-white sm:text-base">
+// // // // // // // // // // // //         {label}
+// // // // // // // // // // // //       </span>
+// // // // // // // // // // // //     </div>
+// // // // // // // // // // // //   );
+// // // // // // // // // // // // }
+
+
+// // // // // // // // // // // // /* --------------------------------
+// // // // // // // // // // // //    BENEFIT ITEM
+// // // // // // // // // // // // -------------------------------- */
+
+// // // // // // // // // // // // function Benefit({
+// // // // // // // // // // // //   icon,
+// // // // // // // // // // // //   title,
+// // // // // // // // // // // //   subtitle,
+// // // // // // // // // // // // }: {
+// // // // // // // // // // // //   icon: string;
+// // // // // // // // // // // //   title: string;
+// // // // // // // // // // // //   subtitle: string;
+// // // // // // // // // // // // }) {
+// // // // // // // // // // // //   return (
+// // // // // // // // // // // //     <div className="flex flex-col items-center justify-center border-r border-white/20 px-3 py-2 text-center last:border-r-0">
+
+// // // // // // // // // // // //       <span className="mb-2 text-3xl text-white">
+// // // // // // // // // // // //         {icon}
+// // // // // // // // // // // //       </span>
+
+// // // // // // // // // // // //       <span className="text-sm font-medium text-white sm:text-base">
+// // // // // // // // // // // //         {title}
+// // // // // // // // // // // //       </span>
+
+// // // // // // // // // // // //       <span className="text-sm font-medium text-white sm:text-base">
+// // // // // // // // // // // //         {subtitle}
+// // // // // // // // // // // //       </span>
+
+// // // // // // // // // // // //     </div>
+// // // // // // // // // // // //   );
+// // // // // // // // // // // // }
+// // // // // // // // // // // "use client";
+
+// // // // // // // // // // // import { useEffect, useState } from "react";
+
+// // // // // // // // // // // type TimeLeft = {
+// // // // // // // // // // //   days: number;
+// // // // // // // // // // //   hours: number;
+// // // // // // // // // // //   minutes: number;
+// // // // // // // // // // //   seconds: number;
+// // // // // // // // // // // };
+
+// // // // // // // // // // // const LAUNCH_DATE = new Date("2026-10-01T10:00:00+05:30").getTime();
+
+// // // // // // // // // // // function getTimeLeft(): TimeLeft {
+// // // // // // // // // // //   const difference = LAUNCH_DATE - Date.now();
+
+// // // // // // // // // // //   if (difference <= 0) {
+// // // // // // // // // // //     return {
+// // // // // // // // // // //       days: 0,
+// // // // // // // // // // //       hours: 0,
+// // // // // // // // // // //       minutes: 0,
+// // // // // // // // // // //       seconds: 0,
+// // // // // // // // // // //     };
+// // // // // // // // // // //   }
+
+// // // // // // // // // // //   return {
+// // // // // // // // // // //     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+// // // // // // // // // // //     hours: Math.floor(
+// // // // // // // // // // //       (difference / (1000 * 60 * 60)) % 24
+// // // // // // // // // // //     ),
+// // // // // // // // // // //     minutes: Math.floor(
+// // // // // // // // // // //       (difference / (1000 * 60)) % 60
+// // // // // // // // // // //     ),
+// // // // // // // // // // //     seconds: Math.floor(
+// // // // // // // // // // //       (difference / 1000) % 60
+// // // // // // // // // // //     ),
+// // // // // // // // // // //   };
+// // // // // // // // // // // }
+
+// // // // // // // // // // // function LeafIcon() {
+// // // // // // // // // // //   return (
+// // // // // // // // // // //     <svg
+// // // // // // // // // // //       width="38"
+// // // // // // // // // // //       height="38"
+// // // // // // // // // // //       viewBox="0 0 24 24"
+// // // // // // // // // // //       fill="none"
+// // // // // // // // // // //       stroke="currentColor"
+// // // // // // // // // // //       strokeWidth="1.7"
+// // // // // // // // // // //     >
+// // // // // // // // // // //       <path d="M20.5 3.5C12 4 5.5 8 5.5 14c0 3.3 2.7 6 6 6 6 0 9-7.5 9-16.5Z" />
+// // // // // // // // // // //       <path d="M3.5 20.5c3-4.5 7-7.5 12-9.5" />
+// // // // // // // // // // //     </svg>
+// // // // // // // // // // //   );
+// // // // // // // // // // // }
+
+// // // // // // // // // // // function ShieldIcon() {
+// // // // // // // // // // //   return (
+// // // // // // // // // // //     <svg
+// // // // // // // // // // //       width="38"
+// // // // // // // // // // //       height="38"
+// // // // // // // // // // //       viewBox="0 0 24 24"
+// // // // // // // // // // //       fill="none"
+// // // // // // // // // // //       stroke="currentColor"
+// // // // // // // // // // //       strokeWidth="1.7"
+// // // // // // // // // // //     >
+// // // // // // // // // // //       <path d="M12 3 20 6v5c0 5.2-3.4 8.5-8 10-4.6-1.5-8-4.8-8-10V6l8-3Z" />
+// // // // // // // // // // //       <path d="m9 12 2 2 4-4" />
+// // // // // // // // // // //     </svg>
+// // // // // // // // // // //   );
+// // // // // // // // // // // }
+
+// // // // // // // // // // // function ChartIcon() {
+// // // // // // // // // // //   return (
+// // // // // // // // // // //     <svg
+// // // // // // // // // // //       width="38"
+// // // // // // // // // // //       height="38"
+// // // // // // // // // // //       viewBox="0 0 24 24"
+// // // // // // // // // // //       fill="none"
+// // // // // // // // // // //       stroke="currentColor"
+// // // // // // // // // // //       strokeWidth="1.7"
+// // // // // // // // // // //     >
+// // // // // // // // // // //       <path d="M4 19V9" />
+// // // // // // // // // // //       <path d="M10 19V5" />
+// // // // // // // // // // //       <path d="M16 19v-8" />
+// // // // // // // // // // //       <path d="M22 19V3" />
+// // // // // // // // // // //       <path d="M3 21h20" />
+// // // // // // // // // // //     </svg>
+// // // // // // // // // // //   );
+// // // // // // // // // // // }
+
+// // // // // // // // // // // function WaterIcon() {
+// // // // // // // // // // //   return (
+// // // // // // // // // // //     <svg
+// // // // // // // // // // //       width="38"
+// // // // // // // // // // //       height="38"
+// // // // // // // // // // //       viewBox="0 0 24 24"
+// // // // // // // // // // //       fill="none"
+// // // // // // // // // // //       stroke="currentColor"
+// // // // // // // // // // //       strokeWidth="1.7"
+// // // // // // // // // // //     >
+// // // // // // // // // // //       <path d="M12 2s7 7.3 7 13a7 7 0 0 1-14 0c0-5.7 7-13 7-13Z" />
+// // // // // // // // // // //       <path d="M9 16c.6 1.1 1.5 1.7 3 1.7" />
+// // // // // // // // // // //     </svg>
+// // // // // // // // // // //   );
+// // // // // // // // // // // }
+
+// // // // // // // // // // // export default function ProductLaunch() {
+// // // // // // // // // // //   const [timeLeft, setTimeLeft] = useState<TimeLeft>(
+// // // // // // // // // // //     getTimeLeft()
+// // // // // // // // // // //   );
+
+// // // // // // // // // // //   useEffect(() => {
+// // // // // // // // // // //     const timer = window.setInterval(() => {
+// // // // // // // // // // //       setTimeLeft(getTimeLeft());
+// // // // // // // // // // //     }, 1000);
+
+// // // // // // // // // // //     return () => window.clearInterval(timer);
+// // // // // // // // // // //   }, []);
+
+// // // // // // // // // // //   return (
+// // // // // // // // // // //     <section className="product-launch">
+// // // // // // // // // // //       {/* Background image */}
+// // // // // // // // // // //       <div className="product_launch.png" />
+
+// // // // // // // // // // //       {/* Dark/red overlay */}
+// // // // // // // // // // //       <div className="product-launch-overlay" />
+
+// // // // // // // // // // //       <div className="product-launch-content">
+// // // // // // // // // // //         {/* LEFT SIDE */}
+// // // // // // // // // // //         <div className="launch-copy">
+// // // // // // // // // // //           <div className="launch-eyebrow">
+// // // // // // // // // // //             SOMETHING POWERFUL IS COMING
+// // // // // // // // // // //           </div>
+
+// // // // // // // // // // //           <h2 className="launch-title">
+// // // // // // // // // // //             New{" "}
+// // // // // // // // // // //             <span>Product Launch</span>
+// // // // // // // // // // //           </h2>
+
+// // // // // // // // // // //           <p className="launch-main-text">
+// // // // // // // // // // //             A breakthrough in{" "}
+// // // // // // // // // // //             <strong>aquaculture health</strong> is on its way.
+// // // // // // // // // // //           </p>
+
+// // // // // // // // // // //           <p className="launch-sub-text">
+// // // // // // // // // // //             Science-driven solutions for healthier ponds and a
+// // // // // // // // // // //             more sustainable tomorrow.
+// // // // // // // // // // //           </p>
+
+// // // // // // // // // // //           {/* BENEFITS */}
+// // // // // // // // // // //           <div className="launch-benefits">
+// // // // // // // // // // //             <div className="launch-benefit">
+// // // // // // // // // // //               <LeafIcon />
+// // // // // // // // // // //               <span>Healthier<br />Ponds</span>
+// // // // // // // // // // //             </div>
+
+// // // // // // // // // // //             <div className="launch-benefit">
+// // // // // // // // // // //               <ShieldIcon />
+// // // // // // // // // // //               <span>Stronger<br />Immunity</span>
+// // // // // // // // // // //             </div>
+
+// // // // // // // // // // //             <div className="launch-benefit">
+// // // // // // // // // // //               <ChartIcon />
+// // // // // // // // // // //               <span>Better<br />Productivity</span>
+// // // // // // // // // // //             </div>
+
+// // // // // // // // // // //             <div className="launch-benefit">
+// // // // // // // // // // //               <WaterIcon />
+// // // // // // // // // // //               <span>Cleaner<br />Water Ecosystems</span>
+// // // // // // // // // // //             </div>
+// // // // // // // // // // //           </div>
+
+// // // // // // // // // // //           {/* COUNTDOWN */}
+// // // // // // // // // // //           <div className="launch-countdown">
+// // // // // // // // // // //             <div className="count-box">
+// // // // // // // // // // //               <strong>{timeLeft.days}</strong>
+// // // // // // // // // // //               <span>Days</span>
+// // // // // // // // // // //             </div>
+
+// // // // // // // // // // //             <div className="count-box">
+// // // // // // // // // // //               <strong>{timeLeft.hours}</strong>
+// // // // // // // // // // //               <span>Hours</span>
+// // // // // // // // // // //             </div>
+
+// // // // // // // // // // //             <div className="count-box">
+// // // // // // // // // // //               <strong>{timeLeft.minutes}</strong>
+// // // // // // // // // // //               <span>Minutes</span>
+// // // // // // // // // // //             </div>
+
+// // // // // // // // // // //             <div className="count-box">
+// // // // // // // // // // //               <strong>{timeLeft.seconds}</strong>
+// // // // // // // // // // //               <span>Seconds</span>
+// // // // // // // // // // //             </div>
+// // // // // // // // // // //           </div>
+
+// // // // // // // // // // //           {/* CTA */}
+// // // // // // // // // // //           <div className="launch-cta-row">
+// // // // // // // // // // //             <button
+// // // // // // // // // // //               className="launch-button"
+// // // // // // // // // // //               onClick={() => {
+// // // // // // // // // // //                 window.location.href = "/contact";
+// // // // // // // // // // //               }}
+// // // // // // // // // // //             >
+// // // // // // // // // // //               Be the First to Know
+// // // // // // // // // // //               <span>→</span>
+// // // // // // // // // // //             </button>
+
+// // // // // // // // // // //             <div className="launch-cta-divider" />
+
+// // // // // // // // // // //             <p>
+// // // // // // // // // // //               Get launch updates, product details and exclusive
+// // // // // // // // // // //               early access.
+// // // // // // // // // // //             </p>
+// // // // // // // // // // //           </div>
+// // // // // // // // // // //         </div>
+
+// // // // // // // // // // //         {/* RIGHT SIDE */}
+// // // // // // // // // // //         <div className="launch-product">
+// // // // // // // // // // //           <div className="product-glow" />
+
+// // // // // // // // // // //           <div className="product-pedestal">
+// // // // // // // // // // //             <div className="product-cover">
+// // // // // // // // // // //               <div className="product-logo">
+// // // // // // // // // // //                 <div className="product-logo-mark">i</div>
+
+// // // // // // // // // // //                 <div className="product-logo-text">
+// // // // // // // // // // //                   <strong>Innovare</strong>
+// // // // // // // // // // //                   <span>Biopharma LLP</span>
+// // // // // // // // // // //                 </div>
+// // // // // // // // // // //               </div>
+
+// // // // // // // // // // //               <div className="product-line" />
+
+// // // // // // // // // // //               <div className="product-tagline">
+// // // // // // // // // // //                 A HEALTHIER
+// // // // // // // // // // //                 <br />
+// // // // // // // // // // //                 AQUATIC TOMORROW
+// // // // // // // // // // //               </div>
+// // // // // // // // // // //             </div>
+// // // // // // // // // // //           </div>
+// // // // // // // // // // //         </div>
+
+// // // // // // // // // // //         {/* Bottom label */}
+// // // // // // // // // // //         <div className="launch-bottom-label">
+// // // // // // // // // // //           <span>SCIENCE</span>
+// // // // // // // // // // //           <i />
+// // // // // // // // // // //           <span>SUSTAINABILITY</span>
+// // // // // // // // // // //           <i />
+// // // // // // // // // // //           <span>STRONGER FARMS</span>
+// // // // // // // // // // //         </div>
+// // // // // // // // // // //       </div>
+
+// // // // // // // // // // //       <style jsx>{`
+// // // // // // // // // // //         .product-launch {
+// // // // // // // // // // //           position: relative;
+// // // // // // // // // // //           width: 100%;
+// // // // // // // // // // //           height: 100svh;
+// // // // // // // // // // //           min-height: 650px;
+// // // // // // // // // // //           max-height: 900px;
+// // // // // // // // // // //           overflow: hidden;
+// // // // // // // // // // //           background: #020f1c;
+// // // // // // // // // // //           color: white;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-launch-bg {
+// // // // // // // // // // //           position: absolute;
+// // // // // // // // // // //           inset: 0;
+// // // // // // // // // // //           background-image: url("/images/product-launch.jpg");
+// // // // // // // // // // //           background-size: cover;
+// // // // // // // // // // //           background-position: center;
+// // // // // // // // // // //           transform: scale(1.02);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-launch-overlay {
+// // // // // // // // // // //           position: absolute;
+// // // // // // // // // // //           inset: 0;
+
+// // // // // // // // // // //           /*
+// // // // // // // // // // //            * Dark overlay keeps the text readable while
+// // // // // // // // // // //            * allowing the background image to remain visible.
+// // // // // // // // // // //            */
+// // // // // // // // // // //           background:
+// // // // // // // // // // //             linear-gradient(
+// // // // // // // // // // //               90deg,
+// // // // // // // // // // //               rgba(1, 15, 31, 0.97) 0%,
+// // // // // // // // // // //               rgba(1, 20, 39, 0.90) 37%,
+// // // // // // // // // // //               rgba(1, 20, 39, 0.55) 63%,
+// // // // // // // // // // //               rgba(1, 15, 31, 0.20) 100%
+// // // // // // // // // // //             ),
+// // // // // // // // // // //             linear-gradient(
+// // // // // // // // // // //               180deg,
+// // // // // // // // // // //               rgba(1, 15, 31, 0.20),
+// // // // // // // // // // //               rgba(1, 15, 31, 0.55)
+// // // // // // // // // // //             );
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-launch-content {
+// // // // // // // // // // //           position: relative;
+// // // // // // // // // // //           z-index: 2;
+
+// // // // // // // // // // //           width: 100%;
+// // // // // // // // // // //           height: 100%;
+
+// // // // // // // // // // //           max-width: 1500px;
+// // // // // // // // // // //           margin: 0 auto;
+
+// // // // // // // // // // //           padding:
+// // // // // // // // // // //             clamp(32px, 5vh, 65px)
+// // // // // // // // // // //             clamp(30px, 5vw, 90px);
+
+// // // // // // // // // // //           display: grid;
+// // // // // // // // // // //           grid-template-columns: minmax(0, 1.05fr) minmax(400px, 0.95fr);
+
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           gap: clamp(20px, 4vw, 70px);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-copy {
+// // // // // // // // // // //           min-width: 0;
+// // // // // // // // // // //           max-width: 720px;
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           flex-direction: column;
+// // // // // // // // // // //           justify-content: center;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-eyebrow {
+// // // // // // // // // // //           font-size: clamp(10px, 1vw, 14px);
+// // // // // // // // // // //           font-weight: 500;
+// // // // // // // // // // //           letter-spacing: 0.38em;
+// // // // // // // // // // //           margin-bottom: clamp(10px, 1.5vh, 18px);
+// // // // // // // // // // //           color: rgba(255, 255, 255, 0.9);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-title {
+// // // // // // // // // // //           margin: 0;
+
+// // // // // // // // // // //           font-family: var(--font-body, "DM Sans", sans-serif);
+// // // // // // // // // // //           font-size: clamp(48px, 5.2vw, 82px);
+// // // // // // // // // // //           line-height: 0.98;
+// // // // // // // // // // //           letter-spacing: -0.045em;
+// // // // // // // // // // //           font-weight: 800;
+// // // // // // // // // // //           white-space: nowrap;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-title span {
+// // // // // // // // // // //           color: #48bdf2;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-main-text {
+// // // // // // // // // // //           margin-top: clamp(12px, 1.7vh, 20px);
+// // // // // // // // // // //           margin-bottom: 0;
+
+// // // // // // // // // // //           font-size: clamp(18px, 1.55vw, 27px);
+// // // // // // // // // // //           line-height: 1.25;
+// // // // // // // // // // //           color: white;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-main-text strong {
+// // // // // // // // // // //           color: #51c6f5;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-sub-text {
+// // // // // // // // // // //           margin-top: 5px;
+// // // // // // // // // // //           margin-bottom: clamp(15px, 2vh, 24px);
+
+// // // // // // // // // // //           font-size: clamp(14px, 1.25vw, 20px);
+// // // // // // // // // // //           line-height: 1.45;
+// // // // // // // // // // //           color: #9bdaf5;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-benefits {
+// // // // // // // // // // //           display: grid;
+// // // // // // // // // // //           grid-template-columns: repeat(4, 1fr);
+
+// // // // // // // // // // //           max-width: 690px;
+
+// // // // // // // // // // //           margin-bottom: clamp(15px, 2.3vh, 26px);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-benefit {
+// // // // // // // // // // //           min-height: 78px;
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           flex-direction: column;
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           justify-content: center;
+
+// // // // // // // // // // //           text-align: center;
+
+// // // // // // // // // // //           color: white;
+
+// // // // // // // // // // //           border-right: 1px solid rgba(151, 213, 240, 0.28);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-benefit:last-child {
+// // // // // // // // // // //           border-right: none;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-benefit svg {
+// // // // // // // // // // //           color: white;
+// // // // // // // // // // //           margin-bottom: 5px;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-benefit span {
+// // // // // // // // // // //           font-size: clamp(11px, 0.9vw, 15px);
+// // // // // // // // // // //           line-height: 1.25;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-countdown {
+// // // // // // // // // // //           display: grid;
+// // // // // // // // // // //           grid-template-columns: repeat(4, 1fr);
+
+// // // // // // // // // // //           width: 100%;
+// // // // // // // // // // //           max-width: 690px;
+
+// // // // // // // // // // //           border: 1px solid rgba(125, 196, 229, 0.30);
+// // // // // // // // // // //           border-radius: 16px;
+
+// // // // // // // // // // //           background: rgba(4, 30, 49, 0.58);
+// // // // // // // // // // //           backdrop-filter: blur(12px);
+
+// // // // // // // // // // //           overflow: hidden;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .count-box {
+// // // // // // // // // // //           min-height: clamp(75px, 10vh, 105px);
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           flex-direction: column;
+// // // // // // // // // // //           justify-content: center;
+// // // // // // // // // // //           align-items: center;
+
+// // // // // // // // // // //           border-right: 1px solid rgba(125, 196, 229, 0.28);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .count-box:last-child {
+// // // // // // // // // // //           border-right: none;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .count-box strong {
+// // // // // // // // // // //           font-size: clamp(28px, 3vw, 46px);
+// // // // // // // // // // //           line-height: 1;
+// // // // // // // // // // //           font-weight: 500;
+// // // // // // // // // // //           color: white;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .count-box span {
+// // // // // // // // // // //           margin-top: 5px;
+// // // // // // // // // // //           font-size: clamp(11px, 0.9vw, 15px);
+// // // // // // // // // // //           color: rgba(255, 255, 255, 0.92);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-cta-row {
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           gap: 22px;
+
+// // // // // // // // // // //           margin-top: clamp(15px, 2.3vh, 28px);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-button {
+// // // // // // // // // // //           flex-shrink: 0;
+
+// // // // // // // // // // //           min-width: 290px;
+
+// // // // // // // // // // //           padding: 17px 28px;
+
+// // // // // // // // // // //           border: none;
+// // // // // // // // // // //           border-radius: 14px;
+
+// // // // // // // // // // //           background: #1496f3;
+// // // // // // // // // // //           color: white;
+
+// // // // // // // // // // //           font-family: inherit;
+// // // // // // // // // // //           font-size: 17px;
+// // // // // // // // // // //           font-weight: 700;
+
+// // // // // // // // // // //           cursor: pointer;
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           justify-content: center;
+// // // // // // // // // // //           gap: 24px;
+
+// // // // // // // // // // //           box-shadow: 0 10px 35px rgba(20, 150, 243, 0.25);
+
+// // // // // // // // // // //           transition:
+// // // // // // // // // // //             transform 0.25s ease,
+// // // // // // // // // // //             background 0.25s ease;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-button:hover {
+// // // // // // // // // // //           transform: translateY(-2px);
+// // // // // // // // // // //           background: #249ff5;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-button span {
+// // // // // // // // // // //           font-size: 25px;
+// // // // // // // // // // //           line-height: 1;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-cta-divider {
+// // // // // // // // // // //           width: 1px;
+// // // // // // // // // // //           height: 42px;
+// // // // // // // // // // //           background: rgba(255, 255, 255, 0.35);
+// // // // // // // // // // //           flex-shrink: 0;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-cta-row p {
+// // // // // // // // // // //           margin: 0;
+// // // // // // // // // // //           max-width: 360px;
+
+// // // // // // // // // // //           font-size: clamp(11px, 0.85vw, 14px);
+// // // // // // // // // // //           line-height: 1.45;
+
+// // // // // // // // // // //           color: rgba(255, 255, 255, 0.88);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-product {
+// // // // // // // // // // //           position: relative;
+
+// // // // // // // // // // //           height: 100%;
+// // // // // // // // // // //           min-height: 450px;
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           justify-content: center;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-glow {
+// // // // // // // // // // //           position: absolute;
+
+// // // // // // // // // // //           width: 75%;
+// // // // // // // // // // //           aspect-ratio: 1;
+
+// // // // // // // // // // //           border-radius: 50%;
+
+// // // // // // // // // // //           background: radial-gradient(
+// // // // // // // // // // //             circle,
+// // // // // // // // // // //             rgba(28, 167, 246, 0.28) 0%,
+// // // // // // // // // // //             rgba(28, 167, 246, 0.08) 38%,
+// // // // // // // // // // //             transparent 70%
+// // // // // // // // // // //           );
+
+// // // // // // // // // // //           filter: blur(8px);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-pedestal {
+// // // // // // // // // // //           position: relative;
+
+// // // // // // // // // // //           width: min(540px, 90%);
+// // // // // // // // // // //           height: min(430px, 65vh);
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           align-items: flex-end;
+// // // // // // // // // // //           justify-content: center;
+
+// // // // // // // // // // //           border-radius: 50%;
+
+// // // // // // // // // // //           background:
+// // // // // // // // // // //             radial-gradient(
+// // // // // // // // // // //               ellipse at center,
+// // // // // // // // // // //               #174f79 0%,
+// // // // // // // // // // //               #092b47 42%,
+// // // // // // // // // // //               #021525 72%
+// // // // // // // // // // //             );
+
+// // // // // // // // // // //           box-shadow:
+// // // // // // // // // // //             0 30px 70px rgba(0, 0, 0, 0.45),
+// // // // // // // // // // //             inset 0 5px 25px rgba(70, 194, 255, 0.15);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-cover {
+// // // // // // // // // // //           position: relative;
+
+// // // // // // // // // // //           width: 68%;
+// // // // // // // // // // //           height: 84%;
+
+// // // // // // // // // // //           border-radius: 45% 45% 18% 18%;
+
+// // // // // // // // // // //           background:
+// // // // // // // // // // //             linear-gradient(
+// // // // // // // // // // //               110deg,
+// // // // // // // // // // //               #071e38 0%,
+// // // // // // // // // // //               #0a3157 20%,
+// // // // // // // // // // //               #03152c 50%,
+// // // // // // // // // // //               #0b3a62 78%,
+// // // // // // // // // // //               #020f20 100%
+// // // // // // // // // // //             );
+
+// // // // // // // // // // //           box-shadow:
+// // // // // // // // // // //             -18px 15px 30px rgba(0, 0, 0, 0.4),
+// // // // // // // // // // //             18px 20px 35px rgba(0, 0, 0, 0.35),
+// // // // // // // // // // //             inset 8px 0 30px rgba(67, 191, 255, 0.12);
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           flex-direction: column;
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           justify-content: center;
+
+// // // // // // // // // // //           transform: translateY(-8%);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         /*
+// // // // // // // // // // //          * Red cover accent.
+// // // // // // // // // // //          * This gives the cover a red highlight without
+// // // // // // // // // // //          * changing the rest of the launch section.
+// // // // // // // // // // //          */
+// // // // // // // // // // //         .product-cover::before {
+// // // // // // // // // // //           content: "";
+// // // // // // // // // // //           position: absolute;
+// // // // // // // // // // //           inset: 0;
+
+// // // // // // // // // // //           border-radius: inherit;
+
+// // // // // // // // // // //           background:
+// // // // // // // // // // //             linear-gradient(
+// // // // // // // // // // //               110deg,
+// // // // // // // // // // //               rgba(190, 24, 93, 0.42),
+// // // // // // // // // // //               transparent 30%,
+// // // // // // // // // // //               transparent 68%,
+// // // // // // // // // // //               rgba(220, 38, 38, 0.28)
+// // // // // // // // // // //             );
+
+// // // // // // // // // // //           pointer-events: none;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-logo {
+// // // // // // // // // // //           position: relative;
+// // // // // // // // // // //           z-index: 2;
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           flex-direction: column;
+// // // // // // // // // // //           align-items: center;
+
+// // // // // // // // // // //           text-align: center;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-logo-mark {
+// // // // // // // // // // //           width: 70px;
+// // // // // // // // // // //           height: 70px;
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           justify-content: center;
+
+// // // // // // // // // // //           border-radius: 18px;
+
+// // // // // // // // // // //           background: #0b8fe8;
+
+// // // // // // // // // // //           color: white;
+
+// // // // // // // // // // //           font-family: Georgia, serif;
+// // // // // // // // // // //           font-size: 45px;
+// // // // // // // // // // //           font-style: italic;
+
+// // // // // // // // // // //           box-shadow: 0 8px 25px rgba(0, 143, 232, 0.35);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-logo-text {
+// // // // // // // // // // //           margin-top: 12px;
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           flex-direction: column;
+
+// // // // // // // // // // //           line-height: 1.1;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-logo-text strong {
+// // // // // // // // // // //           font-size: 23px;
+// // // // // // // // // // //           color: rgba(255, 255, 255, 0.9);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-logo-text span {
+// // // // // // // // // // //           margin-top: 3px;
+// // // // // // // // // // //           font-size: 17px;
+// // // // // // // // // // //           color: rgba(255, 255, 255, 0.72);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-line {
+// // // // // // // // // // //           position: relative;
+// // // // // // // // // // //           z-index: 2;
+
+// // // // // // // // // // //           width: 45px;
+// // // // // // // // // // //           height: 3px;
+
+// // // // // // // // // // //           margin-top: 22px;
+
+// // // // // // // // // // //           border-radius: 99px;
+
+// // // // // // // // // // //           background: #40d7d2;
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .product-tagline {
+// // // // // // // // // // //           position: relative;
+// // // // // // // // // // //           z-index: 2;
+
+// // // // // // // // // // //           margin-top: 25px;
+
+// // // // // // // // // // //           text-align: center;
+
+// // // // // // // // // // //           font-size: 10px;
+// // // // // // // // // // //           line-height: 1.9;
+// // // // // // // // // // //           letter-spacing: 0.35em;
+
+// // // // // // // // // // //           color: rgba(255, 255, 255, 0.72);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-bottom-label {
+// // // // // // // // // // //           position: absolute;
+
+// // // // // // // // // // //           right: clamp(25px, 5vw, 80px);
+// // // // // // // // // // //           bottom: clamp(18px, 3vh, 32px);
+
+// // // // // // // // // // //           display: flex;
+// // // // // // // // // // //           align-items: center;
+// // // // // // // // // // //           gap: 15px;
+
+// // // // // // // // // // //           font-size: 10px;
+// // // // // // // // // // //           letter-spacing: 0.35em;
+
+// // // // // // // // // // //           color: rgba(255, 255, 255, 0.9);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         .launch-bottom-label i {
+// // // // // // // // // // //           width: 1px;
+// // // // // // // // // // //           height: 14px;
+// // // // // // // // // // //           background: rgba(255, 255, 255, 0.55);
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         @media (max-width: 1100px) {
+// // // // // // // // // // //           .product-launch {
+// // // // // // // // // // //             min-height: 620px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-launch-content {
+// // // // // // // // // // //             grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+// // // // // // // // // // //             gap: 20px;
+// // // // // // // // // // //             padding-inline: 45px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-title {
+// // // // // // // // // // //             font-size: clamp(44px, 5vw, 68px);
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-button {
+// // // // // // // // // // //             min-width: 240px;
+// // // // // // // // // // //             padding-inline: 20px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-pedestal {
+// // // // // // // // // // //             width: 430px;
+// // // // // // // // // // //             height: 360px;
+// // // // // // // // // // //           }
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         @media (max-width: 800px) {
+// // // // // // // // // // //           .product-launch {
+// // // // // // // // // // //             height: auto;
+// // // // // // // // // // //             min-height: 100svh;
+// // // // // // // // // // //             max-height: none;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-launch-content {
+// // // // // // // // // // //             height: auto;
+// // // // // // // // // // //             min-height: 100svh;
+
+// // // // // // // // // // //             grid-template-columns: 1fr;
+
+// // // // // // // // // // //             padding: 45px 22px 70px;
+
+// // // // // // // // // // //             gap: 30px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-copy {
+// // // // // // // // // // //             max-width: 100%;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-title {
+// // // // // // // // // // //             white-space: normal;
+// // // // // // // // // // //             font-size: clamp(42px, 10vw, 64px);
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-benefits {
+// // // // // // // // // // //             max-width: 100%;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-countdown {
+// // // // // // // // // // //             max-width: 100%;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-cta-row {
+// // // // // // // // // // //             flex-wrap: wrap;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-product {
+// // // // // // // // // // //             min-height: 350px;
+// // // // // // // // // // //             height: 400px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-pedestal {
+// // // // // // // // // // //             width: 390px;
+// // // // // // // // // // //             height: 320px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-bottom-label {
+// // // // // // // // // // //             display: none;
+// // // // // // // // // // //           }
+// // // // // // // // // // //         }
+
+// // // // // // // // // // //         @media (max-width: 520px) {
+// // // // // // // // // // //           .product-launch-content {
+// // // // // // // // // // //             padding: 35px 16px 50px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-eyebrow {
+// // // // // // // // // // //             letter-spacing: 0.25em;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-title {
+// // // // // // // // // // //             font-size: 42px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-main-text {
+// // // // // // // // // // //             font-size: 18px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-sub-text {
+// // // // // // // // // // //             font-size: 14px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-benefit {
+// // // // // // // // // // //             min-height: 70px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-benefit svg {
+// // // // // // // // // // //             width: 28px;
+// // // // // // // // // // //             height: 28px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-benefit span {
+// // // // // // // // // // //             font-size: 10px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .count-box {
+// // // // // // // // // // //             min-height: 70px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .count-box strong {
+// // // // // // // // // // //             font-size: 25px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .count-box span {
+// // // // // // // // // // //             font-size: 10px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-cta-row {
+// // // // // // // // // // //             flex-direction: column;
+// // // // // // // // // // //             align-items: stretch;
+// // // // // // // // // // //             gap: 14px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-button {
+// // // // // // // // // // //             width: 100%;
+// // // // // // // // // // //             min-width: 0;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-cta-divider {
+// // // // // // // // // // //             display: none;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-cta-row p {
+// // // // // // // // // // //             max-width: 100%;
+// // // // // // // // // // //             text-align: center;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .launch-product {
+// // // // // // // // // // //             min-height: 280px;
+// // // // // // // // // // //             height: 300px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-pedestal {
+// // // // // // // // // // //             width: 300px;
+// // // // // // // // // // //             height: 250px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-logo-mark {
+// // // // // // // // // // //             width: 52px;
+// // // // // // // // // // //             height: 52px;
+// // // // // // // // // // //             font-size: 34px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-logo-text strong {
+// // // // // // // // // // //             font-size: 17px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-logo-text span {
+// // // // // // // // // // //             font-size: 13px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-line {
+// // // // // // // // // // //             margin-top: 14px;
+// // // // // // // // // // //           }
+
+// // // // // // // // // // //           .product-tagline {
+// // // // // // // // // // //             margin-top: 15px;
+// // // // // // // // // // //             font-size: 7px;
+// // // // // // // // // // //           }
+// // // // // // // // // // //         }
+// // // // // // // // // // //       `}</style>
+// // // // // // // // // // //     </section>
+// // // // // // // // // // //   );
+// // // // // // // // // // // }
+// // // // // // // // // // "use client";
+
+// // // // // // // // // // import { useEffect, useState } from "react";
+
+// // // // // // // // // // const LAUNCH_DATE = new Date("2026-10-01T00:00:00").getTime();
+
+// // // // // // // // // // export default function ProductLaunch() {
+// // // // // // // // // //   const [timeLeft, setTimeLeft] = useState({
+// // // // // // // // // //     days: 0,
+// // // // // // // // // //     hours: 0,
+// // // // // // // // // //     minutes: 0,
+// // // // // // // // // //     seconds: 0,
+// // // // // // // // // //   });
+
+// // // // // // // // // //   useEffect(() => {
+// // // // // // // // // //     const calculateTime = () => {
+// // // // // // // // // //       const now = new Date().getTime();
+// // // // // // // // // //       const difference = LAUNCH_DATE - now;
+
+// // // // // // // // // //       if (difference <= 0) {
+// // // // // // // // // //         setTimeLeft({
+// // // // // // // // // //           days: 0,
+// // // // // // // // // //           hours: 0,
+// // // // // // // // // //           minutes: 0,
+// // // // // // // // // //           seconds: 0,
+// // // // // // // // // //         });
+// // // // // // // // // //         return;
+// // // // // // // // // //       }
+
+// // // // // // // // // //       setTimeLeft({
+// // // // // // // // // //         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+// // // // // // // // // //         hours: Math.floor(
+// // // // // // // // // //           (difference / (1000 * 60 * 60)) % 24
+// // // // // // // // // //         ),
+// // // // // // // // // //         minutes: Math.floor(
+// // // // // // // // // //           (difference / (1000 * 60)) % 60
+// // // // // // // // // //         ),
+// // // // // // // // // //         seconds: Math.floor(
+// // // // // // // // // //           (difference / 1000) % 60
+// // // // // // // // // //         ),
+// // // // // // // // // //       });
+// // // // // // // // // //     };
+
+// // // // // // // // // //     calculateTime();
+
+// // // // // // // // // //     const interval = setInterval(calculateTime, 1000);
+
+// // // // // // // // // //     return () => clearInterval(interval);
+// // // // // // // // // //   }, []);
+
+// // // // // // // // // //   const features = [
+// // // // // // // // // //     {
+// // // // // // // // // //       icon: (
+// // // // // // // // // //         <svg
+// // // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // // //           fill="none"
+// // // // // // // // // //           stroke="currentColor"
+// // // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // // //           className="h-9 w-9"
+// // // // // // // // // //         >
+// // // // // // // // // //           <path d="M38 7C22 8 11 17 10 31c10 3 21-1 25-10 2-5 3-10 3-14Z" />
+// // // // // // // // // //           <path d="M10 39c6-10 13-16 23-22" />
+// // // // // // // // // //         </svg>
+// // // // // // // // // //       ),
+// // // // // // // // // //       title: "Healthier",
+// // // // // // // // // //       subtitle: "Ponds",
+// // // // // // // // // //     },
+// // // // // // // // // //     {
+// // // // // // // // // //       icon: (
+// // // // // // // // // //         <svg
+// // // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // // //           fill="none"
+// // // // // // // // // //           stroke="currentColor"
+// // // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // // //           className="h-9 w-9"
+// // // // // // // // // //         >
+// // // // // // // // // //           <path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z" />
+// // // // // // // // // //           <path d="m18 24 4 4 8-9" />
+// // // // // // // // // //         </svg>
+// // // // // // // // // //       ),
+// // // // // // // // // //       title: "Stronger",
+// // // // // // // // // //       subtitle: "Immunity",
+// // // // // // // // // //     },
+// // // // // // // // // //     {
+// // // // // // // // // //       icon: (
+// // // // // // // // // //         <svg
+// // // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // // //           fill="none"
+// // // // // // // // // //           stroke="currentColor"
+// // // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // // //           className="h-9 w-9"
+// // // // // // // // // //         >
+// // // // // // // // // //           <path d="M8 39V28" />
+// // // // // // // // // //           <path d="M18 39V20" />
+// // // // // // // // // //           <path d="M28 39V13" />
+// // // // // // // // // //           <path d="M38 39V7" />
+// // // // // // // // // //           <path d="M5 39h38" />
+// // // // // // // // // //         </svg>
+// // // // // // // // // //       ),
+// // // // // // // // // //       title: "Better",
+// // // // // // // // // //       subtitle: "Productivity",
+// // // // // // // // // //     },
+// // // // // // // // // //     {
+// // // // // // // // // //       icon: (
+// // // // // // // // // //         <svg
+// // // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // // //           fill="none"
+// // // // // // // // // //           stroke="currentColor"
+// // // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // // //           className="h-9 w-9"
+// // // // // // // // // //         >
+// // // // // // // // // //           <path d="M24 5c0 0-13 15-13 25a13 13 0 0 0 26 0C37 20 24 5 24 5Z" />
+// // // // // // // // // //           <path d="M19 30c1 3 3 5 6 5" />
+// // // // // // // // // //         </svg>
+// // // // // // // // // //       ),
+// // // // // // // // // //       title: "Cleaner",
+// // // // // // // // // //       subtitle: "Water Ecosystems",
+// // // // // // // // // //     },
+// // // // // // // // // //   ];
+
+// // // // // // // // // //   return (
+// // // // // // // // // //     <section
+// // // // // // // // // //       id="product-launch"
+// // // // // // // // // //       className="relative isolate min-h-[100svh] w-full overflow-hidden text-white"
+// // // // // // // // // //       style={{
+// // // // // // // // // //         backgroundImage: "url('/images/product_launch.png')",
+// // // // // // // // // //         backgroundSize: "cover",
+// // // // // // // // // //         backgroundPosition: "center",
+// // // // // // // // // //         backgroundRepeat: "no-repeat",
+// // // // // // // // // //       }}
+// // // // // // // // // //     >
+// // // // // // // // // //       {/* Dark overlay - keeps the text readable without hiding the image */}
+// // // // // // // // // //       <div className="absolute inset-0 -z-10 bg-[#001a2c]/55" />
+
+// // // // // // // // // //       {/* Subtle gradient */}
+// // // // // // // // // //       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#001524]/75 via-[#00263b]/35 to-transparent" />
+
+// // // // // // // // // //       <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-center px-6 py-12 sm:px-10 lg:px-16">
+// // // // // // // // // //         {/* Main content */}
+// // // // // // // // // //         <div className="max-w-[760px]">
+
+// // // // // // // // // //           {/* Eyebrow */}
+// // // // // // // // // //           <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.42em] text-white/90 sm:text-xs">
+// // // // // // // // // //             Something Powerful Is Coming
+// // // // // // // // // //           </p>
+
+// // // // // // // // // //           {/* Heading */}
+// // // // // // // // // //           <h2 className="text-[clamp(2.8rem,5.5vw,5.8rem)] font-bold leading-[0.95] tracking-[-0.045em]">
+// // // // // // // // // //             <span className="text-white">New </span>
+// // // // // // // // // //             <span className="text-[#42b9f5]">
+// // // // // // // // // //               Product Launch
+// // // // // // // // // //             </span>
+// // // // // // // // // //           </h2>
+
+// // // // // // // // // //           {/* Description */}
+// // // // // // // // // //           <div className="mt-4 max-w-[700px]">
+// // // // // // // // // //             <p className="text-base font-medium leading-snug text-white sm:text-lg lg:text-xl">
+// // // // // // // // // //               A breakthrough in{" "}
+// // // // // // // // // //               <span className="text-[#43c1fa]">
+// // // // // // // // // //                 aquaculture health
+// // // // // // // // // //               </span>{" "}
+// // // // // // // // // //               is on its way.
+// // // // // // // // // //             </p>
+
+// // // // // // // // // //             <p className="mt-1 text-sm leading-relaxed text-[#a9d9f5] sm:text-base lg:text-lg">
+// // // // // // // // // //               Science-driven solutions for healthier ponds and a more
+// // // // // // // // // //               sustainable tomorrow.
+// // // // // // // // // //             </p>
+// // // // // // // // // //           </div>
+
+// // // // // // // // // //           {/* Features */}
+// // // // // // // // // //           <div className="mt-7 grid max-w-[700px] grid-cols-4">
+// // // // // // // // // //             {features.map((feature, index) => (
+// // // // // // // // // //               <div
+// // // // // // // // // //                 key={feature.title}
+// // // // // // // // // //                 className={`flex min-h-[90px] flex-col items-center justify-center px-3 text-center ${
+// // // // // // // // // //                   index !== 0
+// // // // // // // // // //                     ? "border-l border-white/20"
+// // // // // // // // // //                     : ""
+// // // // // // // // // //                 }`}
+// // // // // // // // // //               >
+// // // // // // // // // //                 <div className="mb-2 text-white">
+// // // // // // // // // //                   {feature.icon}
+// // // // // // // // // //                 </div>
+
+// // // // // // // // // //                 <p className="text-xs font-medium leading-tight sm:text-sm lg:text-base">
+// // // // // // // // // //                   {feature.title}
+// // // // // // // // // //                   <br />
+// // // // // // // // // //                   {feature.subtitle}
+// // // // // // // // // //                 </p>
+// // // // // // // // // //               </div>
+// // // // // // // // // //             ))}
+// // // // // // // // // //           </div>
+
+// // // // // // // // // //           {/* Countdown */}
+// // // // // // // // // //           <div className="mt-6 grid max-w-[680px] grid-cols-4 overflow-hidden rounded-2xl border border-[#63c9f7]/30 bg-[#001d31]/45 backdrop-blur-sm">
+// // // // // // // // // //             <CountdownBox
+// // // // // // // // // //               value={timeLeft.days}
+// // // // // // // // // //               label="Days"
+// // // // // // // // // //             />
+
+// // // // // // // // // //             <CountdownBox
+// // // // // // // // // //               value={timeLeft.hours}
+// // // // // // // // // //               label="Hours"
+// // // // // // // // // //             />
+
+// // // // // // // // // //             <CountdownBox
+// // // // // // // // // //               value={timeLeft.minutes}
+// // // // // // // // // //               label="Minutes"
+// // // // // // // // // //             />
+
+// // // // // // // // // //             <CountdownBox
+// // // // // // // // // //               value={timeLeft.seconds}
+// // // // // // // // // //               label="Seconds"
+// // // // // // // // // //             />
+// // // // // // // // // //           </div>
+
+// // // // // // // // // //           {/* CTA */}
+// // // // // // // // // //           <div className="mt-6 flex max-w-[820px] flex-col items-start gap-4 sm:flex-row sm:items-center">
+// // // // // // // // // //             <button
+// // // // // // // // // //               type="button"
+// // // // // // // // // //               className="group flex h-14 items-center justify-center gap-7 rounded-xl bg-[#1599f4] px-8 text-base font-semibold text-white shadow-lg shadow-[#008eea]/20 transition-all duration-300 hover:bg-[#0b8de6] hover:scale-[1.02] sm:h-16 sm:min-w-[290px]"
+// // // // // // // // // //             >
+// // // // // // // // // //               <span>Be the First to Know</span>
+
+// // // // // // // // // //               <span className="text-2xl transition-transform duration-300 group-hover:translate-x-1">
+// // // // // // // // // //                 →
+// // // // // // // // // //               </span>
+// // // // // // // // // //             </button>
+
+// // // // // // // // // //             <div className="hidden h-12 w-px bg-white/30 sm:block" />
+
+// // // // // // // // // //             <p className="max-w-[390px] text-sm leading-relaxed text-white/90 sm:text-base">
+// // // // // // // // // //               Get launch updates, product details and exclusive
+// // // // // // // // // //               early access.
+// // // // // // // // // //             </p>
+// // // // // // // // // //           </div>
+// // // // // // // // // //         </div>
+
+// // // // // // // // // //         {/* Bottom label */}
+// // // // // // // // // //         <div className="absolute bottom-5 right-6 hidden text-[9px] font-medium uppercase tracking-[0.4em] text-white/90 sm:block lg:right-16 lg:text-[10px]">
+// // // // // // // // // //           Science
+// // // // // // // // // //           <span className="mx-3 text-white/50">|</span>
+// // // // // // // // // //           Sustainability
+// // // // // // // // // //           <span className="mx-3 text-white/50">|</span>
+// // // // // // // // // //           Stronger Farms
+// // // // // // // // // //         </div>
+// // // // // // // // // //       </div>
+// // // // // // // // // //     </section>
+// // // // // // // // // //   );
+// // // // // // // // // // }
+
+// // // // // // // // // // function CountdownBox({
+// // // // // // // // // //   value,
+// // // // // // // // // //   label,
+// // // // // // // // // // }: {
+// // // // // // // // // //   value: number;
+// // // // // // // // // //   label: string;
+// // // // // // // // // // }) {
+// // // // // // // // // //   return (
+// // // // // // // // // //     <div className="flex h-[90px] flex-col items-center justify-center border-r border-[#63c9f7]/25 last:border-r-0 sm:h-[105px]">
+// // // // // // // // // //       <span className="text-3xl font-semibold leading-none tracking-tight sm:text-4xl lg:text-[42px]">
+// // // // // // // // // //         {String(value).padStart(2, "0")}
+// // // // // // // // // //       </span>
+
+// // // // // // // // // //       <span className="mt-2 text-[11px] text-white/85 sm:text-xs lg:text-sm">
+// // // // // // // // // //         {label}
+// // // // // // // // // //       </span>
+// // // // // // // // // //     </div>
+// // // // // // // // // //   );
+// // // // // // // // // // }
+// // // // // // // // // "use client";
+
+// // // // // // // // // import { useEffect, useState } from "react";
+// // // // // // // // // import Image from "next/image";
+
+// // // // // // // // // // const LAUNCH_DATE = new Date("2026-10-01T00:00:00").getTime();
+// // // // // // // // // const LAUNCH_DATE = new Date("2026-10-08T12:00:00").getTime();
+
+// // // // // // // // // export default function ProductLaunch() {
+// // // // // // // // //   const [timeLeft, setTimeLeft] = useState({
+// // // // // // // // //     days: 0,
+// // // // // // // // //     hours: 0,
+// // // // // // // // //     minutes: 0,
+// // // // // // // // //     seconds: 0,
+// // // // // // // // //   });
+
+// // // // // // // // //   useEffect(() => {
+// // // // // // // // //     const calculateTime = () => {
+// // // // // // // // //       const now = new Date().getTime();
+// // // // // // // // //       const difference = LAUNCH_DATE - now;
+
+// // // // // // // // //       if (difference <= 0) {
+// // // // // // // // //         setTimeLeft({
+// // // // // // // // //           days: 0,
+// // // // // // // // //           hours: 0,
+// // // // // // // // //           minutes: 0,
+// // // // // // // // //           seconds: 0,
+// // // // // // // // //         });
+// // // // // // // // //         return;
+// // // // // // // // //       }
+
+// // // // // // // // //       setTimeLeft({
+// // // // // // // // //         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+// // // // // // // // //         hours: Math.floor(
+// // // // // // // // //           (difference / (1000 * 60 * 60)) % 24
+// // // // // // // // //         ),
+// // // // // // // // //         minutes: Math.floor(
+// // // // // // // // //           (difference / (1000 * 60)) % 60
+// // // // // // // // //         ),
+// // // // // // // // //         seconds: Math.floor(
+// // // // // // // // //           (difference / 1000) % 60
+// // // // // // // // //         ),
+// // // // // // // // //       });
+// // // // // // // // //     };
+
+// // // // // // // // //     calculateTime();
+
+// // // // // // // // //     const interval = setInterval(calculateTime, 1000);
+
+// // // // // // // // //     return () => clearInterval(interval);
+// // // // // // // // //   }, []);
+
+// // // // // // // // //   const features = [
+// // // // // // // // //     {
+// // // // // // // // //       icon: (
+// // // // // // // // //         <svg
+// // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // //           fill="none"
+// // // // // // // // //           stroke="currentColor"
+// // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // //           className="h-9 w-9"
+// // // // // // // // //         >
+// // // // // // // // //           <path d="M38 7C22 8 11 17 10 31c10 3 21-1 25-10 2-5 3-10 3-14Z" />
+// // // // // // // // //           <path d="M10 39c6-10 13-16 23-22" />
+// // // // // // // // //         </svg>
+// // // // // // // // //       ),
+// // // // // // // // //       title: "Healthier",
+// // // // // // // // //       subtitle: "Ponds",
+// // // // // // // // //     },
+// // // // // // // // //     {
+// // // // // // // // //       icon: (
+// // // // // // // // //         <svg
+// // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // //           fill="none"
+// // // // // // // // //           stroke="currentColor"
+// // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // //           className="h-9 w-9"
+// // // // // // // // //         >
+// // // // // // // // //           <path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z" />
+// // // // // // // // //           <path d="m18 24 4 4 8-9" />
+// // // // // // // // //         </svg>
+// // // // // // // // //       ),
+// // // // // // // // //       title: "Stronger",
+// // // // // // // // //       subtitle: "Immunity",
+// // // // // // // // //     },
+// // // // // // // // //     {
+// // // // // // // // //       icon: (
+// // // // // // // // //         <svg
+// // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // //           fill="none"
+// // // // // // // // //           stroke="currentColor"
+// // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // //           className="h-9 w-9"
+// // // // // // // // //         >
+// // // // // // // // //           <path d="M8 39V28" />
+// // // // // // // // //           <path d="M18 39V20" />
+// // // // // // // // //           <path d="M28 39V13" />
+// // // // // // // // //           <path d="M38 39V7" />
+// // // // // // // // //           <path d="M5 39h38" />
+// // // // // // // // //         </svg>
+// // // // // // // // //       ),
+// // // // // // // // //       title: "Better",
+// // // // // // // // //       subtitle: "Productivity",
+// // // // // // // // //     },
+// // // // // // // // //     {
+// // // // // // // // //       icon: (
+// // // // // // // // //         <svg
+// // // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // // //           fill="none"
+// // // // // // // // //           stroke="currentColor"
+// // // // // // // // //           strokeWidth="2.5"
+// // // // // // // // //           className="h-9 w-9"
+// // // // // // // // //         >
+// // // // // // // // //           <path d="M24 5c0 0-13 15-13 25a13 13 0 0 0 26 0C37 20 24 5 24 5Z" />
+// // // // // // // // //           <path d="M19 30c1 3 3 5 6 5" />
+// // // // // // // // //         </svg>
+// // // // // // // // //       ),
+// // // // // // // // //       title: "Cleaner",
+// // // // // // // // //       subtitle: "Water Ecosystems",
+// // // // // // // // //     },
+// // // // // // // // //   ];
+
+// // // // // // // // //   return (
+// // // // // // // // //     <section
+// // // // // // // // //       id="product-launch"
+// // // // // // // // //       className="relative isolate min-h-[100svh] w-full overflow-hidden text-white"
+// // // // // // // // //     >
+// // // // // // // // //       {/* Background image - clean, no baked-in text */}
+// // // // // // // // //       <Image
+// // // // // // // // //         src="/images/product.png"
+// // // // // // // // //         alt=""
+// // // // // // // // //         fill
+// // // // // // // // //         priority
+// // // // // // // // //         quality={100}
+// // // // // // // // //         sizes="100vw"
+// // // // // // // // //         className="-z-20 object-cover object-center"
+// // // // // // // // //       />
+
+// // // // // // // // //       {/* Dark overlay - keeps the text readable without hiding the image */}
+// // // // // // // // //       <div className="absolute inset-0 -z-10 bg-[#001a2c]/55" />
+
+// // // // // // // // //       {/* Subtle gradient */}
+// // // // // // // // //       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#001524]/75 via-[#00263b]/35 to-transparent" />
+
+// // // // // // // // //       <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-center px-6 py-12 sm:px-10 lg:px-16">
+// // // // // // // // //         {/* Main content */}
+// // // // // // // // //         <div className="max-w-[760px]">
+
+// // // // // // // // //           {/* Eyebrow */}
+// // // // // // // // //           <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.42em] text-white/90 sm:text-xs">
+// // // // // // // // //             Something Powerful Is Coming
+// // // // // // // // //           </p>
+
+// // // // // // // // //           {/* Heading */}
+// // // // // // // // //           <h2 className="text-[clamp(2.2rem,4.2vw,4.4rem)] font-bold leading-[0.95] tracking-[-0.045em]">
+// // // // // // // // //             <span className="text-white">New </span>
+// // // // // // // // //             <span className="text-[#42b9f5]">
+// // // // // // // // //               Product Launch
+// // // // // // // // //             </span>
+// // // // // // // // //           </h2>
+
+// // // // // // // // //           {/* Description */}
+// // // // // // // // //           <div className="mt-5 max-w-[700px]">
+// // // // // // // // //             <p className="text-sm font-medium leading-snug text-white sm:text-base lg:text-lg">
+// // // // // // // // //               A breakthrough in{" "}
+// // // // // // // // //               <span className="text-[#43c1fa]">
+// // // // // // // // //                 aquaculture health
+// // // // // // // // //               </span>{" "}
+// // // // // // // // //               is on its way.
+// // // // // // // // //             </p>
+
+// // // // // // // // //             <p className="mt-1 text-xs leading-relaxed text-[#a9d9f5] sm:text-sm lg:text-base">
+// // // // // // // // //               Science-driven solutions for healthier ponds and a more
+// // // // // // // // //               sustainable tomorrow.
+// // // // // // // // //             </p>
+// // // // // // // // //           </div>
+
+// // // // // // // // //           {/* Features */}
+// // // // // // // // //           <div className="mt-8 grid max-w-[700px] grid-cols-4">
+// // // // // // // // //             {features.map((feature, index) => (
+// // // // // // // // //               <div
+// // // // // // // // //                 key={feature.title}
+// // // // // // // // //                 className={`flex min-h-[64px] flex-col items-center justify-center px-3 text-center ${
+// // // // // // // // //                   index !== 0
+// // // // // // // // //                     ? "border-l border-white/20"
+// // // // // // // // //                     : ""
+// // // // // // // // //                 }`}
+// // // // // // // // //               >
+// // // // // // // // //                 <div className="mb-2 text-white [&_svg]:h-6 [&_svg]:w-6">
+// // // // // // // // //                   {feature.icon}
+// // // // // // // // //                 </div>
+
+// // // // // // // // //                 <p className="text-[11px] font-medium leading-tight sm:text-xs lg:text-sm">
+// // // // // // // // //                   {feature.title}
+// // // // // // // // //                   <br />
+// // // // // // // // //                   {feature.subtitle}
+// // // // // // // // //                 </p>
+// // // // // // // // //               </div>
+// // // // // // // // //             ))}
+// // // // // // // // //           </div>
+
+// // // // // // // // //           {/* Countdown */}
+// // // // // // // // //           <div className="mt-5 grid max-w-[680px] grid-cols-4 overflow-hidden rounded-2xl border border-[#63c9f7]/30 bg-[#001d31]/45 backdrop-blur-sm">
+// // // // // // // // //             <CountdownBox
+// // // // // // // // //               value={timeLeft.days}
+// // // // // // // // //               label="Days"
+// // // // // // // // //             />
+
+// // // // // // // // //             <CountdownBox
+// // // // // // // // //               value={timeLeft.hours}
+// // // // // // // // //               label="Hours"
+// // // // // // // // //             />
+
+// // // // // // // // //             <CountdownBox
+// // // // // // // // //               value={timeLeft.minutes}
+// // // // // // // // //               label="Minutes"
+// // // // // // // // //             />
+
+// // // // // // // // //             <CountdownBox
+// // // // // // // // //               value={timeLeft.seconds}
+// // // // // // // // //               label="Seconds"
+// // // // // // // // //             />
+// // // // // // // // //           </div>
+
+// // // // // // // // //           {/* CTA */}
+// // // // // // // // //           <div className="mt-8 flex max-w-[820px] flex-col items-start gap-4 sm:flex-row sm:items-center">
+// // // // // // // // //             <button
+// // // // // // // // //               type="button"
+// // // // // // // // //               className="group flex h-12 items-center justify-center gap-5 rounded-xl bg-[#1599f4] px-6 text-sm font-semibold text-white shadow-lg shadow-[#008eea]/20 transition-all duration-300 hover:bg-[#0b8de6] hover:scale-[1.02] sm:h-13 sm:min-w-[250px]"
+// // // // // // // // //             >
+// // // // // // // // //               <span>Be the First to Know</span>
+
+// // // // // // // // //               <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+// // // // // // // // //                 →
+// // // // // // // // //               </span>
+// // // // // // // // //             </button>
+
+// // // // // // // // //             <div className="hidden h-12 w-px bg-white/30 sm:block" />
+
+// // // // // // // // //             <p className="max-w-[390px] text-xs leading-relaxed text-white/90 sm:text-sm">
+// // // // // // // // //               Get launch updates, product details and exclusive
+// // // // // // // // //               early access.
+// // // // // // // // //             </p>
+// // // // // // // // //           </div>
+// // // // // // // // //         </div>
+
+// // // // // // // // //         {/* Bottom label */}
+// // // // // // // // //         <div className="absolute bottom-5 right-6 hidden text-[9px] font-medium uppercase tracking-[0.4em] text-white/90 sm:block lg:right-16 lg:text-[10px]">
+// // // // // // // // //           Science
+// // // // // // // // //           <span className="mx-3 text-white/50">|</span>
+// // // // // // // // //           Sustainability
+// // // // // // // // //           <span className="mx-3 text-white/50">|</span>
+// // // // // // // // //           Stronger Farms
+// // // // // // // // //         </div>
+// // // // // // // // //       </div>
+// // // // // // // // //     </section>
+// // // // // // // // //   );
+// // // // // // // // // }
+
+// // // // // // // // // function CountdownBox({
+// // // // // // // // //   value,
+// // // // // // // // //   label,
+// // // // // // // // // }: {
+// // // // // // // // //   value: number;
+// // // // // // // // //   label: string;
+// // // // // // // // // }) {
+// // // // // // // // //   return (
+// // // // // // // // //     <div className="flex h-[72px] flex-col items-center justify-center border-r border-[#63c9f7]/25 last:border-r-0 sm:h-[84px]">
+// // // // // // // // //       <span className="text-2xl font-semibold leading-none tracking-tight sm:text-3xl lg:text-[32px]">
+// // // // // // // // //         {String(value).padStart(2, "0")}
+// // // // // // // // //       </span>
+
+// // // // // // // // //       <span className="mt-2 text-[10px] text-white/85 sm:text-[11px] lg:text-xs">
+// // // // // // // // //         {label}
+// // // // // // // // //       </span>
+// // // // // // // // //     </div>
+// // // // // // // // //   );
+// // // // // // // // // }
+// // // // // // // // "use client";
+
+// // // // // // // // import { useEffect, useState } from "react";
+// // // // // // // // import Image from "next/image";
+
+// // // // // // // // // const LAUNCH_DATE = new Date(
+// // // // // // // // //   "2026-10-08T12:00:00+05:30"
+// // // // // // // // // ).getTime();
+// // // // // // // // const LAUNCH_DATE = Date.now() - 1000;
+
+// // // // // // // // const products = [
+// // // // // // // //   {
+// // // // // // // //     name: "GutRevive Pro+",
+// // // // // // // //     tagline: "Next Generation Liquid Gut Health Formula",
+// // // // // // // //     description:
+// // // // // // // //       "Advanced gut health support for healthier shrimp, stronger immunity and better farm performance.",
+// // // // // // // //     image: "/images/gut-revive-pro.png",
+// // // // // // // //   },
+// // // // // // // //   {
+// // // // // // // //     name: "Growware IB35",
+// // // // // // // //     tagline: "Next Generation Aquaculture Immuno-Nutritional Supplement",
+// // // // // // // //     description:
+// // // // // // // //       "Complete nutritional support designed to promote immunity, growth, gut health and healthier harvests.",
+// // // // // // // //     image: "/images/growware-ib35.png",
+// // // // // // // //   },
+// // // // // // // // ];
+
+// // // // // // // // export default function ProductLaunch() {
+// // // // // // // //   const [timeLeft, setTimeLeft] = useState({
+// // // // // // // //     days: 0,
+// // // // // // // //     hours: 0,
+// // // // // // // //     minutes: 0,
+// // // // // // // //     seconds: 0,
+// // // // // // // //   });
+
+// // // // // // // //   const [isLaunched, setIsLaunched] = useState(false);
+// // // // // // // //   const [activeProduct, setActiveProduct] = useState(0);
+
+// // // // // // // //   useEffect(() => {
+// // // // // // // //     const calculateTime = () => {
+// // // // // // // //       const now = Date.now();
+// // // // // // // //       const difference = LAUNCH_DATE - now;
+
+// // // // // // // //       if (difference <= 0) {
+// // // // // // // //         setIsLaunched(true);
+
+// // // // // // // //         setTimeLeft({
+// // // // // // // //           days: 0,
+// // // // // // // //           hours: 0,
+// // // // // // // //           minutes: 0,
+// // // // // // // //           seconds: 0,
+// // // // // // // //         });
+
+// // // // // // // //         return;
+// // // // // // // //       }
+
+// // // // // // // //       setTimeLeft({
+// // // // // // // //         days: Math.floor(
+// // // // // // // //           difference / (1000 * 60 * 60 * 24)
+// // // // // // // //         ),
+// // // // // // // //         hours: Math.floor(
+// // // // // // // //           (difference / (1000 * 60 * 60)) % 24
+// // // // // // // //         ),
+// // // // // // // //         minutes: Math.floor(
+// // // // // // // //           (difference / (1000 * 60)) % 60
+// // // // // // // //         ),
+// // // // // // // //         seconds: Math.floor(
+// // // // // // // //           (difference / 1000) % 60
+// // // // // // // //         ),
+// // // // // // // //       });
+// // // // // // // //     };
+
+// // // // // // // //     calculateTime();
+
+// // // // // // // //     const interval = setInterval(
+// // // // // // // //       calculateTime,
+// // // // // // // //       1000
+// // // // // // // //     );
+
+// // // // // // // //     return () => clearInterval(interval);
+// // // // // // // //   }, []);
+
+// // // // // // // //   // Automatically change products every 5 seconds
+// // // // // // // //   useEffect(() => {
+// // // // // // // //     if (!isLaunched) return;
+
+// // // // // // // //     const interval = setInterval(() => {
+// // // // // // // //       setActiveProduct((current) =>
+// // // // // // // //         (current + 1) % products.length
+// // // // // // // //       );
+// // // // // // // //     }, 5000);
+
+// // // // // // // //     return () => clearInterval(interval);
+// // // // // // // //   }, [isLaunched]);
+
+// // // // // // // //   const features = [
+// // // // // // // //     {
+// // // // // // // //       icon: (
+// // // // // // // //         <svg
+// // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // //           fill="none"
+// // // // // // // //           stroke="currentColor"
+// // // // // // // //           strokeWidth="2.5"
+// // // // // // // //           className="h-9 w-9"
+// // // // // // // //         >
+// // // // // // // //           <path d="M38 7C22 8 11 17 10 31c10 3 21-1 25-10 2-5 3-10 3-14Z" />
+// // // // // // // //           <path d="M10 39c6-10 13-16 23-22" />
+// // // // // // // //         </svg>
+// // // // // // // //       ),
+// // // // // // // //       title: "Healthier",
+// // // // // // // //       subtitle: "Ponds",
+// // // // // // // //     },
+// // // // // // // //     {
+// // // // // // // //       icon: (
+// // // // // // // //         <svg
+// // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // //           fill="none"
+// // // // // // // //           stroke="currentColor"
+// // // // // // // //           strokeWidth="2.5"
+// // // // // // // //           className="h-9 w-9"
+// // // // // // // //         >
+// // // // // // // //           <path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z" />
+// // // // // // // //           <path d="m18 24 4 4 8-9" />
+// // // // // // // //         </svg>
+// // // // // // // //       ),
+// // // // // // // //       title: "Stronger",
+// // // // // // // //       subtitle: "Immunity",
+// // // // // // // //     },
+// // // // // // // //     {
+// // // // // // // //       icon: (
+// // // // // // // //         <svg
+// // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // //           fill="none"
+// // // // // // // //           stroke="currentColor"
+// // // // // // // //           strokeWidth="2.5"
+// // // // // // // //           className="h-9 w-9"
+// // // // // // // //         >
+// // // // // // // //           <path d="M8 39V28" />
+// // // // // // // //           <path d="M18 39V20" />
+// // // // // // // //           <path d="M28 39V13" />
+// // // // // // // //           <path d="M38 39V7" />
+// // // // // // // //           <path d="M5 39h38" />
+// // // // // // // //         </svg>
+// // // // // // // //       ),
+// // // // // // // //       title: "Better",
+// // // // // // // //       subtitle: "Productivity",
+// // // // // // // //     },
+// // // // // // // //     {
+// // // // // // // //       icon: (
+// // // // // // // //         <svg
+// // // // // // // //           viewBox="0 0 48 48"
+// // // // // // // //           fill="none"
+// // // // // // // //           stroke="currentColor"
+// // // // // // // //           strokeWidth="2.5"
+// // // // // // // //           className="h-9 w-9"
+// // // // // // // //         >
+// // // // // // // //           <path d="M24 5c0 0-13 15-13 25a13 13 0 0 0 26 0C37 20 24 5 24 5Z" />
+// // // // // // // //           <path d="M19 30c1 3 3 5 6 5" />
+// // // // // // // //         </svg>
+// // // // // // // //       ),
+// // // // // // // //       title: "Cleaner",
+// // // // // // // //       subtitle: "Water Ecosystems",
+// // // // // // // //     },
+// // // // // // // //   ];
+
+// // // // // // // //   return (
+// // // // // // // //     <section
+// // // // // // // //       id="product-launch"
+// // // // // // // //       className="relative isolate min-h-[100svh] w-full overflow-hidden text-white"
+// // // // // // // //     >
+// // // // // // // //       {/* Background */}
+// // // // // // // //       <Image
+// // // // // // // //         src="/images/product.png"
+// // // // // // // //         alt=""
+// // // // // // // //         fill
+// // // // // // // //         priority
+// // // // // // // //         quality={100}
+// // // // // // // //         sizes="100vw"
+// // // // // // // //         className="-z-20 object-cover object-center"
+// // // // // // // //       />
+
+// // // // // // // //       {/* Overlay */}
+// // // // // // // //       <div className="absolute inset-0 -z-10 bg-[#001a2c]/55" />
+
+// // // // // // // //       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#001524]/75 via-[#00263b]/35 to-transparent" />
+
+// // // // // // // //       {/* ================================================= */}
+// // // // // // // //       {/* BEFORE LAUNCH - COUNTDOWN */}
+// // // // // // // //       {/* ================================================= */}
+
+// // // // // // // //       {!isLaunched && (
+// // // // // // // //         <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-center px-6 py-12 sm:px-10 lg:px-16">
+// // // // // // // //           <div className="max-w-[760px]">
+
+// // // // // // // //             <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.42em] text-white/90 sm:text-xs">
+// // // // // // // //               Something Powerful Is Coming
+// // // // // // // //             </p>
+
+// // // // // // // //             <h2 className="text-[clamp(2.2rem,4.2vw,4.4rem)] font-bold leading-[0.95] tracking-[-0.045em]">
+// // // // // // // //               <span className="text-white">
+// // // // // // // //                 New{" "}
+// // // // // // // //               </span>
+
+// // // // // // // //               <span className="text-[#42b9f5]">
+// // // // // // // //                 Product Launch
+// // // // // // // //               </span>
+// // // // // // // //             </h2>
+
+// // // // // // // //             <div className="mt-5 max-w-[700px]">
+// // // // // // // //               <p className="text-sm font-medium leading-snug text-white sm:text-base lg:text-lg">
+// // // // // // // //                 A breakthrough in{" "}
+// // // // // // // //                 <span className="text-[#43c1fa]">
+// // // // // // // //                   aquaculture health
+// // // // // // // //                 </span>{" "}
+// // // // // // // //                 is on its way.
+// // // // // // // //               </p>
+
+// // // // // // // //               <p className="mt-1 text-xs leading-relaxed text-[#a9d9f5] sm:text-sm lg:text-base">
+// // // // // // // //                 Science-driven solutions for healthier ponds
+// // // // // // // //                 and a more sustainable tomorrow.
+// // // // // // // //               </p>
+// // // // // // // //             </div>
+
+// // // // // // // //             {/* Features */}
+// // // // // // // //             <div className="mt-8 grid max-w-[700px] grid-cols-4">
+// // // // // // // //               {features.map((feature, index) => (
+// // // // // // // //                 <div
+// // // // // // // //                   key={feature.title}
+// // // // // // // //                   className={`flex min-h-[64px] flex-col items-center justify-center px-3 text-center ${
+// // // // // // // //                     index !== 0
+// // // // // // // //                       ? "border-l border-white/20"
+// // // // // // // //                       : ""
+// // // // // // // //                   }`}
+// // // // // // // //                 >
+// // // // // // // //                   <div className="mb-2 text-white [&_svg]:h-6 [&_svg]:w-6">
+// // // // // // // //                     {feature.icon}
+// // // // // // // //                   </div>
+
+// // // // // // // //                   <p className="text-[11px] font-medium leading-tight sm:text-xs lg:text-sm">
+// // // // // // // //                     {feature.title}
+// // // // // // // //                     <br />
+// // // // // // // //                     {feature.subtitle}
+// // // // // // // //                   </p>
+// // // // // // // //                 </div>
+// // // // // // // //               ))}
+// // // // // // // //             </div>
+
+// // // // // // // //             {/* Countdown */}
+// // // // // // // //             <div className="mt-5 grid max-w-[680px] grid-cols-4 overflow-hidden rounded-2xl border border-[#63c9f7]/30 bg-[#001d31]/45 backdrop-blur-sm">
+// // // // // // // //               <CountdownBox
+// // // // // // // //                 value={timeLeft.days}
+// // // // // // // //                 label="Days"
+// // // // // // // //               />
+
+// // // // // // // //               <CountdownBox
+// // // // // // // //                 value={timeLeft.hours}
+// // // // // // // //                 label="Hours"
+// // // // // // // //               />
+
+// // // // // // // //               <CountdownBox
+// // // // // // // //                 value={timeLeft.minutes}
+// // // // // // // //                 label="Minutes"
+// // // // // // // //               />
+
+// // // // // // // //               <CountdownBox
+// // // // // // // //                 value={timeLeft.seconds}
+// // // // // // // //                 label="Seconds"
+// // // // // // // //               />
+// // // // // // // //             </div>
+
+// // // // // // // //             {/* CTA */}
+// // // // // // // //             <div className="mt-8 flex max-w-[820px] flex-col items-start gap-4 sm:flex-row sm:items-center">
+// // // // // // // //               <button
+// // // // // // // //                 type="button"
+// // // // // // // //                 className="group flex h-12 items-center justify-center gap-5 rounded-xl bg-[#1599f4] px-6 text-sm font-semibold text-white shadow-lg shadow-[#008eea]/20 transition-all duration-300 hover:scale-[1.02] hover:bg-[#0b8de6] sm:h-13 sm:min-w-[250px]"
+// // // // // // // //               >
+// // // // // // // //                 <span>
+// // // // // // // //                   Be the First to Know
+// // // // // // // //                 </span>
+
+// // // // // // // //                 <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
+// // // // // // // //                   →
+// // // // // // // //                 </span>
+// // // // // // // //               </button>
+
+// // // // // // // //               <div className="hidden h-12 w-px bg-white/30 sm:block" />
+
+// // // // // // // //               <p className="max-w-[390px] text-xs leading-relaxed text-white/90 sm:text-sm">
+// // // // // // // //                 Get launch updates, product details and
+// // // // // // // //                 exclusive early access.
+// // // // // // // //               </p>
+// // // // // // // //             </div>
+// // // // // // // //           </div>
+// // // // // // // //         </div>
+// // // // // // // //       )}
+
+// // // // // // // //       {/* ================================================= */}
+// // // // // // // //       {/* AFTER LAUNCH - PRODUCTS */}
+// // // // // // // //       {/* ================================================= */}
+
+// // // // // // // //       {isLaunched && (
+// // // // // // // //         <ProductShowcase
+// // // // // // // //           product={products[activeProduct]}
+// // // // // // // //           productIndex={activeProduct}
+// // // // // // // //         />
+// // // // // // // //       )}
+// // // // // // // //     </section>
+// // // // // // // //   );
+// // // // // // // // }
+
+
+// // // // // // // // /* ===================================================== */
+// // // // // // // // /* PRODUCT SHOWCASE */
+// // // // // // // // /* ===================================================== */
+
+// // // // // // // // function ProductShowcase({
+// // // // // // // //   product,
+// // // // // // // //   productIndex,
+// // // // // // // // }: {
+// // // // // // // //   product: {
+// // // // // // // //     name: string;
+// // // // // // // //     tagline: string;
+// // // // // // // //     description: string;
+// // // // // // // //     image: string;
+// // // // // // // //   };
+// // // // // // // //   productIndex: number;
+// // // // // // // // }) {
+// // // // // // // //   return (
+// // // // // // // //     <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] items-center px-6 py-16 sm:px-10 lg:px-16">
+
+// // // // // // // //       <div className="grid w-full items-center gap-8 lg:grid-cols-2 lg:gap-12">
+
+// // // // // // // //         {/* Product information */}
+// // // // // // // //         <div
+// // // // // // // //           key={`text-${productIndex}`}
+// // // // // // // //           className="order-2 animate-[fadeIn_.7s_ease-out] lg:order-1"
+// // // // // // // //         >
+// // // // // // // //           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-[#42b9f5]">
+// // // // // // // //             Now Available
+// // // // // // // //           </p>
+
+// // // // // // // //           <h2 className="text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[0.95] tracking-[-0.04em]">
+// // // // // // // //             {product.name}
+// // // // // // // //           </h2>
+
+// // // // // // // //           <p className="mt-6 max-w-[600px] text-lg font-medium text-white sm:text-xl">
+// // // // // // // //             {product.tagline}
+// // // // // // // //           </p>
+
+// // // // // // // //           <p className="mt-4 max-w-[560px] text-sm leading-relaxed text-[#b7dced] sm:text-base">
+// // // // // // // //             {product.description}
+// // // // // // // //           </p>
+
+// // // // // // // //           <button
+// // // // // // // //             type="button"
+// // // // // // // //             className="mt-8 rounded-xl bg-[#1599f4] px-7 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-[#0b8de6]"
+// // // // // // // //           >
+// // // // // // // //             Discover the Product →
+// // // // // // // //           </button>
+
+// // // // // // // //           {/* Product indicators */}
+// // // // // // // //           <div className="mt-10 flex items-center gap-3">
+// // // // // // // //             {products.map((_, index) => (
+// // // // // // // //               <div
+// // // // // // // //                 key={index}
+// // // // // // // //                 className={`h-1.5 rounded-full transition-all duration-500 ${
+// // // // // // // //                   index === productIndex
+// // // // // // // //                     ? "w-10 bg-[#42b9f5]"
+// // // // // // // //                     : "w-5 bg-white/30"
+// // // // // // // //                 }`}
+// // // // // // // //               />
+// // // // // // // //             ))}
+
+// // // // // // // //             <span className="ml-2 text-xs text-white/60">
+// // // // // // // //               {productIndex + 1} / {products.length}
+// // // // // // // //             </span>
+// // // // // // // //           </div>
+// // // // // // // //         </div>
+
+// // // // // // // //         {/* Product image */}
+// // // // // // // //         <div
+// // // // // // // //           key={`image-${productIndex}`}
+// // // // // // // //           className="order-1 flex h-[55vh] items-center justify-center animate-[productIn_.8s_ease-out] lg:order-2 lg:h-[80vh]"
+// // // // // // // //         >
+// // // // // // // //           <div className="relative h-full w-full max-w-[600px]">
+// // // // // // // //             <Image
+// // // // // // // //               src={product.image}
+// // // // // // // //               alt={product.name}
+// // // // // // // //               fill
+// // // // // // // //               priority
+// // // // // // // //               quality={100}
+// // // // // // // //               sizes="(max-width: 1024px) 90vw, 50vw"
+// // // // // // // //               className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.45)]"
+// // // // // // // //             />
+// // // // // // // //           </div>
+// // // // // // // //         </div>
+
+// // // // // // // //       </div>
+
+// // // // // // // //       {/* Bottom label */}
+// // // // // // // //       <div className="absolute bottom-5 right-6 hidden text-[9px] font-medium uppercase tracking-[0.4em] text-white/90 sm:block lg:right-16 lg:text-[10px]">
+// // // // // // // //         Science
+// // // // // // // //         <span className="mx-3 text-white/50">|</span>
+// // // // // // // //         Sustainability
+// // // // // // // //         <span className="mx-3 text-white/50">|</span>
+// // // // // // // //         Stronger Farms
+// // // // // // // //       </div>
+// // // // // // // //     </div>
+// // // // // // // //   );
+// // // // // // // // }
+
+
+// // // // // // // // /* ===================================================== */
+// // // // // // // // /* COUNTDOWN BOX */
+// // // // // // // // /* ===================================================== */
+
+// // // // // // // // function CountdownBox({
+// // // // // // // //   value,
+// // // // // // // //   label,
+// // // // // // // // }: {
+// // // // // // // //   value: number;
+// // // // // // // //   label: string;
+// // // // // // // // }) {
+// // // // // // // //   return (
+// // // // // // // //     <div className="flex h-[72px] flex-col items-center justify-center border-r border-[#63c9f7]/25 last:border-r-0 sm:h-[84px]">
+// // // // // // // //       <span className="text-2xl font-semibold leading-none tracking-tight sm:text-3xl lg:text-[32px]">
+// // // // // // // //         {String(value).padStart(2, "0")}
+// // // // // // // //       </span>
+
+// // // // // // // //       <span className="mt-2 text-[10px] text-white/85 sm:text-[11px] lg:text-xs">
+// // // // // // // //         {label}
+// // // // // // // //       </span>
+// // // // // // // //     </div>
+// // // // // // // //   );
+// // // // // // // // }
+// // // // // // // "use client";
+
+// // // // // // // import Image from "next/image";
+
+// // // // // // // export default function GrowvareProductHero() {
+// // // // // // //   return (
+// // // // // // //     <section className="relative min-h-[720px] overflow-hidden bg-[#eefaff]">
+// // // // // // //       {/* Background atmosphere */}
+// // // // // // //       <div className="absolute inset-0 bg-gradient-to-br from-white via-[#e9f8ff] to-[#bfeeff]" />
+
+// // // // // // //       {/* Soft water glow */}
+// // // // // // //       <div className="absolute -bottom-40 left-1/2 h-[500px] w-[1000px] -translate-x-1/2 rounded-[50%] bg-[#159ee8]/20 blur-3xl" />
+
+// // // // // // //       {/* Content */}
+// // // // // // //       <div className="relative mx-auto grid min-h-[720px] max-w-[1400px] items-center gap-10 px-6 py-16 lg:grid-cols-2 lg:px-16">
+
+// // // // // // //         {/* LEFT */}
+// // // // // // //         <div className="z-10 max-w-[650px]">
+
+// // // // // // //           <span className="inline-flex rounded-full border border-[#159ee8]/40 bg-white/70 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#0751a5] backdrop-blur">
+// // // // // // //             New Product Launch
+// // // // // // //           </span>
+
+// // // // // // //           <h1 className="mt-7 text-5xl font-bold tracking-[-0.04em] text-[#092c69] sm:text-6xl lg:text-7xl">
+// // // // // // //             i.Growvare{" "}
+// // // // // // //             <span className="text-[#46a94b]">IB35</span>
+// // // // // // //           </h1>
+
+// // // // // // //           <p className="mt-5 max-w-[560px] text-lg leading-relaxed text-[#315578] sm:text-xl">
+// // // // // // //             Next-generation aquaculture
+// // // // // // //             <br />
+// // // // // // //             immuno-nutritional supplement.
+// // // // // // //           </p>
+
+// // // // // // //           <div className="mt-8">
+// // // // // // //             <h2 className="text-3xl font-semibold text-[#092c69]">
+// // // // // // //               Stronger Immunity.
+// // // // // // //             </h2>
+
+// // // // // // //             <h2 className="text-3xl font-semibold text-[#159ee8]">
+// // // // // // //               Better Growth.
+// // // // // // //             </h2>
+
+// // // // // // //             <h2 className="text-3xl font-semibold text-[#46a94b]">
+// // // // // // //               Healthier Harvest.
+// // // // // // //             </h2>
+// // // // // // //           </div>
+
+// // // // // // //           {/* Benefits */}
+// // // // // // //           <div className="mt-10 grid max-w-[560px] grid-cols-2 gap-5 sm:grid-cols-4">
+// // // // // // //             {[
+// // // // // // //               ["01", "Stronger", "Immunity"],
+// // // // // // //               ["02", "Better", "Growth"],
+// // // // // // //               ["03", "Gut", "Health"],
+// // // // // // //               ["04", "Lower", "Stress"],
+// // // // // // //             ].map(([number, title, subtitle]) => (
+// // // // // // //               <div
+// // // // // // //                 key={number}
+// // // // // // //                 className="border-l-2 border-[#159ee8]/30 pl-4"
+// // // // // // //               >
+// // // // // // //                 <div className="text-xs font-bold text-[#159ee8]">
+// // // // // // //                   {number}
+// // // // // // //                 </div>
+
+// // // // // // //                 <div className="mt-2 text-sm font-bold text-[#092c69]">
+// // // // // // //                   {title}
+// // // // // // //                 </div>
+
+// // // // // // //                 <div className="text-xs text-[#58748d]">
+// // // // // // //                   {subtitle}
+// // // // // // //                 </div>
+// // // // // // //               </div>
+// // // // // // //             ))}
+// // // // // // //           </div>
+
+// // // // // // //           <button className="mt-10 rounded-full bg-[#092c69] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-[#092c69]/20 transition hover:-translate-y-1 hover:bg-[#0c3f8e]">
+// // // // // // //             Discover IB35
+// // // // // // //             <span className="ml-4">→</span>
+// // // // // // //           </button>
+// // // // // // //         </div>
+
+// // // // // // //         {/* RIGHT PRODUCT */}
+// // // // // // //         <div className="relative flex min-h-[600px] items-center justify-center">
+
+// // // // // // //           {/* Glow behind bottle */}
+// // // // // // //           <div className="absolute h-[480px] w-[380px] rounded-full bg-[#159ee8]/20 blur-3xl" />
+
+// // // // // // //           {/* Water ring */}
+// // // // // // //           <div className="absolute bottom-[8%] h-[130px] w-[460px] rounded-[50%] border border-[#159ee8]/30 bg-white/30 shadow-[0_0_80px_rgba(21,158,232,0.25)] backdrop-blur-sm" />
+
+// // // // // // //           {/* Product */}
+// // // // // // //           <div className="relative z-10 h-[590px] w-[350px]">
+// // // // // // //             <Image
+// // // // // // //               src="/images/products/growvare-ib35.png"
+// // // // // // //               alt="i.Growvare IB35 aquaculture immuno-nutritional supplement"
+// // // // // // //               fill
+// // // // // // //               priority
+// // // // // // //               quality={100}
+// // // // // // //               sizes="350px"
+// // // // // // //               className="object-contain drop-shadow-[0_30px_35px_rgba(0,45,90,0.30)]"
+// // // // // // //             />
+// // // // // // //           </div>
+// // // // // // //         </div>
+// // // // // // //       </div>
+// // // // // // //     </section>
+// // // // // // //   );
+// // // // // // // }
+// // // // // // "use client";
+
+// // // // // // import { useEffect, useState } from "react";
+// // // // // // import Image from "next/image";
+
+// // // // // // /*
+// // // // // // |--------------------------------------------------------------------------
+// // // // // // | LAUNCH DATE
+// // // // // // |--------------------------------------------------------------------------
+// // // // // // | Thursday, October 8, 2026
+// // // // // // | 12:00 PM India Standard Time
+// // // // // // |
+// // // // // // | 12:00 PM IST = 06:30 UTC
+// // // // // // |--------------------------------------------------------------------------
+// // // // // // */
+
+// // // // // // // const LAUNCH_DATE = new Date(
+// // // // // // //   "2026-10-08T06:30:00.000Z"
+// // // // // // // ).getTime();
+// // // // // // const launchTime = new Date(Date.now() - 1000);
+
+// // // // // // const products = [
+// // // // // //   {
+// // // // // //     id: "gutrevive",
+// // // // // //     name: "i.GutRevive Pro+",
+// // // // // //     shortName: "GutRevive Pro+",
+// // // // // //     subtitle: "Next-generation liquid gut health formula",
+// // // // // //     headline: "Healthy Shrimp",
+// // // // // //     headlineAccent: "Brighter Tomorrow",
+// // // // // //     description:
+// // // // // //       "Advanced gut health support for stronger, healthier and more resilient shrimp.",
+// // // // // //     image: "/images/gut-revive-pro.png",
+
+// // // // // //     theme: {
+// // // // // //       primary: "#0b9df0",
+// // // // // //       secondary: "#72d900",
+// // // // // //       accent: "#ff2028",
+// // // // // //       dark: "#032b36",
+// // // // // //       glow: "rgba(0, 190, 255, 0.35)",
+// // // // // //     },
+
+// // // // // //     benefits: [
+// // // // // //       {
+// // // // // //         title: "Boosts",
+// // // // // //         subtitle: "Immunity",
+// // // // // //         icon: "✦",
+// // // // // //       },
+// // // // // //       {
+// // // // // //         title: "Supports",
+// // // // // //         subtitle: "Gut Health",
+// // // // // //         icon: "◉",
+// // // // // //       },
+// // // // // //       {
+// // // // // //         title: "Improves",
+// // // // // //         subtitle: "Digestion",
+// // // // // //         icon: "◒",
+// // // // // //       },
+// // // // // //       {
+// // // // // //         title: "Enhances",
+// // // // // //         subtitle: "Growth",
+// // // // // //         icon: "↗",
+// // // // // //       },
+// // // // // //     ],
+// // // // // //   },
+
+// // // // // //   {
+// // // // // //     id: "growvare",
+// // // // // //     name: "i.Growvare IB35",
+// // // // // //     shortName: "Growvare IB35",
+// // // // // //     subtitle: "Next-generation aquaculture immuno-nutritional supplement",
+// // // // // //     headline: "Stronger Shrimp",
+// // // // // //     headlineAccent: "Healthier Harvests",
+// // // // // //     description:
+// // // // // //       "Advanced immune-nutritional support designed for better growth, gut health and survival.",
+// // // // // //     image: "/images/slide.png",
+
+// // // // // //     theme: {
+// // // // // //       primary: "#168df2",
+// // // // // //       secondary: "#39b84a",
+// // // // // //       accent: "#8bd52f",
+// // // // // //       dark: "#05254b",
+// // // // // //       glow: "rgba(20, 145, 255, 0.38)",
+// // // // // //     },
+
+// // // // // //     benefits: [
+// // // // // //       {
+// // // // // //         title: "Stronger",
+// // // // // //         subtitle: "Immunity",
+// // // // // //         icon: "✦",
+// // // // // //       },
+// // // // // //       {
+// // // // // //         title: "Better",
+// // // // // //         subtitle: "Growth",
+// // // // // //         icon: "↗",
+// // // // // //       },
+// // // // // //       {
+// // // // // //         title: "Supports",
+// // // // // //         subtitle: "Gut Health",
+// // // // // //         icon: "◉",
+// // // // // //       },
+// // // // // //       {
+// // // // // //         title: "Reduces",
+// // // // // //         subtitle: "Stress",
+// // // // // //         icon: "◇",
+// // // // // //       },
+// // // // // //     ],
+// // // // // //   },
+// // // // // // ];
+
+// // // // // // export default function ProductLaunch() {
+// // // // // //   const [timeLeft, setTimeLeft] = useState({
+// // // // // //     days: 0,
+// // // // // //     hours: 0,
+// // // // // //     minutes: 0,
+// // // // // //     seconds: 0,
+// // // // // //   });
+
+// // // // // //   const [launched, setLaunched] = useState(false);
+// // // // // //   const [activeProduct, setActiveProduct] = useState(0);
+
+// // // // // //   /*
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   | COUNTDOWN
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   */
+
+// // // // // //   useEffect(() => {
+// // // // // //     const calculateTime = () => {
+// // // // // //       const now = Date.now();
+// // // // // //       const difference = LAUNCH_DATE - now;
+
+// // // // // //       if (difference <= 0) {
+// // // // // //         setLaunched(true);
+
+// // // // // //         setTimeLeft({
+// // // // // //           days: 0,
+// // // // // //           hours: 0,
+// // // // // //           minutes: 0,
+// // // // // //           seconds: 0,
+// // // // // //         });
+
+// // // // // //         return;
+// // // // // //       }
+
+// // // // // //       setTimeLeft({
+// // // // // //         days: Math.floor(
+// // // // // //           difference / (1000 * 60 * 60 * 24)
+// // // // // //         ),
+
+// // // // // //         hours: Math.floor(
+// // // // // //           (difference / (1000 * 60 * 60)) % 24
+// // // // // //         ),
+
+// // // // // //         minutes: Math.floor(
+// // // // // //           (difference / (1000 * 60)) % 60
+// // // // // //         ),
+
+// // // // // //         seconds: Math.floor(
+// // // // // //           (difference / 1000) % 60
+// // // // // //         ),
+// // // // // //       });
+// // // // // //     };
+
+// // // // // //     calculateTime();
+
+// // // // // //     const interval = window.setInterval(
+// // // // // //       calculateTime,
+// // // // // //       1000
+// // // // // //     );
+
+// // // // // //     return () => window.clearInterval(interval);
+// // // // // //   }, []);
+
+// // // // // //   /*
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   | AUTOMATIC CAROUSEL
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   */
+
+// // // // // //   useEffect(() => {
+// // // // // //     if (!launched) return;
+
+// // // // // //     const interval = window.setInterval(() => {
+// // // // // //       setActiveProduct((current) =>
+// // // // // //         current === products.length - 1
+// // // // // //           ? 0
+// // // // // //           : current + 1
+// // // // // //       );
+// // // // // //     }, 5000);
+
+// // // // // //     return () => window.clearInterval(interval);
+// // // // // //   }, [launched]);
+
+// // // // // //   /*
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   | CAROUSEL CONTROLS
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   */
+
+// // // // // //   const nextProduct = () => {
+// // // // // //     setActiveProduct((current) =>
+// // // // // //       current === products.length - 1
+// // // // // //         ? 0
+// // // // // //         : current + 1
+// // // // // //     );
+// // // // // //   };
+
+// // // // // //   const previousProduct = () => {
+// // // // // //     setActiveProduct((current) =>
+// // // // // //       current === 0
+// // // // // //         ? products.length - 1
+// // // // // //         : current - 1
+// // // // // //     );
+// // // // // //   };
+
+// // // // // //   const product = products[activeProduct];
+
+// // // // // //   /*
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   | COUNTDOWN SCREEN
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   */
+
+// // // // // //   if (!launched) {
+// // // // // //     return (
+// // // // // //       <section className="relative isolate min-h-[100svh] w-full overflow-hidden bg-[#001827] text-white">
+// // // // // //         {/* Background */}
+// // // // // //         <Image
+// // // // // //           src="/images/product.png"
+// // // // // //           alt=""
+// // // // // //           fill
+// // // // // //           priority
+// // // // // //           sizes="100vw"
+// // // // // //           className="-z-20 object-cover object-center"
+// // // // // //         />
+
+// // // // // //         {/* Overlay */}
+// // // // // //         <div className="absolute inset-0 -z-10 bg-[#001a2c]/65" />
+
+// // // // // //         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#001524]/90 via-[#00263b]/55 to-transparent" />
+
+// // // // // //         {/* Content */}
+// // // // // //         <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] items-center px-6 py-16 sm:px-10 lg:px-16">
+// // // // // //           <div className="max-w-[760px]">
+
+// // // // // //             <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.42em] text-white/80 sm:text-xs">
+// // // // // //               Something Powerful Is Coming
+// // // // // //             </p>
+
+// // // // // //             <h1 className="text-[clamp(2.5rem,5vw,5rem)] font-bold leading-[0.95] tracking-[-0.05em]">
+// // // // // //               <span className="text-white">
+// // // // // //                 New{" "}
+// // // // // //               </span>
+
+// // // // // //               <span className="text-[#42b9f5]">
+// // // // // //                 Product Launch
+// // // // // //               </span>
+// // // // // //             </h1>
+
+// // // // // //             <p className="mt-6 max-w-[680px] text-sm leading-relaxed text-white/90 sm:text-base lg:text-lg">
+// // // // // //               A breakthrough in{" "}
+// // // // // //               <span className="text-[#42c4ff]">
+// // // // // //                 aquaculture health
+// // // // // //               </span>{" "}
+// // // // // //               is on its way.
+// // // // // //             </p>
+
+// // // // // //             <p className="mt-2 max-w-[650px] text-xs leading-relaxed text-[#a9d9f5] sm:text-sm lg:text-base">
+// // // // // //               Science-driven solutions for healthier ponds
+// // // // // //               and a more sustainable tomorrow.
+// // // // // //             </p>
+
+// // // // // //             {/* Countdown */}
+// // // // // //             <div className="mt-9 grid max-w-[700px] grid-cols-4 overflow-hidden rounded-2xl border border-[#63c9f7]/30 bg-[#001d31]/55 backdrop-blur-md">
+// // // // // //               <CountdownBox
+// // // // // //                 value={timeLeft.days}
+// // // // // //                 label="Days"
+// // // // // //               />
+
+// // // // // //               <CountdownBox
+// // // // // //                 value={timeLeft.hours}
+// // // // // //                 label="Hours"
+// // // // // //               />
+
+// // // // // //               <CountdownBox
+// // // // // //                 value={timeLeft.minutes}
+// // // // // //                 label="Minutes"
+// // // // // //               />
+
+// // // // // //               <CountdownBox
+// // // // // //                 value={timeLeft.seconds}
+// // // // // //                 label="Seconds"
+// // // // // //               />
+// // // // // //             </div>
+
+// // // // // //             <div className="mt-7 flex items-center gap-3">
+// // // // // //               <div className="h-2 w-2 animate-pulse rounded-full bg-[#42b9f5]" />
+
+// // // // // //               <p className="text-xs text-white/70 sm:text-sm">
+// // // // // //                 Launching Thursday at 12:00 PM IST
+// // // // // //               </p>
+// // // // // //             </div>
+// // // // // //           </div>
+// // // // // //         </div>
+// // // // // //       </section>
+// // // // // //     );
+// // // // // //   }
+
+// // // // // //   /*
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   | PRODUCT CAROUSEL AFTER LAUNCH
+// // // // // //   |--------------------------------------------------------------------------
+// // // // // //   */
+
+// // // // // //   return (
+// // // // // //     <section
+// // // // // //       id="product-launch"
+// // // // // //       className="relative min-h-[100svh] w-full overflow-hidden text-white"
+// // // // // //       style={{
+// // // // // //         backgroundColor: product.theme.dark,
+// // // // // //       }}
+// // // // // //     >
+// // // // // //       {/* Dynamic background */}
+// // // // // //       <div
+// // // // // //         className="absolute inset-0 transition-all duration-1000"
+// // // // // //         style={{
+// // // // // //           background: `
+// // // // // //             radial-gradient(
+// // // // // //               circle at 75% 45%,
+// // // // // //               ${product.theme.glow},
+// // // // // //               transparent 32%
+// // // // // //             ),
+// // // // // //             linear-gradient(
+// // // // // //               115deg,
+// // // // // //               ${product.theme.dark} 0%,
+// // // // // //               #062e50 48%,
+// // // // // //               #001622 100%
+// // // // // //             )
+// // // // // //           `,
+// // // // // //         }}
+// // // // // //       />
+
+// // // // // //       {/* Decorative light */}
+// // // // // //       <div
+// // // // // //         className="absolute -right-40 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full blur-[120px] transition-all duration-1000"
+// // // // // //         style={{
+// // // // // //           backgroundColor: product.theme.primary,
+// // // // // //           opacity: 0.12,
+// // // // // //         }}
+// // // // // //       />
+
+// // // // // //       {/* Water-like bottom gradient */}
+// // // // // //       <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-black/45 to-transparent" />
+
+// // // // // //       {/* Main */}
+// // // // // //       <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] items-center px-5 py-12 sm:px-10 lg:px-16">
+
+// // // // // //         <div className="grid w-full items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+
+// // // // // //           {/* =========================================================
+// // // // // //               LEFT CONTENT
+// // // // // //           ========================================================= */}
+
+// // // // // //           <div className="relative z-10">
+
+// // // // // //             {/* New launch */}
+// // // // // //             <div
+// // // // // //               className="mb-5 inline-flex rounded-full border px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.3em]"
+// // // // // //               style={{
+// // // // // //                 borderColor: product.theme.secondary,
+// // // // // //                 color: product.theme.secondary,
+// // // // // //                 backgroundColor: `${product.theme.secondary}12`,
+// // // // // //               }}
+// // // // // //             >
+// // // // // //               New Launch
+// // // // // //             </div>
+
+// // // // // //             {/* Product name */}
+// // // // // //             <h1 className="max-w-[700px] text-[clamp(2.7rem,5.5vw,6rem)] font-bold leading-[0.9] tracking-[-0.055em]">
+
+// // // // // //               <span className="block text-white">
+// // // // // //                 {product.name.split(" ")[0]}
+// // // // // //               </span>
+
+// // // // // //               <span
+// // // // // //                 className="block"
+// // // // // //                 style={{
+// // // // // //                   color: product.theme.primary,
+// // // // // //                 }}
+// // // // // //               >
+// // // // // //                 {product.name
+// // // // // //                   .split(" ")
+// // // // // //                   .slice(1)
+// // // // // //                   .map((word, index) => (
+// // // // // //                     <span
+// // // // // //                       key={index}
+// // // // // //                       className="mr-3"
+// // // // // //                     >
+// // // // // //                       {word}
+// // // // // //                     </span>
+// // // // // //                   ))}
+// // // // // //               </span>
+// // // // // //             </h1>
+
+// // // // // //             {/* Subtitle */}
+// // // // // //             <p className="mt-5 max-w-[650px] text-xs font-medium uppercase tracking-[0.14em] text-white/65 sm:text-sm">
+// // // // // //               {product.subtitle}
+// // // // // //             </p>
+
+// // // // // //             {/* Headline */}
+// // // // // //             <div className="mt-8">
+// // // // // //               <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+// // // // // //                 {product.headline}
+// // // // // //               </h2>
+
+// // // // // //               <h2
+// // // // // //                 className="mt-1 text-3xl font-bold italic tracking-tight sm:text-4xl lg:text-5xl"
+// // // // // //                 style={{
+// // // // // //                   color: product.theme.secondary,
+// // // // // //                 }}
+// // // // // //               >
+// // // // // //                 {product.headlineAccent}
+// // // // // //               </h2>
+// // // // // //             </div>
+
+// // // // // //             {/* Description */}
+// // // // // //             <p className="mt-5 max-w-[560px] text-sm leading-relaxed text-white/65 sm:text-base">
+// // // // // //               {product.description}
+// // // // // //             </p>
+
+// // // // // //             {/* Benefits */}
+// // // // // //             <div className="mt-8 grid max-w-[650px] grid-cols-2 gap-y-6 sm:grid-cols-4">
+
+// // // // // //               {product.benefits.map(
+// // // // // //                 (benefit) => (
+// // // // // //                   <div
+// // // // // //                     key={benefit.title}
+// // // // // //                     className="group flex flex-col items-start"
+// // // // // //                   >
+// // // // // //                     <div
+// // // // // //                       className="mb-3 flex h-12 w-12 items-center justify-center rounded-full border text-lg transition-transform duration-300 group-hover:scale-110"
+// // // // // //                       style={{
+// // // // // //                         borderColor:
+// // // // // //                           product.theme.primary,
+// // // // // //                         color:
+// // // // // //                           product.theme.primary,
+// // // // // //                         backgroundColor:
+// // // // // //                           `${product.theme.primary}12`,
+// // // // // //                         boxShadow: `0 0 20px ${product.theme.glow}`,
+// // // // // //                       }}
+// // // // // //                     >
+// // // // // //                       {benefit.icon}
+// // // // // //                     </div>
+
+// // // // // //                     <span className="text-xs font-semibold text-white">
+// // // // // //                       {benefit.title}
+// // // // // //                     </span>
+
+// // // // // //                     <span className="text-xs text-white/55">
+// // // // // //                       {benefit.subtitle}
+// // // // // //                     </span>
+// // // // // //                   </div>
+// // // // // //                 )
+// // // // // //               )}
+// // // // // //             </div>
+
+// // // // // //             {/* Product indicator */}
+// // // // // //             <div className="mt-10 flex items-center gap-4">
+
+// // // // // //               <div className="flex gap-2">
+// // // // // //                 {products.map((_, index) => (
+// // // // // //                   <button
+// // // // // //                     key={index}
+// // // // // //                     onClick={() =>
+// // // // // //                       setActiveProduct(index)
+// // // // // //                     }
+// // // // // //                     aria-label={`Show product ${index + 1}`}
+// // // // // //                     className="h-1.5 rounded-full transition-all duration-500"
+// // // // // //                     style={{
+// // // // // //                       width:
+// // // // // //                         index === activeProduct
+// // // // // //                           ? "42px"
+// // // // // //                           : "18px",
+// // // // // //                       backgroundColor:
+// // // // // //                         index === activeProduct
+// // // // // //                           ? product.theme.secondary
+// // // // // //                           : "rgba(255,255,255,0.25)",
+// // // // // //                     }}
+// // // // // //                   />
+// // // // // //                 ))}
+// // // // // //               </div>
+
+// // // // // //               <span className="text-xs uppercase tracking-[0.2em] text-white/40">
+// // // // // //                 0{activeProduct + 1} / 0{products.length}
+// // // // // //               </span>
+// // // // // //             </div>
+// // // // // //           </div>
+
+// // // // // //           {/* =========================================================
+// // // // // //               RIGHT PRODUCT
+// // // // // //           ========================================================= */}
+
+// // // // // //           <div className="relative flex min-h-[520px] items-center justify-center lg:min-h-[700px]">
+
+// // // // // //             {/* Glow behind product */}
+// // // // // //             <div
+// // // // // //               className="absolute h-[55%] w-[55%] rounded-full blur-[100px] transition-all duration-1000"
+// // // // // //               style={{
+// // // // // //                 backgroundColor:
+// // // // // //                   product.theme.primary,
+// // // // // //                 opacity: 0.22,
+// // // // // //               }}
+// // // // // //             />
+
+// // // // // //             {/* Product platform */}
+// // // // // //             <div className="absolute bottom-[7%] h-[70px] w-[72%] rounded-[50%] bg-black/50 blur-xl" />
+
+// // // // // //             <div
+// // // // // //               className="absolute bottom-[8%] h-[40px] w-[65%] rounded-[50%] border"
+// // // // // //               style={{
+// // // // // //                 borderColor: `${product.theme.primary}70`,
+// // // // // //                 backgroundColor: `${product.theme.primary}18`,
+// // // // // //                 boxShadow: `0 0 50px ${product.theme.glow}`,
+// // // // // //               }}
+// // // // // //             />
+
+// // // // // //             {/* Product image */}
+// // // // // //             <div
+// // // // // //               key={product.id}
+// // // // // //               className="relative z-10 h-[500px] w-full animate-product-enter sm:h-[620px] lg:h-[720px]"
+// // // // // //             >
+// // // // // //               <Image
+// // // // // //                 src={product.image}
+// // // // // //                 alt={product.name}
+// // // // // //                 fill
+// // // // // //                 priority
+// // // // // //                 sizes="(max-width: 768px) 90vw, 50vw"
+// // // // // //                 className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.45)]"
+// // // // // //               />
+// // // // // //             </div>
+
+// // // // // //             {/* Previous */}
+// // // // // //             <button
+// // // // // //               type="button"
+// // // // // //               onClick={previousProduct}
+// // // // // //               aria-label="Previous product"
+// // // // // //               className="absolute left-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/30 text-xl backdrop-blur-md transition hover:bg-white/10"
+// // // // // //             >
+// // // // // //               ←
+// // // // // //             </button>
+
+// // // // // //             {/* Next */}
+// // // // // //             <button
+// // // // // //               type="button"
+// // // // // //               onClick={nextProduct}
+// // // // // //               aria-label="Next product"
+// // // // // //               className="absolute right-1 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/30 text-xl backdrop-blur-md transition hover:bg-white/10"
+// // // // // //             >
+// // // // // //               →
+// // // // // //             </button>
+// // // // // //           </div>
+// // // // // //         </div>
+// // // // // //       </div>
+
+// // // // // //       {/* Bottom branding */}
+// // // // // //       <div className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 items-center gap-4 text-[9px] uppercase tracking-[0.35em] text-white/35 sm:flex">
+// // // // // //         <span>Innovare Biopharma LLP</span>
+
+// // // // // //         <span className="h-1 w-1 rounded-full bg-white/30" />
+
+// // // // // //         <span>Aquaculture Health</span>
+// // // // // //       </div>
+// // // // // //     </section>
+// // // // // //   );
+// // // // // // }
+
+// // // // // // /*
+// // // // // // |--------------------------------------------------------------------------
+// // // // // // | COUNTDOWN BOX
+// // // // // // |--------------------------------------------------------------------------
+// // // // // // */
+
+// // // // // // function CountdownBox({
+// // // // // //   value,
+// // // // // //   label,
+// // // // // // }: {
+// // // // // //   value: number;
+// // // // // //   label: string;
+// // // // // // }) {
+// // // // // //   return (
+// // // // // //     <div className="flex h-[85px] flex-col items-center justify-center border-r border-[#63c9f7]/20 last:border-r-0 sm:h-[100px]">
+// // // // // //       <span className="text-2xl font-semibold tracking-tight sm:text-4xl">
+// // // // // //         {String(value).padStart(2, "0")}
+// // // // // //       </span>
+
+// // // // // //       <span className="mt-2 text-[9px] uppercase tracking-[0.15em] text-white/55 sm:text-[10px]">
+// // // // // //         {label}
+// // // // // //       </span>
+// // // // // //     </div>
+// // // // // //   );
+// // // // // // }
+// // // // // "use client";
+
+// // // // // import { useEffect, useState } from "react";
+
+// // // // // /*
+// // // // // |--------------------------------------------------------------------------
+// // // // // | LAUNCH DATE
+// // // // // |--------------------------------------------------------------------------
+// // // // // |
+// // // // // | LOCAL TESTING:
+// // // // // | Change this to:
+// // // // // |
+// // // // // | const LAUNCH_DATE = Date.now() + 30 * 1000;
+// // // // // |
+// // // // // | This will show the countdown for 30 seconds and then automatically
+// // // // // | switch to the product carousel.
+// // // // // |
+// // // // // | PRODUCTION:
+// // // // // | Replace it with your real launch date:
+// // // // // |
+// // // // // | const LAUNCH_DATE = new Date("2026-12-31T23:59:59").getTime();
+// // // // // |
+// // // // // */
+
+// // // // // // 👇 CHANGE THIS FOR LOCAL TESTING
+// // // // // const LAUNCH_DATE = Date.now() - 1000;
+// // // // // // 👇 Change these image paths to your actual product images
+// // // // // const products = [
+// // // // //   {
+// // // // //     id: 1,
+// // // // //     name: "i.GutRevive Pro+",
+// // // // //     image: "/products/gutrevive-pro.png",
+// // // // //     subtitle: "Next Generation Liquid Gut Health Formula",
+// // // // //     description: "Healthy Shrimp • Brighter Tomorrow",
+// // // // //   },
+// // // // //   {
+// // // // //     id: 2,
+// // // // //     name: "i.Growvare IB35",
+// // // // //     image: "/images/growware-ib.png",
+// // // // //     subtitle: "Next Generation Aquaculture Immuno-Nutritional Supplement",
+// // // // //     description: "Stronger Immunity • Better Growth • Healthier Harvest",
+// // // // //   },
+// // // // // ];
+
+// // // // // type TimeLeft = {
+// // // // //   days: number;
+// // // // //   hours: number;
+// // // // //   minutes: number;
+// // // // //   seconds: number;
+// // // // // };
+
+// // // // // export default function ProductLaunch() {
+// // // // //   const [launched, setLaunched] = useState(false);
+
+// // // // //   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+// // // // //     days: 0,
+// // // // //     hours: 0,
+// // // // //     minutes: 0,
+// // // // //     seconds: 0,
+// // // // //   });
+
+// // // // //   const [activeProduct, setActiveProduct] = useState(0);
+
+// // // // //   /*
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   | COUNTDOWN
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   */
+
+// // // // //   useEffect(() => {
+// // // // //     const calculateTime = () => {
+// // // // //       const now = Date.now();
+// // // // //       const difference = LAUNCH_DATE - now;
+
+// // // // //       if (difference <= 0) {
+// // // // //         setLaunched(true);
+// // // // //         return;
+// // // // //       }
+
+// // // // //       const days = Math.floor(
+// // // // //         difference / (1000 * 60 * 60 * 24)
+// // // // //       );
+
+// // // // //       const hours = Math.floor(
+// // // // //         (difference / (1000 * 60 * 60)) % 24
+// // // // //       );
+
+// // // // //       const minutes = Math.floor(
+// // // // //         (difference / (1000 * 60)) % 60
+// // // // //       );
+
+// // // // //       const seconds = Math.floor(
+// // // // //         (difference / 1000) % 60
+// // // // //       );
+
+// // // // //       setTimeLeft({
+// // // // //         days,
+// // // // //         hours,
+// // // // //         minutes,
+// // // // //         seconds,
+// // // // //       });
+// // // // //     };
+
+// // // // //     calculateTime();
+
+// // // // //     const timer = setInterval(calculateTime, 1000);
+
+// // // // //     return () => clearInterval(timer);
+// // // // //   }, []);
+
+// // // // //   /*
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   | AUTOMATIC PRODUCT CAROUSEL
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   */
+
+// // // // //   useEffect(() => {
+// // // // //     if (!launched) return;
+
+// // // // //     const carouselTimer = setInterval(() => {
+// // // // //       setActiveProduct((current) =>
+// // // // //         current === products.length - 1
+// // // // //           ? 0
+// // // // //           : current + 1
+// // // // //       );
+// // // // //     }, 5000);
+
+// // // // //     return () => clearInterval(carouselTimer);
+// // // // //   }, [launched]);
+
+// // // // //   /*
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   | MANUAL CAROUSEL CONTROLS
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   */
+
+// // // // //   const nextProduct = () => {
+// // // // //     setActiveProduct((current) =>
+// // // // //       current === products.length - 1
+// // // // //         ? 0
+// // // // //         : current + 1
+// // // // //     );
+// // // // //   };
+
+// // // // //   const previousProduct = () => {
+// // // // //     setActiveProduct((current) =>
+// // // // //       current === 0
+// // // // //         ? products.length - 1
+// // // // //         : current - 1
+// // // // //     );
+// // // // //   };
+
+// // // // //   /*
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   | COUNTDOWN SCREEN
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   */
+
+// // // // //   if (!launched) {
+// // // // //     return (
+// // // // //       <section className="launch-section">
+// // // // //         <div className="launch-background" />
+
+// // // // //         <div className="launch-content">
+// // // // //           <div className="launch-badge">
+// // // // //             NEW PRODUCT LAUNCH
+// // // // //           </div>
+
+// // // // //           <h1>
+// // // // //             Something New
+// // // // //             <br />
+// // // // //             Is Coming
+// // // // //           </h1>
+
+// // // // //           <p className="launch-description">
+// // // // //             Next-generation aquaculture nutrition
+// // // // //             designed for healthier growth,
+// // // // //             stronger immunity and better harvests.
+// // // // //           </p>
+
+// // // // //           <div className="countdown">
+// // // // //             <TimeBox
+// // // // //               value={timeLeft.days}
+// // // // //               label="DAYS"
+// // // // //             />
+
+// // // // //             <span className="separator">:</span>
+
+// // // // //             <TimeBox
+// // // // //               value={timeLeft.hours}
+// // // // //               label="HOURS"
+// // // // //             />
+
+// // // // //             <span className="separator">:</span>
+
+// // // // //             <TimeBox
+// // // // //               value={timeLeft.minutes}
+// // // // //               label="MINUTES"
+// // // // //             />
+
+// // // // //             <span className="separator">:</span>
+
+// // // // //             <TimeBox
+// // // // //               value={timeLeft.seconds}
+// // // // //               label="SECONDS"
+// // // // //             />
+// // // // //           </div>
+
+// // // // //           <div className="launch-message">
+// // // // //             <span />
+// // // // //             GET READY FOR THE LAUNCH
+// // // // //             <span />
+// // // // //           </div>
+// // // // //         </div>
+// // // // //       </section>
+// // // // //     );
+// // // // //   }
+
+// // // // //   /*
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   | PRODUCT CAROUSEL AFTER LAUNCH
+// // // // //   |--------------------------------------------------------------------------
+// // // // //   */
+
+// // // // //   const product = products[activeProduct];
+
+// // // // //   return (
+// // // // //     <section className="products-section">
+// // // // //       <div className="products-background" />
+
+// // // // //       <div className="products-wrapper">
+
+// // // // //         {/* LEFT CONTENT */}
+// // // // //         <div className="product-content">
+
+// // // // //           <div className="product-badge">
+// // // // //             NOW AVAILABLE
+// // // // //           </div>
+
+// // // // //           <h1 className="product-title">
+// // // // //             {product.name}
+// // // // //           </h1>
+
+// // // // //           <p className="product-subtitle">
+// // // // //             {product.subtitle}
+// // // // //           </p>
+
+// // // // //           <h2 className="product-description">
+// // // // //             {product.description}
+// // // // //           </h2>
+
+// // // // //           <div className="product-line" />
+
+// // // // //           <div className="product-features">
+
+// // // // //             <Feature
+// // // // //               icon="✦"
+// // // // //               title="Stronger Immunity"
+// // // // //             />
+
+// // // // //             <Feature
+// // // // //               icon="◉"
+// // // // //               title="Better Growth"
+// // // // //             />
+
+// // // // //             <Feature
+// // // // //               icon="♢"
+// // // // //               title="Gut Health"
+// // // // //             />
+
+// // // // //             <Feature
+// // // // //               icon="↗"
+// // // // //               title="Better Performance"
+// // // // //             />
+
+// // // // //           </div>
+
+// // // // //           {/* Pagination */}
+// // // // //           <div className="carousel-pagination">
+
+// // // // //             {products.map((_, index) => (
+// // // // //               <button
+// // // // //                 key={index}
+// // // // //                 className={
+// // // // //                   activeProduct === index
+// // // // //                     ? "pagination-dot active"
+// // // // //                     : "pagination-dot"
+// // // // //                 }
+// // // // //                 onClick={() => setActiveProduct(index)}
+// // // // //                 aria-label={`Show product ${index + 1}`}
+// // // // //               />
+// // // // //             ))}
+
+// // // // //           </div>
+
+// // // // //         </div>
+
+// // // // //         {/* PRODUCT IMAGE */}
+// // // // //         <div className="product-visual">
+
+// // // // //           <div className="water-glow" />
+
+// // // // //           <div className="product-image-container">
+
+// // // // //             <img
+// // // // //               key={product.image}
+// // // // //               src={product.image}
+// // // // //               alt={product.name}
+// // // // //               className="product-image"
+// // // // //             />
+
+// // // // //           </div>
+
+// // // // //           <div className="product-shadow" />
+
+// // // // //         </div>
+
+// // // // //         {/* ARROWS */}
+// // // // //         <button
+// // // // //           className="carousel-arrow carousel-arrow-left"
+// // // // //           onClick={previousProduct}
+// // // // //           aria-label="Previous product"
+// // // // //         >
+// // // // //           ‹
+// // // // //         </button>
+
+// // // // //         <button
+// // // // //           className="carousel-arrow carousel-arrow-right"
+// // // // //           onClick={nextProduct}
+// // // // //           aria-label="Next product"
+// // // // //         >
+// // // // //           ›
+// // // // //         </button>
+
+// // // // //       </div>
+
+// // // // //       {/* Bottom brand line */}
+// // // // //       <div className="brand-footer">
+// // // // //         <span />
+// // // // //         INNOVARE BIOPHARMA LLP
+// // // // //         <span />
+// // // // //       </div>
+
+// // // // //       <style jsx>{`
+
+// // // // //         * {
+// // // // //           box-sizing: border-box;
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            COUNTDOWN
+// // // // //         ============================================================ */
+
+// // // // //         .launch-section {
+// // // // //           position: relative;
+// // // // //           min-height: 680px;
+// // // // //           width: 100%;
+// // // // //           overflow: hidden;
+
+// // // // //           display: flex;
+// // // // //           align-items: center;
+// // // // //           justify-content: center;
+
+// // // // //           background:
+// // // // //             radial-gradient(
+// // // // //               circle at 50% 35%,
+// // // // //               rgba(0, 132, 255, 0.25),
+// // // // //               transparent 40%
+// // // // //             ),
+// // // // //             linear-gradient(
+// // // // //               135deg,
+// // // // //               #031b35 0%,
+// // // // //               #063d68 50%,
+// // // // //               #021426 100%
+// // // // //             );
+
+// // // // //           color: white;
+// // // // //         }
+
+// // // // //         .launch-background {
+// // // // //           position: absolute;
+// // // // //           inset: 0;
+
+// // // // //           background:
+// // // // //             radial-gradient(
+// // // // //               circle at 20% 70%,
+// // // // //               rgba(0, 168, 255, 0.15),
+// // // // //               transparent 35%
+// // // // //             ),
+// // // // //             radial-gradient(
+// // // // //               circle at 80% 20%,
+// // // // //               rgba(60, 220, 120, 0.12),
+// // // // //               transparent 35%
+// // // // //             );
+
+// // // // //           pointer-events: none;
+// // // // //         }
+
+// // // // //         .launch-content {
+// // // // //           position: relative;
+// // // // //           z-index: 2;
+
+// // // // //           width: min(900px, 92%);
+// // // // //           text-align: center;
+// // // // //         }
+
+// // // // //         .launch-badge {
+// // // // //           display: inline-flex;
+
+// // // // //           padding: 9px 20px;
+
+// // // // //           border: 1px solid rgba(80, 190, 255, 0.7);
+// // // // //           border-radius: 999px;
+
+// // // // //           color: #65d5ff;
+
+// // // // //           font-size: 12px;
+// // // // //           font-weight: 700;
+// // // // //           letter-spacing: 3px;
+
+// // // // //           margin-bottom: 28px;
+// // // // //         }
+
+// // // // //         .launch-content h1 {
+// // // // //           margin: 0;
+
+// // // // //           font-size: clamp(48px, 7vw, 92px);
+// // // // //           line-height: 0.95;
+
+// // // // //           font-weight: 800;
+// // // // //           letter-spacing: -4px;
+
+// // // // //           background:
+// // // // //             linear-gradient(
+// // // // //               90deg,
+// // // // //               #ffffff,
+// // // // //               #65cfff,
+// // // // //               #ffffff
+// // // // //             );
+
+// // // // //           -webkit-background-clip: text;
+// // // // //           -webkit-text-fill-color: transparent;
+// // // // //         }
+
+// // // // //         .launch-description {
+// // // // //           max-width: 650px;
+
+// // // // //           margin: 28px auto 40px;
+
+// // // // //           color: rgba(255,255,255,0.72);
+
+// // // // //           font-size: 17px;
+// // // // //           line-height: 1.7;
+// // // // //         }
+
+// // // // //         .countdown {
+// // // // //           display: flex;
+// // // // //           align-items: center;
+// // // // //           justify-content: center;
+
+// // // // //           gap: 12px;
+// // // // //         }
+
+// // // // //         .time-box {
+// // // // //           min-width: 105px;
+
+// // // // //           padding: 20px 15px;
+
+// // // // //           border-radius: 16px;
+
+// // // // //           background:
+// // // // //             rgba(255,255,255,0.07);
+
+// // // // //           border:
+// // // // //             1px solid rgba(255,255,255,0.13);
+
+// // // // //           backdrop-filter: blur(15px);
+// // // // //         }
+
+// // // // //         .time-value {
+// // // // //           display: block;
+
+// // // // //           font-size: 42px;
+// // // // //           font-weight: 800;
+
+// // // // //           line-height: 1;
+// // // // //         }
+
+// // // // //         .time-label {
+// // // // //           display: block;
+
+// // // // //           margin-top: 9px;
+
+// // // // //           font-size: 9px;
+// // // // //           letter-spacing: 2px;
+
+// // // // //           color: rgba(255,255,255,0.55);
+// // // // //         }
+
+// // // // //         .separator {
+// // // // //           font-size: 35px;
+// // // // //           color: rgba(255,255,255,0.35);
+// // // // //         }
+
+// // // // //         .launch-message {
+// // // // //           margin-top: 35px;
+
+// // // // //           display: flex;
+// // // // //           align-items: center;
+// // // // //           justify-content: center;
+
+// // // // //           gap: 14px;
+
+// // // // //           color: rgba(255,255,255,0.5);
+
+// // // // //           font-size: 10px;
+// // // // //           letter-spacing: 3px;
+// // // // //         }
+
+// // // // //         .launch-message span {
+// // // // //           width: 45px;
+// // // // //           height: 1px;
+
+// // // // //           background: rgba(255,255,255,0.3);
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            PRODUCTS
+// // // // //         ============================================================ */
+
+// // // // //         .products-section {
+// // // // //           position: relative;
+
+// // // // //           width: 100%;
+// // // // //           min-height: 680px;
+
+// // // // //           overflow: hidden;
+
+// // // // //           color: white;
+
+// // // // //           background:
+// // // // //             linear-gradient(
+// // // // //               110deg,
+// // // // //               #021d3a 0%,
+// // // // //               #063d69 45%,
+// // // // //               #021b34 100%
+// // // // //             );
+// // // // //         }
+
+// // // // //         .products-background {
+// // // // //           position: absolute;
+// // // // //           inset: 0;
+
+// // // // //           background:
+
+// // // // //             radial-gradient(
+// // // // //               ellipse at 75% 55%,
+// // // // //               rgba(0, 166, 255, 0.25),
+// // // // //               transparent 35%
+// // // // //             ),
+
+// // // // //             radial-gradient(
+// // // // //               ellipse at 90% 10%,
+// // // // //               rgba(75, 220, 120, 0.13),
+// // // // //               transparent 30%
+// // // // //             );
+
+// // // // //           pointer-events: none;
+// // // // //         }
+
+// // // // //         .products-wrapper {
+// // // // //           position: relative;
+
+// // // // //           z-index: 2;
+
+// // // // //           width: min(1400px, 94%);
+// // // // //           min-height: 680px;
+
+// // // // //           margin: auto;
+
+// // // // //           display: grid;
+
+// // // // //           grid-template-columns:
+// // // // //             minmax(380px, 0.9fr)
+// // // // //             minmax(450px, 1.1fr);
+
+// // // // //           align-items: center;
+
+// // // // //           gap: 20px;
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            LEFT SIDE
+// // // // //         ============================================================ */
+
+// // // // //         .product-content {
+// // // // //           padding: 50px 0 50px 5%;
+// // // // //         }
+
+// // // // //         .product-badge {
+// // // // //           display: inline-flex;
+
+// // // // //           padding: 8px 17px;
+
+// // // // //           border-radius: 999px;
+
+// // // // //           border: 1px solid rgba(65, 215, 255, 0.6);
+
+// // // // //           color: #65d8ff;
+
+// // // // //           font-size: 11px;
+// // // // //           font-weight: 700;
+
+// // // // //           letter-spacing: 2px;
+
+// // // // //           margin-bottom: 22px;
+// // // // //         }
+
+// // // // //         .product-title {
+// // // // //           margin: 0;
+
+// // // // //           font-size: clamp(44px, 5vw, 75px);
+
+// // // // //           line-height: 0.95;
+
+// // // // //           letter-spacing: -3px;
+
+// // // // //           font-weight: 800;
+
+// // // // //           background:
+// // // // //             linear-gradient(
+// // // // //               90deg,
+// // // // //               #ffffff 0%,
+// // // // //               #32a9ff 55%,
+// // // // //               #72ddff 100%
+// // // // //             );
+
+// // // // //           -webkit-background-clip: text;
+// // // // //           -webkit-text-fill-color: transparent;
+
+// // // // //           animation: titleIn 0.5s ease;
+// // // // //         }
+
+// // // // //         .product-subtitle {
+// // // // //           max-width: 620px;
+
+// // // // //           margin: 20px 0 0;
+
+// // // // //           font-size: 15px;
+
+// // // // //           line-height: 1.6;
+
+// // // // //           color: rgba(255,255,255,0.67);
+
+// // // // //           animation: fadeIn 0.6s ease;
+// // // // //         }
+
+// // // // //         .product-description {
+// // // // //           margin: 18px 0;
+
+// // // // //           font-size: 27px;
+
+// // // // //           line-height: 1.25;
+
+// // // // //           font-weight: 500;
+
+// // // // //           color: white;
+
+// // // // //           animation: fadeIn 0.7s ease;
+// // // // //         }
+
+// // // // //         .product-line {
+// // // // //           width: 70px;
+// // // // //           height: 3px;
+
+// // // // //           margin: 25px 0;
+
+// // // // //           border-radius: 10px;
+
+// // // // //           background:
+// // // // //             linear-gradient(
+// // // // //               90deg,
+// // // // //               #18aaff,
+// // // // //               #58ddff
+// // // // //             );
+// // // // //         }
+
+// // // // //         .product-features {
+// // // // //           display: grid;
+
+// // // // //           grid-template-columns: repeat(2, 1fr);
+
+// // // // //           max-width: 480px;
+
+// // // // //           gap: 18px 10px;
+// // // // //         }
+
+// // // // //         .feature {
+// // // // //           display: flex;
+
+// // // // //           align-items: center;
+
+// // // // //           gap: 11px;
+
+// // // // //           color: rgba(255,255,255,0.8);
+
+// // // // //           font-size: 12px;
+// // // // //         }
+
+// // // // //         .feature-icon {
+// // // // //           width: 34px;
+// // // // //           height: 34px;
+
+// // // // //           display: flex;
+
+// // // // //           align-items: center;
+// // // // //           justify-content: center;
+
+// // // // //           border-radius: 50%;
+
+// // // // //           border:
+// // // // //             1px solid rgba(65, 205, 255, 0.65);
+
+// // // // //           color: #65d8ff;
+
+// // // // //           background:
+// // // // //             rgba(0, 150, 255, 0.08);
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            PRODUCT IMAGE
+// // // // //         ============================================================ */
+
+// // // // //         .product-visual {
+// // // // //           position: relative;
+
+// // // // //           height: 620px;
+
+// // // // //           display: flex;
+
+// // // // //           align-items: center;
+// // // // //           justify-content: center;
+// // // // //         }
+
+// // // // //         .water-glow {
+// // // // //           position: absolute;
+
+// // // // //           width: 500px;
+// // // // //           height: 500px;
+
+// // // // //           border-radius: 50%;
+
+// // // // //           background:
+// // // // //             radial-gradient(
+// // // // //               circle,
+// // // // //               rgba(0, 166, 255, 0.25),
+// // // // //               transparent 65%
+// // // // //             );
+
+// // // // //           filter: blur(15px);
+// // // // //         }
+
+// // // // //         .product-image-container {
+// // // // //           position: relative;
+
+// // // // //           z-index: 3;
+
+// // // // //           height: 570px;
+
+// // // // //           display: flex;
+
+// // // // //           align-items: center;
+// // // // //           justify-content: center;
+
+// // // // //           animation: productIn 0.7s ease;
+// // // // //         }
+
+// // // // //         .product-image {
+// // // // //           max-width: 100%;
+// // // // //           max-height: 570px;
+
+// // // // //           object-fit: contain;
+
+// // // // //           filter:
+// // // // //             drop-shadow(
+// // // // //               0 30px 35px
+// // // // //               rgba(0,0,0,0.38)
+// // // // //             );
+
+// // // // //           transition:
+// // // // //             transform 0.5s ease;
+// // // // //         }
+
+// // // // //         .product-image:hover {
+// // // // //           transform: scale(1.025);
+// // // // //         }
+
+// // // // //         .product-shadow {
+// // // // //           position: absolute;
+
+// // // // //           bottom: 65px;
+
+// // // // //           width: 320px;
+// // // // //           height: 45px;
+
+// // // // //           border-radius: 50%;
+
+// // // // //           background:
+// // // // //             rgba(0,0,0,0.4);
+
+// // // // //           filter: blur(20px);
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            ARROWS
+// // // // //         ============================================================ */
+
+// // // // //         .carousel-arrow {
+// // // // //           position: absolute;
+
+// // // // //           z-index: 10;
+
+// // // // //           width: 50px;
+// // // // //           height: 50px;
+
+// // // // //           border-radius: 50%;
+
+// // // // //           border:
+// // // // //             1px solid rgba(255,255,255,0.18);
+
+// // // // //           background:
+// // // // //             rgba(255,255,255,0.08);
+
+// // // // //           backdrop-filter: blur(12px);
+
+// // // // //           color: white;
+
+// // // // //           font-size: 34px;
+
+// // // // //           line-height: 1;
+
+// // // // //           cursor: pointer;
+
+// // // // //           transition: all 0.25s ease;
+// // // // //         }
+
+// // // // //         .carousel-arrow:hover {
+// // // // //           background:
+// // // // //             rgba(0,150,255,0.35);
+
+// // // // //           border-color:
+// // // // //             rgba(80,210,255,0.6);
+
+// // // // //           transform: scale(1.06);
+// // // // //         }
+
+// // // // //         .carousel-arrow-left {
+// // // // //           left: 15px;
+// // // // //         }
+
+// // // // //         .carousel-arrow-right {
+// // // // //           right: 15px;
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            PAGINATION
+// // // // //         ============================================================ */
+
+// // // // //         .carousel-pagination {
+// // // // //           display: flex;
+
+// // // // //           gap: 8px;
+
+// // // // //           margin-top: 35px;
+// // // // //         }
+
+// // // // //         .pagination-dot {
+// // // // //           width: 35px;
+// // // // //           height: 4px;
+
+// // // // //           padding: 0;
+
+// // // // //           border: none;
+
+// // // // //           border-radius: 5px;
+
+// // // // //           background:
+// // // // //             rgba(255,255,255,0.2);
+
+// // // // //           cursor: pointer;
+
+// // // // //           transition: all 0.3s ease;
+// // // // //         }
+
+// // // // //         .pagination-dot.active {
+// // // // //           width: 65px;
+
+// // // // //           background:
+// // // // //             linear-gradient(
+// // // // //               90deg,
+// // // // //               #079eff,
+// // // // //               #6cddff
+// // // // //             );
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            FOOTER
+// // // // //         ============================================================ */
+
+// // // // //         .brand-footer {
+// // // // //           position: absolute;
+
+// // // // //           z-index: 5;
+
+// // // // //           bottom: 18px;
+
+// // // // //           left: 50%;
+
+// // // // //           transform: translateX(-50%);
+
+// // // // //           display: flex;
+
+// // // // //           align-items: center;
+
+// // // // //           gap: 15px;
+
+// // // // //           color:
+// // // // //             rgba(255,255,255,0.35);
+
+// // // // //           font-size: 9px;
+
+// // // // //           letter-spacing: 3px;
+
+// // // // //           white-space: nowrap;
+// // // // //         }
+
+// // // // //         .brand-footer span {
+// // // // //           width: 35px;
+// // // // //           height: 1px;
+
+// // // // //           background:
+// // // // //             rgba(255,255,255,0.2);
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            ANIMATIONS
+// // // // //         ============================================================ */
+
+// // // // //         @keyframes productIn {
+// // // // //           from {
+// // // // //             opacity: 0;
+// // // // //             transform:
+// // // // //               translateX(50px)
+// // // // //               scale(0.95);
+// // // // //           }
+
+// // // // //           to {
+// // // // //             opacity: 1;
+// // // // //             transform:
+// // // // //               translateX(0)
+// // // // //               scale(1);
+// // // // //           }
+// // // // //         }
+
+// // // // //         @keyframes titleIn {
+// // // // //           from {
+// // // // //             opacity: 0;
+// // // // //             transform: translateX(-20px);
+// // // // //           }
+
+// // // // //           to {
+// // // // //             opacity: 1;
+// // // // //             transform: translateX(0);
+// // // // //           }
+// // // // //         }
+
+// // // // //         @keyframes fadeIn {
+// // // // //           from {
+// // // // //             opacity: 0;
+// // // // //           }
+
+// // // // //           to {
+// // // // //             opacity: 1;
+// // // // //           }
+// // // // //         }
+
+// // // // //         /* ============================================================
+// // // // //            MOBILE
+// // // // //         ============================================================ */
+
+// // // // //         @media (max-width: 900px) {
+
+// // // // //           .products-wrapper {
+// // // // //             grid-template-columns: 1fr;
+
+// // // // //             min-height: auto;
+
+// // // // //             padding:
+// // // // //               50px 0 70px;
+// // // // //           }
+
+// // // // //           .product-content {
+// // // // //             padding: 20px 5% 0;
+
+// // // // //             text-align: center;
+
+// // // // //             order: 1;
+// // // // //           }
+
+// // // // //           .product-visual {
+// // // // //             height: 480px;
+
+// // // // //             order: 2;
+// // // // //           }
+
+// // // // //           .product-image-container {
+// // // // //             height: 450px;
+// // // // //           }
+
+// // // // //           .product-image {
+// // // // //             max-height: 450px;
+// // // // //           }
+
+// // // // //           .product-features {
+// // // // //             margin: auto;
+// // // // //           }
+
+// // // // //           .product-line {
+// // // // //             margin: 20px auto;
+// // // // //           }
+
+// // // // //           .carousel-pagination {
+// // // // //             justify-content: center;
+// // // // //           }
+
+// // // // //           .carousel-arrow-left {
+// // // // //             left: 5px;
+// // // // //           }
+
+// // // // //           .carousel-arrow-right {
+// // // // //             right: 5px;
+// // // // //           }
+
+// // // // //         }
+
+// // // // //         @media (max-width: 600px) {
+
+// // // // //           .launch-section {
+// // // // //             min-height: 600px;
+// // // // //           }
+
+// // // // //           .countdown {
+// // // // //             gap: 5px;
+// // // // //           }
+
+// // // // //           .time-box {
+// // // // //             min-width: 65px;
+
+// // // // //             padding: 15px 8px;
+// // // // //           }
+
+// // // // //           .time-value {
+// // // // //             font-size: 25px;
+// // // // //           }
+
+// // // // //           .time-label {
+// // // // //             font-size: 7px;
+// // // // //           }
+
+// // // // //           .separator {
+// // // // //             font-size: 22px;
+// // // // //           }
+
+// // // // //           .product-title {
+// // // // //             font-size: 44px;
+// // // // //           }
+
+// // // // //           .product-description {
+// // // // //             font-size: 21px;
+// // // // //           }
+
+// // // // //           .product-features {
+// // // // //             grid-template-columns: 1fr;
+// // // // //             text-align: left;
+// // // // //           }
+
+// // // // //           .product-visual {
+// // // // //             height: 390px;
+// // // // //           }
+
+// // // // //           .product-image-container {
+// // // // //             height: 370px;
+// // // // //           }
+
+// // // // //           .product-image {
+// // // // //             max-height: 370px;
+// // // // //           }
+
+// // // // //         }
+
+// // // // //       `}</style>
+// // // // //     </section>
+// // // // //   );
+// // // // // }
+
+// // // // // /*
+// // // // // |--------------------------------------------------------------------------
+// // // // // | TIME BOX
+// // // // // |--------------------------------------------------------------------------
+// // // // // */
+
+// // // // // function TimeBox({
+// // // // //   value,
+// // // // //   label,
+// // // // // }: {
+// // // // //   value: number;
+// // // // //   label: string;
+// // // // // }) {
+// // // // //   return (
+// // // // //     <div className="time-box">
+// // // // //       <span className="time-value">
+// // // // //         {String(value).padStart(2, "0")}
+// // // // //       </span>
+
+// // // // //       <span className="time-label">
+// // // // //         {label}
+// // // // //       </span>
+// // // // //     </div>
+// // // // //   );
+// // // // // }
+
+// // // // // /*
+// // // // // |--------------------------------------------------------------------------
+// // // // // | FEATURE
+// // // // // |--------------------------------------------------------------------------
+// // // // // */
+
+// // // // // function Feature({
+// // // // //   icon,
+// // // // //   title,
+// // // // // }: {
+// // // // //   icon: string;
+// // // // //   title: string;
+// // // // // }) {
+// // // // //   return (
+// // // // //     <div className="feature">
+
+// // // // //       <div className="feature-icon">
+// // // // //         {icon}
+// // // // //       </div>
+
+// // // // //       <span>{title}</span>
+
+// // // // //     </div>
+// // // // //   );
+// // // // // }
 // // // // "use client";
 
 // // // // import { useEffect, useState } from "react";
-// // // // import {
-// // // //   Leaf,
-// // // //   ShieldCheck,
-// // // //   BarChart3,
-// // // //   Droplets,
-// // // //   ArrowRight,
-// // // // } from "lucide-react";
 
-// // // // const LAUNCH_DATE = new Date("2026-09-23T00:00:00+05:30").getTime();
-
-// // // // function getTimeLeft() {
-// // // //   const difference = LAUNCH_DATE - Date.now();
-
-// // // //   if (difference <= 0) {
-// // // //     return {
-// // // //       days: 0,
-// // // //       hours: 0,
-// // // //       minutes: 0,
-// // // //       seconds: 0,
-// // // //     };
-// // // //   }
-
-// // // //   return {
-// // // //     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-// // // //     hours: Math.floor(
-// // // //       (difference / (1000 * 60 * 60)) % 24
-// // // //     ),
-// // // //     minutes: Math.floor(
-// // // //       (difference / (1000 * 60)) % 60
-// // // //     ),
-// // // //     seconds: Math.floor(
-// // // //       (difference / 1000) % 60
-// // // //     ),
-// // // //   };
-// // // // }
+// // // // const banners = [
+// // // //   {
+// // // //     image: "/images/slide2.png",
+// // // //     alt: "i.GutRevivePro+ product launch",
+// // // //   },
+// // // //   {
+// // // //     image: "/images/slide1.png",
+// // // //     alt: "i.Growvare IB35 product launch",
+// // // //   },
+// // // // ];
 
 // // // // export default function ProductLaunch() {
-// // // //   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+// // // //   const [active, setActive] = useState(0);
+// // // //   const [isPaused, setIsPaused] = useState(false);
 
+// // // //   // Automatically change banner every 5 seconds
 // // // //   useEffect(() => {
+// // // //     if (isPaused) return;
+
 // // // //     const timer = setInterval(() => {
-// // // //       setTimeLeft(getTimeLeft());
-// // // //     }, 1000);
+// // // //       setActive((current) => (current + 1) % banners.length);
+// // // //     }, 5000);
 
 // // // //     return () => clearInterval(timer);
-// // // //   }, []);
+// // // //   }, [isPaused]);
 
-// // // //   const features = [
-// // // //     {
-// // // //       icon: Leaf,
-// // // //       title: "Healthier",
-// // // //       subtitle: "Ponds",
-// // // //     },
-// // // //     {
-// // // //       icon: ShieldCheck,
-// // // //       title: "Stronger",
-// // // //       subtitle: "Immunity",
-// // // //     },
-// // // //     {
-// // // //       icon: BarChart3,
-// // // //       title: "Better",
-// // // //       subtitle: "Productivity",
-// // // //     },
-// // // //     {
-// // // //       icon: Droplets,
-// // // //       title: "Cleaner",
-// // // //       subtitle: "Water Ecosystems",
-// // // //     },
-// // // //   ];
+// // // //   const previousSlide = () => {
+// // // //     setActive((current) => {
+// // // //       return current === 0 ? banners.length - 1 : current - 1;
+// // // //     });
+// // // //   };
+
+// // // //   const nextSlide = () => {
+// // // //     setActive((current) => {
+// // // //       return (current + 1) % banners.length;
+// // // //     });
+// // // //   };
 
 // // // //   return (
-// // // //     <section className="relative w-full overflow-hidden bg-[#031b2c] text-white">
-// // // //       {/* Background */}
-// // // //       <div className="absolute inset-0">
-// // // //         <div
-// // // //           className="absolute inset-0"
-// // // //           style={{
-// // // //             background:
-// // // //               "radial-gradient(circle at 72% 40%, rgba(26,150,210,0.32), transparent 38%), linear-gradient(110deg, #021625 0%, #06304a 48%, #075d7d 100%)",
-// // // //           }}
-// // // //         />
-
-// // // //         {/* Water glow */}
-// // // //         <div
-// // // //           className="absolute right-[-10%] top-[-20%] h-[700px] w-[700px] rounded-full opacity-40 blur-3xl"
-// // // //           style={{
-// // // //             background:
-// // // //               "radial-gradient(circle, #37b9ee 0%, transparent 65%)",
-// // // //           }}
-// // // //         />
-
-// // // //         <div
-// // // //           className="absolute bottom-[-30%] left-[35%] h-[500px] w-[700px] rounded-full opacity-30 blur-3xl"
-// // // //           style={{
-// // // //             background:
-// // // //               "radial-gradient(circle, #087ba5 0%, transparent 70%)",
-// // // //           }}
-// // // //         />
-// // // //       </div>
-
-// // // //       {/* Main content */}
-// // // //       <div className="relative z-10 mx-auto flex min-h-[760px] max-w-[1600px] items-center px-6 py-16 sm:px-10 lg:px-16">
-// // // //         <div className="grid w-full items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-// // // //           {/* LEFT */}
-// // // //           <div className="max-w-[780px]">
-// // // //             {/* Small heading */}
-// // // //             <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.45em] text-white sm:text-[15px]">
-// // // //               Something Powerful Is Coming
-// // // //             </p>
-
-// // // //             {/* Main heading */}
-// // // //             <h2 className="text-5xl font-extrabold leading-[0.95] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[76px]">
-// // // //               <span className="text-white">New </span>
-// // // //               <span className="text-[#45b9f3]">
-// // // //                 Product Launch
-// // // //               </span>
-// // // //             </h2>
-
-// // // //             {/* Description */}
-// // // //             <div className="mt-6 max-w-[720px]">
-// // // //               <p className="text-xl leading-relaxed text-[#e3f5ff] sm:text-2xl">
-// // // //                 A breakthrough in{" "}
-// // // //                 <span className="font-semibold text-[#54c8ff]">
-// // // //                   aquaculture health
-// // // //                 </span>{" "}
-// // // //                 is on its way.
-// // // //               </p>
-
-// // // //               <p className="mt-1 text-lg leading-relaxed text-[#a9ddf6] sm:text-xl">
-// // // //                 Science-driven solutions for healthier ponds
-// // // //                 and a more sustainable tomorrow.
-// // // //               </p>
-// // // //             </div>
-
-// // // //             {/* Features */}
-// // // //             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4">
-// // // //               {features.map((feature, index) => {
-// // // //                 const Icon = feature.icon;
-
-// // // //                 return (
-// // // //                   <div
-// // // //                     key={feature.title}
-// // // //                     className={`flex min-h-[100px] flex-col items-center justify-center px-3 text-center
-// // // //                     ${
-// // // //                       index !== 0
-// // // //                         ? "border-l border-white/20"
-// // // //                         : ""
-// // // //                     }`}
-// // // //                   >
-// // // //                     <Icon
-// // // //                       size={38}
-// // // //                       strokeWidth={1.8}
-// // // //                       className="mb-3 text-white"
-// // // //                     />
-
-// // // //                     <span className="text-sm font-semibold sm:text-base">
-// // // //                       {feature.title}
-// // // //                     </span>
-
-// // // //                     <span className="text-sm font-semibold sm:text-base">
-// // // //                       {feature.subtitle}
-// // // //                     </span>
-// // // //                   </div>
-// // // //                 );
-// // // //               })}
-// // // //             </div>
-
-// // // //             {/* Countdown */}
-// // // //             <div className="mt-8 max-w-[680px] rounded-2xl border border-white/20 bg-white/[0.06] px-4 py-5 backdrop-blur-md sm:px-6">
-// // // //               <div className="grid grid-cols-4">
-// // // //                 <CountdownItem
-// // // //                   value={timeLeft.days}
-// // // //                   label="Days"
-// // // //                 />
-
-// // // //                 <CountdownItem
-// // // //                   value={timeLeft.hours}
-// // // //                   label="Hours"
-// // // //                   bordered
-// // // //                 />
-
-// // // //                 <CountdownItem
-// // // //                   value={timeLeft.minutes}
-// // // //                   label="Minutes"
-// // // //                   bordered
-// // // //                 />
-
-// // // //                 <CountdownItem
-// // // //                   value={timeLeft.seconds}
-// // // //                   label="Seconds"
-// // // //                   bordered
-// // // //                 />
-// // // //               </div>
-// // // //             </div>
-
-// // // //             {/* CTA */}
-// // // //             <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center">
-// // // //               <a
-// // // //                 href="#launch-notify"
-// // // //                 className="inline-flex h-16 items-center justify-center gap-4 rounded-xl bg-[#168cf0] px-8 text-base font-bold text-white shadow-lg shadow-blue-950/30 transition hover:bg-[#2aa2ff] sm:min-w-[290px]"
-// // // //               >
-// // // //                 Be the First to Know
-// // // //                 <ArrowRight size={21} />
-// // // //               </a>
-
-// // // //               <div className="hidden h-12 w-px bg-white/30 sm:block" />
-
-// // // //               <p className="text-sm leading-relaxed text-[#d1ebf8]">
-// // // //                 Get launch updates, product details
-// // // //                 <br className="hidden sm:block" />
-// // // //                 and exclusive early access.
-// // // //               </p>
-// // // //             </div>
-// // // //           </div>
-
-// // // //           {/* RIGHT PRODUCT */}
-// // // //           <div className="relative flex min-h-[560px] items-center justify-center lg:min-h-[650px]">
-// // // //             {/* Light beam */}
-// // // //             <div
-// // // //               className="absolute top-[-10%] h-[580px] w-[320px] opacity-30 blur-2xl"
-// // // //               style={{
-// // // //                 background:
-// // // //                   "linear-gradient(180deg, rgba(126,220,255,0.9), transparent)",
-// // // //                 clipPath:
-// // // //                   "polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%)",
-// // // //               }}
+// // // //     <section
+// // // //       className="relative w-full overflow-hidden bg-black"
+// // // //       onMouseEnter={() => setIsPaused(true)}
+// // // //       onMouseLeave={() => setIsPaused(false)}
+// // // //     >
+// // // //       {/* Banner container */}
+// // // //       <div className="relative aspect-[16/7] w-full min-h-[420px]">
+// // // //         {banners.map((banner, index) => (
+// // // //           <div
+// // // //             key={banner.image}
+// // // //             className={`
+// // // //               absolute inset-0
+// // // //               transition-opacity duration-1000 ease-in-out
+// // // //               ${
+// // // //                 active === index
+// // // //                   ? "z-10 opacity-100"
+// // // //                   : "z-0 opacity-0"
+// // // //               }
+// // // //             `}
+// // // //           >
+// // // //             <img
+// // // //               src={banner.image}
+// // // //               alt={banner.alt}
+// // // //               className="h-full w-full object-cover"
+// // // //               draggable={false}
 // // // //             />
-
-// // // //             {/* Product glow */}
-// // // //             <div className="absolute h-[430px] w-[430px] rounded-full bg-cyan-400/20 blur-[90px]" />
-
-// // // //             {/* Product pedestal */}
-// // // //             <div className="absolute bottom-[4%] h-[105px] w-[75%] rounded-[50%] bg-[#061d32] shadow-[0_20px_70px_rgba(0,0,0,0.6)] sm:h-[125px]" />
-
-// // // //             <div className="absolute bottom-[10%] h-[60px] w-[70%] rounded-[50%] border border-cyan-200/30 bg-[#0a304a] shadow-[0_0_50px_rgba(41,188,245,0.35)]" />
-
-// // // //             {/* Covered product */}
-// // // //             <div className="relative z-10 mb-16 h-[440px] w-[300px] sm:h-[500px] sm:w-[360px]">
-// // // //               {/* Main cover */}
-// // // //               <div
-// // // //                 className="absolute inset-x-[8%] top-[8%] bottom-0 rounded-t-[45%] rounded-b-[20%]"
-// // // //                 style={{
-// // // //                   background:
-// // // //                     "linear-gradient(100deg, #061c34 0%, #073e67 32%, #020f24 62%, #0a4772 100%)",
-// // // //                   boxShadow:
-// // // //                     "inset 25px 0 45px rgba(80,190,255,.12), inset -25px 0 40px rgba(0,0,0,.45), 0 20px 50px rgba(0,0,0,.4)",
-// // // //                 }}
-// // // //               />
-
-// // // //               {/* Cloth highlight */}
-// // // //               <div
-// // // //                 className="absolute left-[12%] top-[10%] h-[70%] w-[30%] rounded-full opacity-30 blur-xl"
-// // // //                 style={{
-// // // //                   background:
-// // // //                     "linear-gradient(90deg, #72d8ff, transparent)",
-// // // //                 }}
-// // // //               />
-
-// // // //               {/* Product logo */}
-// // // //               <div className="absolute left-1/2 top-[26%] z-20 -translate-x-1/2 text-center">
-// // // //                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#168cf0] bg-[#0872bd] shadow-lg">
-// // // //                   <span className="font-serif text-4xl italic text-white">
-// // // //                     i
-// // // //                   </span>
-// // // //                 </div>
-
-// // // //                 <p className="mt-4 whitespace-nowrap text-xl font-semibold text-white">
-// // // //                   Innovare
-// // // //                 </p>
-
-// // // //                 <p className="whitespace-nowrap text-lg text-[#c5eaff]">
-// // // //                   Biopharma LLP
-// // // //                 </p>
-
-// // // //                 <div className="mx-auto mt-6 h-1 w-10 bg-[#36d8dc]" />
-
-// // // //                 <p className="mt-6 whitespace-nowrap text-[10px] tracking-[0.4em] text-white/70">
-// // // //                   A HEALTHIER
-// // // //                 </p>
-
-// // // //                 <p className="mt-1 whitespace-nowrap text-[10px] tracking-[0.4em] text-white/70">
-// // // //                   AQUATIC TOMORROW
-// // // //                 </p>
-// // // //               </div>
-// // // //             </div>
-
-// // // //             {/* Water-like bottom */}
-// // // //             <div className="absolute bottom-0 left-0 right-0 h-24 opacity-50">
-// // // //               <div className="absolute bottom-5 left-[10%] h-px w-[80%] bg-cyan-200/40" />
-// // // //               <div className="absolute bottom-10 left-[20%] h-px w-[60%] bg-cyan-200/20" />
-// // // //             </div>
 // // // //           </div>
-// // // //         </div>
-// // // //       </div>
+// // // //         ))}
 
-// // // //       {/* Bottom tagline */}
-// // // //       <div className="relative z-10 pb-7 text-center text-[10px] font-medium uppercase tracking-[0.4em] text-white/80 sm:text-xs">
-// // // //         Science
-// // // //         <span className="mx-4">|</span>
-// // // //         Sustainability
-// // // //         <span className="mx-4">|</span>
-// // // //         Stronger Farms
+// // // //         {/* Previous button */}
+// // // //         <button
+// // // //           type="button"
+// // // //           aria-label="Previous banner"
+// // // //           onClick={previousSlide}
+// // // //           className="
+// // // //             absolute left-5 top-1/2 z-30
+// // // //             flex h-12 w-12
+// // // //             -translate-y-1/2
+// // // //             items-center justify-center
+// // // //             rounded-full
+// // // //             border border-white/20
+// // // //             bg-black/25
+// // // //             text-3xl text-white
+// // // //             backdrop-blur-md
+// // // //             transition-all duration-300
+// // // //             hover:scale-105
+// // // //             hover:bg-black/50
+// // // //             focus:outline-none
+// // // //             focus:ring-2
+// // // //             focus:ring-white/60
+// // // //           "
+// // // //         >
+// // // //           ‹
+// // // //         </button>
+
+// // // //         {/* Next button */}
+// // // //         <button
+// // // //           type="button"
+// // // //           aria-label="Next banner"
+// // // //           onClick={nextSlide}
+// // // //           className="
+// // // //             absolute right-5 top-1/2 z-30
+// // // //             flex h-12 w-12
+// // // //             -translate-y-1/2
+// // // //             items-center justify-center
+// // // //             rounded-full
+// // // //             border border-white/20
+// // // //             bg-black/25
+// // // //             text-3xl text-white
+// // // //             backdrop-blur-md
+// // // //             transition-all duration-300
+// // // //             hover:scale-105
+// // // //             hover:bg-black/50
+// // // //             focus:outline-none
+// // // //             focus:ring-2
+// // // //             focus:ring-white/60
+// // // //           "
+// // // //         >
+// // // //           ›
+// // // //         </button>
+
+// // // //         {/* Carousel indicators */}
+// // // //         <div
+// // // //           className="
+// // // //             absolute bottom-6 left-1/2 z-30
+// // // //             flex -translate-x-1/2
+// // // //             items-center gap-2
+// // // //           "
+// // // //         >
+// // // //           {banners.map((banner, index) => (
+// // // //             <button
+// // // //               key={banner.image}
+// // // //               type="button"
+// // // //               aria-label={`Go to banner ${index + 1}`}
+// // // //               aria-current={active === index}
+// // // //               onClick={() => setActive(index)}
+// // // //               className={`
+// // // //                 h-1.5 rounded-full
+// // // //                 transition-all duration-500
+// // // //                 ${
+// // // //                   active === index
+// // // //                     ? "w-10 bg-white"
+// // // //                     : "w-5 bg-white/40 hover:bg-white/70"
+// // // //                 }
+// // // //               `}
+// // // //             />
+// // // //           ))}
+// // // //         </div>
 // // // //       </div>
 // // // //     </section>
 // // // //   );
 // // // // }
-
-// // // // function CountdownItem({
-// // // //   value,
-// // // //   label,
-// // // //   bordered = false,
-// // // // }: {
-// // // //   value: number;
-// // // //   label: string;
-// // // //   bordered?: boolean;
-// // // // }) {
-// // // //   return (
-// // // //     <div
-// // // //       className={`text-center ${
-// // // //         bordered ? "border-l border-white/25" : ""
-// // // //       }`}
-// // // //     >
-// // // //       <div className="text-3xl font-bold tracking-tight sm:text-4xl">
-// // // //         {String(value).padStart(2, "0")}
-// // // //       </div>
-
-// // // //       <div className="mt-1 text-sm text-white/90 sm:text-base">
-// // // //         {label}
-// // // //       </div>
-// // // //     </div>
-// // // //   );
-// // // // }
 // // // "use client";
 
-// // // import { useEffect, useState } from "react";
+// // // import React, { useEffect, useState } from "react";
 
-// // // const LAUNCH_DATE = new Date(
-// // //   "2026-10-01T12:00:00+05:30"
-// // // ).getTime();
+// // // /*
+// // // |--------------------------------------------------------------------------
+// // // | CONFIGURATION
+// // // |--------------------------------------------------------------------------
+// // // */
+
+// // // // DEMO TIMER
+// // // // Change this number to test locally.
+// // // //
+// // // // 10  = 10 seconds
+// // // // 30  = 30 seconds
+// // // // 60  = 1 minute
+// // // // 300 = 5 minutes
+// // // //
+// // // // For your real launch, replace the demo logic with a fixed launch date
+// // // // as explained further below.
+
+// // // // const DEMO_TIMER_SECONDS = 10;
+
+// // // const LAUNCH_DATE = new Date("2026-10-08T09:30:00").getTime();
+
+// // // // Change these two image names to your actual banner files.
+// // // // Put the images inside:
+// // // // public/images/
+// // // const BANNERS = [
+// // //   {
+// // //     id: 1,
+// // //     image: "/images/s.png",
+// // //     alt: "i.GutRevive Pro+ Product Launch",
+// // //   },
+// // //   {
+// // //     id: 2,
+// // //     image: "/images/s.png",
+// // //     alt: "i.Growvare IB35 Product Launch",
+// // //   },
+// // // ];
+
+// // // const AUTO_SLIDE_TIME = 5000;
+
+
+// // // /*
+// // // |--------------------------------------------------------------------------
+// // // | COMPONENT
+// // // |--------------------------------------------------------------------------
+// // // */
 
 // // // export default function ProductLaunch() {
-// // //   const [timeLeft, setTimeLeft] = useState({
-// // //     days: 0,
-// // //     hours: 0,
-// // //     minutes: 0,
-// // //     seconds: 0,
-// // //   });
+// // //   const [timeLeft, setTimeLeft] = useState(DEMO_TIMER_SECONDS);
+// // //   const [launched, setLaunched] = useState(false);
+// // //   const [currentSlide, setCurrentSlide] = useState(0);
+
+// // //   /*
+// // //   |--------------------------------------------------------------------------
+// // //   | COUNTDOWN
+// // //   |--------------------------------------------------------------------------
+// // //   */
 
 // // //   useEffect(() => {
-// // //     const updateCountdown = () => {
-// // //       const difference = LAUNCH_DATE - Date.now();
+// // //     if (launched) return;
 
-// // //       if (difference <= 0) {
-// // //         setTimeLeft({
-// // //           days: 0,
-// // //           hours: 0,
-// // //           minutes: 0,
-// // //           seconds: 0,
-// // //         });
-// // //         return;
-// // //       }
+// // //     const timer = window.setInterval(() => {
+// // //       setTimeLeft((previous) => {
+// // //         if (previous <= 1) {
+// // //           window.clearInterval(timer);
+// // //           setLaunched(true);
+// // //           return 0;
+// // //         }
 
-// // //       setTimeLeft({
-// // //         days: Math.floor(
-// // //           difference / (1000 * 60 * 60 * 24)
-// // //         ),
-// // //         hours: Math.floor(
-// // //           (difference / (1000 * 60 * 60)) % 24
-// // //         ),
-// // //         minutes: Math.floor(
-// // //           (difference / (1000 * 60)) % 60
-// // //         ),
-// // //         seconds: Math.floor(
-// // //           (difference / 1000) % 60
-// // //         ),
+// // //         return previous - 1;
 // // //       });
+// // //     }, 1000);
+
+// // //     return () => {
+// // //       window.clearInterval(timer);
 // // //     };
+// // //   }, [launched]);
 
-// // //     updateCountdown();
 
-// // //     const timer = setInterval(updateCountdown, 1000);
+// // //   /*
+// // //   |--------------------------------------------------------------------------
+// // //   | AUTO CAROUSEL
+// // //   |--------------------------------------------------------------------------
+// // //   */
 
-// // //     return () => clearInterval(timer);
-// // //   }, []);
+// // //   useEffect(() => {
+// // //     if (!launched) return;
+
+// // //     const carouselTimer = window.setInterval(() => {
+// // //       setCurrentSlide((previous) => {
+// // //         return (previous + 1) % BANNERS.length;
+// // //       });
+// // //     }, AUTO_SLIDE_TIME);
+
+// // //     return () => {
+// // //       window.clearInterval(carouselTimer);
+// // //     };
+// // //   }, [launched]);
+
+
+// // //   /*
+// // //   |--------------------------------------------------------------------------
+// // //   | TIMER FORMAT
+// // //   |--------------------------------------------------------------------------
+// // //   */
+
+// // //   const hours = Math.floor(timeLeft / 3600);
+// // //   const minutes = Math.floor((timeLeft % 3600) / 60);
+// // //   const seconds = timeLeft % 60;
+
+
+// // //   /*
+// // //   |--------------------------------------------------------------------------
+// // //   | CAROUSEL CONTROLS
+// // //   |--------------------------------------------------------------------------
+// // //   */
+
+// // //   const nextSlide = () => {
+// // //     setCurrentSlide((previous) => {
+// // //       return (previous + 1) % BANNERS.length;
+// // //     });
+// // //   };
+
+// // //   const previousSlide = () => {
+// // //     setCurrentSlide((previous) => {
+// // //       return (previous - 1 + BANNERS.length) % BANNERS.length;
+// // //     });
+// // //   };
+
+
+// // //   /*
+// // //   |--------------------------------------------------------------------------
+// // //   | RENDER
+// // //   |--------------------------------------------------------------------------
+// // //   */
 
 // // //   return (
-// // //     <section className="relative min-h-[720px] w-full overflow-hidden bg-[#021b2d]">
-      
-// // //       {/* BACKGROUND IMAGE */}
-// // //       <img
-// // //         src="/images/wide_cinematic_promotional_banner_scene_clean_cor.png"
-// // //         alt="Innovare Biopharma product launch"
-// // //         className="absolute inset-0 h-full w-full object-cover"
-// // //       />
+// // //     <>
+// // //       <section className="product-launch">
 
-// // //       {/* DARK GRADIENT OVERLAY */}
-// // //       <div className="absolute inset-0 bg-gradient-to-r from-[#001525]/80 via-[#00243a]/30 to-transparent" />
+// // //         {!launched ? (
+// // //           /*
+// // //           |--------------------------------------------------------------------------
+// // //           | COUNTDOWN SCREEN
+// // //           |--------------------------------------------------------------------------
+// // //           */
+// // //           <div className="countdown-screen">
 
-// // //       {/* CONTENT */}
-// // //       <div className="relative z-10 mx-auto flex min-h-[720px] max-w-[1920px] items-center px-6 py-16 sm:px-10 lg:px-[5%]">
+// // //             <div className="countdown-content">
 
-// // //         <div className="w-full max-w-[850px]">
+// // //               <div className="launch-badge">
+// // //                 PRODUCT LAUNCH
+// // //               </div>
 
-// // //           {/* TOP LABEL */}
-// // //           <p className="mb-4 text-sm font-medium tracking-[0.45em] text-white sm:text-base">
-// // //             SOMETHING POWERFUL IS COMING
-// // //           </p>
+// // //               <h1>
+// // //                 Something New
+// // //                 <span> Is Coming</span>
+// // //               </h1>
 
-// // //           {/* TITLE */}
-// // //           <h2 className="text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-// // //             <span className="text-white">
-// // //               New{" "}
-// // //             </span>
+// // //               <p className="countdown-description">
+// // //                 Get ready for our next-generation aquaculture solutions.
+// // //               </p>
 
-// // //             <span className="text-[#45b9f2]">
-// // //               Product Launch
-// // //             </span>
-// // //           </h2>
+// // //               <div className="timer">
 
-// // //           {/* DESCRIPTION */}
-// // //           <div className="mt-5">
-// // //             <p className="text-xl font-medium leading-relaxed text-white sm:text-2xl">
-// // //               A breakthrough in{" "}
-// // //               <span className="text-[#4bc6ff]">
-// // //                 aquaculture health
-// // //               </span>{" "}
-// // //               is on its way.
-// // //             </p>
+// // //                 <div className="time-box">
+// // //                   <strong>
+// // //                     {String(hours).padStart(2, "0")}
+// // //                   </strong>
+// // //                   <small>HOURS</small>
+// // //                 </div>
 
-// // //             <p className="mt-1 text-base leading-relaxed text-[#a9ddf7] sm:text-xl">
-// // //               Science-driven solutions for healthier ponds and
-// // //               a more sustainable tomorrow.
-// // //             </p>
-// // //           </div>
+// // //                 <div className="separator">:</div>
 
-// // //           {/* BENEFITS */}
-// // //           <div className="mt-8 grid max-w-[720px] grid-cols-2 sm:grid-cols-4">
+// // //                 <div className="time-box">
+// // //                   <strong>
+// // //                     {String(minutes).padStart(2, "0")}
+// // //                   </strong>
+// // //                   <small>MINUTES</small>
+// // //                 </div>
 
-// // //             <Benefit
-// // //               icon="◯"
-// // //               title="Healthier"
-// // //               subtitle="Ponds"
-// // //             />
+// // //                 <div className="separator">:</div>
 
-// // //             <Benefit
-// // //               icon="♢"
-// // //               title="Stronger"
-// // //               subtitle="Immunity"
-// // //             />
+// // //                 <div className="time-box">
+// // //                   <strong>
+// // //                     {String(seconds).padStart(2, "0")}
+// // //                   </strong>
+// // //                   <small>SECONDS</small>
+// // //                 </div>
 
-// // //             <Benefit
-// // //               icon="▥"
-// // //               title="Better"
-// // //               subtitle="Productivity"
-// // //             />
+// // //               </div>
 
-// // //             <Benefit
-// // //               icon="♧"
-// // //               title="Cleaner"
-// // //               subtitle="Water Ecosystems"
-// // //             />
+// // //               <div className="countdown-line" />
 
-// // //           </div>
-
-// // //           {/* LIVE COUNTDOWN */}
-// // //           <div className="mt-8 max-w-[670px] overflow-hidden rounded-2xl border border-white/20 bg-[#06243a]/75 backdrop-blur-md">
-
-// // //             <div className="grid grid-cols-4">
-
-// // //               <CountdownItem
-// // //                 value={timeLeft.days}
-// // //                 label="Days"
-// // //               />
-
-// // //               <CountdownItem
-// // //                 value={timeLeft.hours}
-// // //                 label="Hours"
-// // //               />
-
-// // //               <CountdownItem
-// // //                 value={timeLeft.minutes}
-// // //                 label="Minutes"
-// // //               />
-
-// // //               <CountdownItem
-// // //                 value={timeLeft.seconds}
-// // //                 label="Seconds"
-// // //                 last
-// // //               />
+// // //               <p className="coming-text">
+// // //                 Launching soon
+// // //               </p>
 
 // // //             </div>
 
 // // //           </div>
 
-// // //           {/* CTA */}
-// // //           <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center">
+// // //         ) : (
+
+// // //           /*
+// // //           |--------------------------------------------------------------------------
+// // //           | PRODUCT BANNER CAROUSEL
+// // //           |--------------------------------------------------------------------------
+// // //           */
+
+// // //           <div className="banner-carousel">
+
+// // //             {BANNERS.map((banner, index) => (
+// // //               <div
+// // //                 key={banner.id}
+// // //                 className={`banner-slide ${
+// // //                   index === currentSlide ? "active" : ""
+// // //                 }`}
+// // //               >
+// // //                 <img
+// // //                   src={banner.image}
+// // //                   alt={banner.alt}
+// // //                   className="banner-image"
+// // //                 />
+// // //               </div>
+// // //             ))}
+
+
+// // //             {/* PREVIOUS BUTTON */}
 
 // // //             <button
 // // //               type="button"
-// // //               className="flex h-16 w-fit items-center gap-8 rounded-xl bg-[#078cff] px-10 text-lg font-semibold text-white shadow-xl transition hover:bg-[#087edb]"
+// // //               className="carousel-button previous"
+// // //               onClick={previousSlide}
+// // //               aria-label="Previous banner"
 // // //             >
-// // //               Be the First to Know
-
-// // //               <span className="text-2xl">
-// // //                 →
-// // //               </span>
+// // //               ‹
 // // //             </button>
 
-// // //             <div className="hidden h-10 w-px bg-white/40 sm:block" />
 
-// // //             <p className="max-w-[450px] text-sm text-white sm:text-base">
-// // //               Get launch updates, product details and
-// // //               exclusive early access.
-// // //             </p>
+// // //             {/* NEXT BUTTON */}
+
+// // //             <button
+// // //               type="button"
+// // //               className="carousel-button next"
+// // //               onClick={nextSlide}
+// // //               aria-label="Next banner"
+// // //             >
+// // //               ›
+// // //             </button>
+
+
+// // //             {/* DOTS */}
+
+// // //             <div className="carousel-dots">
+
+// // //               {BANNERS.map((_, index) => (
+// // //                 <button
+// // //                   key={index}
+// // //                   type="button"
+// // //                   aria-label={`Go to banner ${index + 1}`}
+// // //                   className={`dot ${
+// // //                     index === currentSlide ? "active" : ""
+// // //                   }`}
+// // //                   onClick={() => setCurrentSlide(index)}
+// // //                 />
+// // //               ))}
+
+// // //             </div>
 
 // // //           </div>
+
+// // //         )}
+
+// // //       </section>
+
+
+// // //       <style jsx>{`
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | MAIN
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         .product-launch {
+// // //           position: relative;
+// // //           width: 100%;
+// // //           overflow: hidden;
+// // //           background: #061c31;
+// // //         }
+
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | COUNTDOWN
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         .countdown-screen {
+// // //           width: 100%;
+// // //           min-height: 520px;
+
+// // //           display: flex;
+// // //           align-items: center;
+// // //           justify-content: center;
+
+// // //           position: relative;
+
+// // //           background:
+// // //             radial-gradient(
+// // //               circle at 70% 30%,
+// // //               rgba(20, 146, 218, 0.20),
+// // //               transparent 40%
+// // //             ),
+// // //             radial-gradient(
+// // //               circle at 20% 70%,
+// // //               rgba(0, 194, 255, 0.10),
+// // //               transparent 35%
+// // //             ),
+// // //             linear-gradient(
+// // //               135deg,
+// // //               #04192d 0%,
+// // //               #062e50 50%,
+// // //               #041a2e 100%
+// // //             );
+// // //         }
+
+
+// // //         .countdown-content {
+// // //           width: 100%;
+// // //           max-width: 900px;
+
+// // //           padding: 80px 30px;
+
+// // //           text-align: center;
+// // //           color: white;
+// // //         }
+
+
+// // //         .launch-badge {
+// // //           display: inline-flex;
+
+// // //           padding: 10px 22px;
+
+// // //           border: 1px solid rgba(55, 202, 255, 0.7);
+// // //           border-radius: 999px;
+
+// // //           color: #53cfff;
+
+// // //           font-size: 12px;
+// // //           font-weight: 700;
+
+// // //           letter-spacing: 3px;
+
+// // //           background: rgba(0, 174, 255, 0.06);
+// // //         }
+
+
+// // //         .countdown-content h1 {
+// // //           margin: 28px 0 15px;
+
+// // //           font-size: clamp(40px, 6vw, 76px);
+
+// // //           line-height: 1.05;
+
+// // //           font-weight: 700;
+
+// // //           letter-spacing: -2px;
+// // //         }
+
+
+// // //         .countdown-content h1 span {
+// // //           color: #27bfff;
+// // //         }
+
+
+// // //         .countdown-description {
+// // //           margin: 0 auto 45px;
+
+// // //           max-width: 650px;
+
+// // //           color: rgba(255, 255, 255, 0.68);
+
+// // //           font-size: 17px;
+
+// // //           line-height: 1.6;
+// // //         }
+
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | TIMER
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         .timer {
+// // //           display: flex;
+
+// // //           justify-content: center;
+// // //           align-items: center;
+
+// // //           gap: 15px;
+// // //         }
+
+
+// // //         .time-box {
+// // //           width: 130px;
+// // //           min-height: 125px;
+
+// // //           display: flex;
+// // //           flex-direction: column;
+
+// // //           justify-content: center;
+// // //           align-items: center;
+
+// // //           border-radius: 18px;
+
+// // //           border: 1px solid rgba(74, 202, 255, 0.25);
+
+// // //           background: rgba(255, 255, 255, 0.045);
+
+// // //           backdrop-filter: blur(12px);
+
+// // //           box-shadow:
+// // //             0 15px 40px rgba(0, 0, 0, 0.20);
+// // //         }
+
+
+// // //         .time-box strong {
+// // //           font-size: 48px;
+
+// // //           line-height: 1;
+
+// // //           color: white;
+
+// // //           font-weight: 600;
+// // //         }
+
+
+// // //         .time-box small {
+// // //           margin-top: 12px;
+
+// // //           font-size: 10px;
+
+// // //           letter-spacing: 2px;
+
+// // //           color: #64cdf7;
+// // //         }
+
+
+// // //         .separator {
+// // //           font-size: 38px;
+
+// // //           color: rgba(255, 255, 255, 0.45);
+// // //         }
+
+
+// // //         .countdown-line {
+// // //           width: 70px;
+// // //           height: 3px;
+
+// // //           margin: 42px auto 20px;
+
+// // //           border-radius: 10px;
+
+// // //           background: #26bfff;
+// // //         }
+
+
+// // //         .coming-text {
+// // //           margin: 0;
+
+// // //           color: rgba(255, 255, 255, 0.65);
+
+// // //           font-size: 14px;
+
+// // //           letter-spacing: 2px;
+
+// // //           text-transform: uppercase;
+// // //         }
+
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | BANNER CAROUSEL
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         .banner-carousel {
+// // //           position: relative;
+
+// // //           width: 100%;
+
+// // //           aspect-ratio: 16 / 7;
+
+// // //           min-height: 420px;
+
+// // //           overflow: hidden;
+
+// // //           background: #071d30;
+// // //         }
+
+
+// // //         .banner-slide {
+// // //           position: absolute;
+
+// // //           inset: 0;
+
+// // //           width: 100%;
+// // //           height: 100%;
+
+// // //           opacity: 0;
+
+// // //           visibility: hidden;
+
+// // //           transform: scale(1.015);
+
+// // //           transition:
+// // //             opacity 0.7s ease,
+// // //             transform 1s ease,
+// // //             visibility 0.7s ease;
+// // //         }
+
+
+// // //         .banner-slide.active {
+// // //           opacity: 1;
+
+// // //           visibility: visible;
+
+// // //           transform: scale(1);
+// // //         }
+
+
+// // //         .banner-image {
+// // //           width: 100%;
+// // //           height: 100%;
+
+// // //           display: block;
+
+// // //           object-fit: cover;
+
+// // //           object-position: center;
+// // //         }
+
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | CAROUSEL BUTTONS
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         .carousel-button {
+// // //           position: absolute;
+
+// // //           top: 50%;
+
+// // //           transform: translateY(-50%);
+
+// // //           z-index: 10;
+
+// // //           width: 54px;
+// // //           height: 54px;
+
+// // //           display: flex;
+
+// // //           justify-content: center;
+// // //           align-items: center;
+
+// // //           border-radius: 50%;
+
+// // //           border: 1px solid rgba(255, 255, 255, 0.25);
+
+// // //           background: rgba(0, 20, 40, 0.48);
+
+// // //           backdrop-filter: blur(10px);
+
+// // //           color: white;
+
+// // //           font-size: 34px;
+
+// // //           line-height: 1;
+
+// // //           cursor: pointer;
+
+// // //           transition: all 0.25s ease;
+// // //         }
+
+
+// // //         .carousel-button:hover {
+// // //           background: rgba(0, 145, 220, 0.85);
+
+// // //           border-color: rgba(255, 255, 255, 0.5);
+
+// // //           transform: translateY(-50%) scale(1.05);
+// // //         }
+
+
+// // //         .carousel-button.previous {
+// // //           left: 25px;
+// // //         }
+
+
+// // //         .carousel-button.next {
+// // //           right: 25px;
+// // //         }
+
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | DOTS
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         .carousel-dots {
+// // //           position: absolute;
+
+// // //           left: 50%;
+// // //           bottom: 22px;
+
+// // //           transform: translateX(-50%);
+
+// // //           z-index: 20;
+
+// // //           display: flex;
+
+// // //           align-items: center;
+
+// // //           gap: 9px;
+
+// // //           padding: 8px 12px;
+
+// // //           border-radius: 999px;
+
+// // //           background: rgba(0, 20, 40, 0.45);
+
+// // //           backdrop-filter: blur(10px);
+// // //         }
+
+
+// // //         .dot {
+// // //           width: 8px;
+// // //           height: 8px;
+
+// // //           padding: 0;
+
+// // //           border: 0;
+
+// // //           border-radius: 50%;
+
+// // //           background: rgba(255, 255, 255, 0.4);
+
+// // //           cursor: pointer;
+
+// // //           transition: all 0.25s ease;
+// // //         }
+
+
+// // //         .dot.active {
+// // //           width: 28px;
+
+// // //           border-radius: 10px;
+
+// // //           background: #31c5ff;
+// // //         }
+
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | TABLET
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         @media (max-width: 900px) {
+
+// // //           .banner-carousel {
+// // //             aspect-ratio: 16 / 9;
+// // //           }
+
+// // //           .countdown-screen {
+// // //             min-height: 480px;
+// // //           }
+
+// // //           .time-box {
+// // //             width: 105px;
+// // //             min-height: 105px;
+// // //           }
+
+// // //           .time-box strong {
+// // //             font-size: 40px;
+// // //           }
+
+// // //         }
+
+
+// // //         /*
+// // //         |--------------------------------------------------------------------------
+// // //         | MOBILE
+// // //         |--------------------------------------------------------------------------
+// // //         */
+
+// // //         @media (max-width: 600px) {
+
+// // //           .countdown-screen {
+// // //             min-height: 480px;
+// // //           }
+
+
+// // //           .countdown-content {
+// // //             padding: 60px 20px;
+// // //           }
+
+
+// // //           .countdown-content h1 {
+// // //             font-size: 42px;
+// // //             letter-spacing: -1px;
+// // //           }
+
+
+// // //           .countdown-description {
+// // //             font-size: 14px;
+// // //           }
+
+
+// // //           .timer {
+// // //             gap: 7px;
+// // //           }
+
+
+// // //           .time-box {
+// // //             width: 82px;
+// // //             min-height: 90px;
+
+// // //             border-radius: 14px;
+// // //           }
+
+
+// // //           .time-box strong {
+// // //             font-size: 30px;
+// // //           }
+
+
+// // //           .time-box small {
+// // //             font-size: 8px;
+// // //             letter-spacing: 1px;
+// // //           }
+
+
+// // //           .separator {
+// // //             font-size: 25px;
+// // //           }
+
+
+// // //           .banner-carousel {
+// // //             aspect-ratio: 4 / 3;
+
+// // //             min-height: 280px;
+// // //           }
+
+
+// // //           .banner-image {
+// // //             object-position: center;
+// // //           }
+
+
+// // //           .carousel-button {
+// // //             width: 40px;
+// // //             height: 40px;
+
+// // //             font-size: 25px;
+// // //           }
+
+
+// // //           .carousel-button.previous {
+// // //             left: 10px;
+// // //           }
+
+
+// // //           .carousel-button.next {
+// // //             right: 10px;
+// // //           }
+
+
+// // //           .carousel-dots {
+// // //             bottom: 12px;
+// // //           }
+
+// // //         }
+
+// // //       `}</style>
+// // //     </>
+// // //   );
+// // // }
+// // // "use client";
+
+// // // import { useEffect, useMemo, useState } from "react";
+
+// // // const BANNER_IMAGES = [
+// // //   "/images/growware-ib35-banner.png",
+// // //   "/images/gutrevivepro-banner.png",
+// // // ];
+
+// // // function getNextThursday930AM() {
+// // //   const now = new Date();
+// // //   const target = new Date(now);
+
+// // //   // Thursday = 4
+// // //   const daysUntilThursday = (4 - now.getDay() + 7) % 7;
+
+// // //   target.setDate(now.getDate() + daysUntilThursday);
+// // //   target.setHours(9, 30, 0, 0);
+
+// // //   // If Thursday 9:30 AM has already passed,
+// // //   // move to next Thursday.
+// // //   if (target.getTime() <= now.getTime()) {
+// // //     target.setDate(target.getDate() + 7);
+// // //   }
+
+// // //   return target;
+// // // }
+
+// // // function calculateTimeLeft(target: Date) {
+// // //   const difference = target.getTime() - Date.now();
+
+// // //   if (difference <= 0) {
+// // //     return {
+// // //       total: 0,
+// // //       days: 0,
+// // //       hours: 0,
+// // //       minutes: 0,
+// // //       seconds: 0,
+// // //     };
+// // //   }
+
+// // //   const totalSeconds = Math.floor(difference / 1000);
+
+// // //   return {
+// // //     total: difference,
+
+// // //     days: Math.floor(
+// // //       totalSeconds / (24 * 60 * 60)
+// // //     ),
+
+// // //     hours: Math.floor(
+// // //       (totalSeconds % (24 * 60 * 60)) /
+// // //         (60 * 60)
+// // //     ),
+
+// // //     minutes: Math.floor(
+// // //       (totalSeconds % (60 * 60)) / 60
+// // //     ),
+
+// // //     seconds: totalSeconds % 60,
+// // //   };
+// // // }
+
+// // // export default function ProductLaunch() {
+// // //   const launchDate = useMemo(
+// // //     () => getNextThursday930AM(),
+// // //     []
+// // //   );
+
+// // //   const [timeLeft, setTimeLeft] = useState(() =>
+// // //     calculateTimeLeft(launchDate)
+// // //   );
+
+// // //   const [launched, setLaunched] = useState(
+// // //     launchDate.getTime() <= Date.now()
+// // //   );
+
+// // //   const [currentSlide, setCurrentSlide] =
+// // //     useState(0);
+
+// // //   // ----------------------------------------------------------
+// // //   // COUNTDOWN
+// // //   // ----------------------------------------------------------
+
+// // //   useEffect(() => {
+// // //     if (launched) return;
+
+// // //     const interval = window.setInterval(() => {
+// // //       const remaining =
+// // //         calculateTimeLeft(launchDate);
+
+// // //       setTimeLeft(remaining);
+
+// // //       if (remaining.total <= 0) {
+// // //         setLaunched(true);
+// // //         window.clearInterval(interval);
+// // //       }
+// // //     }, 1000);
+
+// // //     return () => {
+// // //       window.clearInterval(interval);
+// // //     };
+// // //   }, [launchDate, launched]);
+
+// // //   // ----------------------------------------------------------
+// // //   // CAROUSEL
+// // //   // ----------------------------------------------------------
+
+// // //   useEffect(() => {
+// // //     if (!launched) return;
+
+// // //     const interval = window.setInterval(() => {
+// // //       setCurrentSlide((current) =>
+// // //         current === BANNER_IMAGES.length - 1
+// // //           ? 0
+// // //           : current + 1
+// // //       );
+// // //     }, 5000);
+
+// // //     return () => {
+// // //       window.clearInterval(interval);
+// // //     };
+// // //   }, [launched]);
+
+// // //   const previousSlide = () => {
+// // //     setCurrentSlide((current) =>
+// // //       current === 0
+// // //         ? BANNER_IMAGES.length - 1
+// // //         : current - 1
+// // //     );
+// // //   };
+
+// // //   const nextSlide = () => {
+// // //     setCurrentSlide((current) =>
+// // //       current === BANNER_IMAGES.length - 1
+// // //         ? 0
+// // //         : current + 1
+// // //     );
+// // //   };
+
+// // //   // ==========================================================
+// // //   // BEFORE LAUNCH
+// // //   // ==========================================================
+
+// // //   if (!launched) {
+// // //     return (
+// // //       <section className="growware-launch-screen">
+
+// // //         <div className="growware-launch-inner">
+
+// // //           <div className="growware-launch-badge">
+// // //             PRODUCT LAUNCH
+// // //           </div>
+
+// // //           <h1 className="growware-launch-title">
+// // //             Something Better
+// // //             <span>Is Coming</span>
+// // //           </h1>
+
+// // //           <p className="growware-launch-description">
+// // //             Next-generation aquaculture nutrition
+// // //             designed for stronger immunity,
+// // //             better growth and healthier harvests.
+// // //           </p>
+
+// // //           <div className="growware-countdown">
+
+// // //             <CountdownItem
+// // //               value={timeLeft.days}
+// // //               label="DAYS"
+// // //             />
+
+// // //             <div className="growware-countdown-colon">
+// // //               :
+// // //             </div>
+
+// // //             <CountdownItem
+// // //               value={timeLeft.hours}
+// // //               label="HOURS"
+// // //             />
+
+// // //             <div className="growware-countdown-colon">
+// // //               :
+// // //             </div>
+
+// // //             <CountdownItem
+// // //               value={timeLeft.minutes}
+// // //               label="MINUTES"
+// // //             />
+
+// // //             <div className="growware-countdown-colon">
+// // //               :
+// // //             </div>
+
+// // //             <CountdownItem
+// // //               value={timeLeft.seconds}
+// // //               label="SECONDS"
+// // //             />
+
+// // //           </div>
+
+// // //           <div className="growware-launch-date">
+// // //             Launching Thursday at 9:30 AM
+// // //           </div>
+
+// // //         </div>
+
+// // //         <style jsx>{`
+
+// // //           .growware-launch-screen {
+// // //             position: relative;
+
+// // //             width: 100%;
+// // //             min-height: 650px;
+
+// // //             display: flex;
+// // //             align-items: center;
+// // //             justify-content: center;
+
+// // //             padding: 70px 30px;
+
+// // //             box-sizing: border-box;
+
+// // //             overflow: hidden;
+
+// // //             background:
+// // //               radial-gradient(
+// // //                 circle at 75% 20%,
+// // //                 rgba(0, 158, 255, 0.18),
+// // //                 transparent 32%
+// // //               ),
+// // //               radial-gradient(
+// // //                 circle at 15% 85%,
+// // //                 rgba(0, 94, 180, 0.18),
+// // //                 transparent 32%
+// // //               ),
+// // //               linear-gradient(
+// // //                 135deg,
+// // //                 #03162d 0%,
+// // //                 #052d50 52%,
+// // //                 #032238 100%
+// // //               );
+// // //           }
+
+// // //           .growware-launch-inner {
+// // //             position: relative;
+
+// // //             width: 100%;
+// // //             max-width: 1100px;
+
+// // //             margin: 0 auto;
+
+// // //             text-align: center;
+
+// // //             box-sizing: border-box;
+// // //           }
+
+// // //           .growware-launch-badge {
+// // //             display: inline-flex;
+
+// // //             padding: 10px 24px;
+
+// // //             border: 1px solid
+// // //               rgba(71, 202, 255, 0.65);
+
+// // //             border-radius: 999px;
+
+// // //             color: #52d4ff;
+
+// // //             font-size: 13px;
+// // //             font-weight: 700;
+
+// // //             letter-spacing: 3px;
+
+// // //             background:
+// // //               rgba(20, 151, 218, 0.08);
+
+// // //             margin-bottom: 28px;
+// // //           }
+
+// // //           .growware-launch-title {
+// // //             margin: 0;
+
+// // //             color: #ffffff;
+
+// // //             font-size: clamp(
+// // //               45px,
+// // //               6vw,
+// // //               82px
+// // //             );
+
+// // //             line-height: 1.05;
+
+// // //             font-weight: 800;
+
+// // //             letter-spacing: -3px;
+// // //           }
+
+// // //           .growware-launch-title span {
+// // //             display: block;
+
+// // //             margin-top: 4px;
+
+// // //             background:
+// // //               linear-gradient(
+// // //                 90deg,
+// // //                 #69d8ff,
+// // //                 #1595ff
+// // //               );
+
+// // //             -webkit-background-clip: text;
+// // //             background-clip: text;
+
+// // //             color: transparent;
+// // //           }
+
+// // //           .growware-launch-description {
+// // //             max-width: 720px;
+
+// // //             margin: 28px auto 45px;
+
+// // //             color:
+// // //               rgba(255, 255, 255, 0.72);
+
+// // //             font-size: 19px;
+
+// // //             line-height: 1.65;
+// // //           }
+
+// // //           /*
+// // //              IMPORTANT:
+// // //              Explicitly force horizontal layout.
+// // //           */
+
+// // //           .growware-countdown {
+// // //             width: 100%;
+
+// // //             display: flex !important;
+
+// // //             flex-direction: row !important;
+
+// // //             align-items: center !important;
+
+// // //             justify-content: center !important;
+
+// // //             flex-wrap: nowrap !important;
+
+// // //             gap: 14px;
+
+// // //             margin: 0 auto;
+
+// // //             box-sizing: border-box;
+// // //           }
+
+// // //           .growware-countdown-colon {
+// // //             flex: 0 0 auto;
+
+// // //             color:
+// // //               rgba(255, 255, 255, 0.45);
+
+// // //             font-size: 38px;
+
+// // //             font-weight: 700;
+// // //           }
+
+// // //           .growware-launch-date {
+// // //             margin-top: 30px;
+
+// // //             color:
+// // //               rgba(255, 255, 255, 0.55);
+
+// // //             font-size: 14px;
+
+// // //             letter-spacing: 0.5px;
+// // //           }
+
+// // //           @media (max-width: 700px) {
+
+// // //             .growware-launch-screen {
+// // //               min-height: 580px;
+
+// // //               padding:
+// // //                 55px 18px;
+// // //             }
+
+// // //             .growware-launch-title {
+// // //               font-size: 44px;
+
+// // //               letter-spacing: -2px;
+// // //             }
+
+// // //             .growware-launch-description {
+// // //               font-size: 15px;
+
+// // //               margin-top: 22px;
+// // //               margin-bottom: 32px;
+// // //             }
+
+// // //             .growware-countdown {
+// // //               gap: 5px;
+// // //             }
+
+// // //             .growware-countdown-colon {
+// // //               font-size: 22px;
+// // //             }
+
+// // //           }
+
+// // //         `}</style>
+
+// // //       </section>
+// // //     );
+// // //   }
+
+// // //   // ==========================================================
+// // //   // AFTER LAUNCH — BANNER CAROUSEL
+// // //   // ==========================================================
+
+// // //   return (
+// // //     <section className="growware-banner-section">
+
+// // //       <div className="growware-banner-carousel">
+
+// // //         {BANNER_IMAGES.map(
+// // //           (image, index) => (
+// // //             <div
+// // //               key={image}
+// // //               className={
+// // //                 index === currentSlide
+// // //                   ? "growware-banner-slide growware-banner-active"
+// // //                   : "growware-banner-slide"
+// // //               }
+// // //             >
+
+// // //               <img
+// // //                 src={image}
+// // //                 alt={
+// // //                   index === 0
+// // //                     ? "i.Growvare IB35"
+// // //                     : "i.GutRevive Pro+"
+// // //                 }
+// // //               />
+
+// // //             </div>
+// // //           )
+// // //         )}
+
+// // //         <button
+// // //           className="growware-arrow growware-arrow-left"
+// // //           onClick={previousSlide}
+// // //           aria-label="Previous banner"
+// // //         >
+// // //           ‹
+// // //         </button>
+
+// // //         <button
+// // //           className="growware-arrow growware-arrow-right"
+// // //           onClick={nextSlide}
+// // //           aria-label="Next banner"
+// // //         >
+// // //           ›
+// // //         </button>
+
+// // //         <div className="growware-dots">
+
+// // //           {BANNER_IMAGES.map(
+// // //             (_, index) => (
+// // //               <button
+// // //                 key={index}
+// // //                 onClick={() =>
+// // //                   setCurrentSlide(index)
+// // //                 }
+// // //                 aria-label={`Banner ${index + 1}`}
+// // //                 className={
+// // //                   index === currentSlide
+// // //                     ? "growware-dot growware-dot-active"
+// // //                     : "growware-dot"
+// // //                 }
+// // //               />
+// // //             )
+// // //           )}
 
 // // //         </div>
 
 // // //       </div>
 
-// // //       {/* BOTTOM SLOGAN */}
-// // //       <div className="absolute bottom-6 right-6 z-20 hidden text-xs font-medium tracking-[0.35em] text-white md:block lg:right-10">
-// // //         SCIENCE
-// // //         <span className="mx-3">|</span>
-// // //         SUSTAINABILITY
-// // //         <span className="mx-3">|</span>
-// // //         STRONGER FARMS
-// // //       </div>
+// // //       <style jsx>{`
+
+// // //         .growware-banner-section {
+// // //           width: 100%;
+
+// // //           margin: 0;
+// // //           padding: 0;
+
+// // //           overflow: hidden;
+
+// // //           background: #062c4c;
+// // //         }
+
+// // //         .growware-banner-carousel {
+// // //           position: relative;
+
+// // //           width: 100%;
+
+// // //           /*
+// // //              16:7 works well for your desktop
+// // //              launch banners.
+// // //           */
+// // //           aspect-ratio: 16 / 7;
+
+// // //           overflow: hidden;
+
+// // //           background: #062c4c;
+// // //         }
+
+// // //         .growware-banner-slide {
+// // //           position: absolute;
+
+// // //           inset: 0;
+
+// // //           width: 100%;
+// // //           height: 100%;
+
+// // //           opacity: 0;
+
+// // //           transition:
+// // //             opacity 0.7s ease;
+
+// // //           pointer-events: none;
+// // //         }
+
+// // //         .growware-banner-active {
+// // //           opacity: 1;
+
+// // //           pointer-events: auto;
+// // //         }
+
+// // //         .growware-banner-slide img {
+// // //           display: block;
+
+// // //           width: 100%;
+// // //           height: 100%;
+
+// // //           /*
+// // //              DO NOT crop the supplied banners.
+// // //           */
+// // //           object-fit: contain;
+
+// // //           object-position: center;
+
+// // //           background: #062c4c;
+// // //         }
+
+// // //         .growware-arrow {
+// // //           position: absolute;
+
+// // //           top: 50%;
+
+// // //           transform:
+// // //             translateY(-50%);
+
+// // //           z-index: 10;
+
+// // //           width: 54px;
+// // //           height: 54px;
+
+// // //           border-radius: 50%;
+
+// // //           border:
+// // //             1px solid
+// // //             rgba(255, 255, 255, 0.3);
+
+// // //           background:
+// // //             rgba(2, 24, 42, 0.58);
+
+// // //           color: #ffffff;
+
+// // //           font-size: 36px;
+
+// // //           line-height: 1;
+
+// // //           display: flex;
+
+// // //           align-items: center;
+// // //           justify-content: center;
+
+// // //           cursor: pointer;
+
+// // //           backdrop-filter: blur(10px);
+
+// // //           transition:
+// // //             all 0.2s ease;
+// // //         }
+
+// // //         .growware-arrow:hover {
+// // //           background:
+// // //             rgba(0, 125, 205, 0.8);
+
+// // //           transform:
+// // //             translateY(-50%)
+// // //             scale(1.06);
+// // //         }
+
+// // //         .growware-arrow-left {
+// // //           left: 22px;
+// // //         }
+
+// // //         .growware-arrow-right {
+// // //           right: 22px;
+// // //         }
+
+// // //         .growware-dots {
+// // //           position: absolute;
+
+// // //           bottom: 18px;
+
+// // //           left: 50%;
+
+// // //           transform:
+// // //             translateX(-50%);
+
+// // //           z-index: 20;
+
+// // //           display: flex;
+
+// // //           align-items: center;
+
+// // //           gap: 8px;
+// // //         }
+
+// // //         .growware-dot {
+// // //           width: 9px;
+// // //           height: 9px;
+
+// // //           padding: 0;
+
+// // //           border: none;
+
+// // //           border-radius: 50%;
+
+// // //           background:
+// // //             rgba(255, 255, 255, 0.55);
+
+// // //           cursor: pointer;
+
+// // //           transition:
+// // //             width 0.25s ease;
+// // //         }
+
+// // //         .growware-dot-active {
+// // //           width: 30px;
+
+// // //           border-radius: 999px;
+
+// // //           background: #28baff;
+// // //         }
+
+// // //         @media (max-width: 700px) {
+
+// // //           .growware-banner-carousel {
+// // //             /*
+// // //                Give mobile banners more vertical
+// // //                space instead of cutting them.
+// // //             */
+// // //             aspect-ratio: 4 / 3;
+// // //           }
+
+// // //           .growware-banner-slide img {
+// // //             object-fit: contain;
+// // //           }
+
+// // //           .growware-arrow {
+// // //             width: 42px;
+// // //             height: 42px;
+
+// // //             font-size: 27px;
+// // //           }
+
+// // //           .growware-arrow-left {
+// // //             left: 10px;
+// // //           }
+
+// // //           .growware-arrow-right {
+// // //             right: 10px;
+// // //           }
+
+// // //         }
+
+// // //       `}</style>
 
 // // //     </section>
 // // //   );
 // // // }
 
-
-// // // /* --------------------------------
-// // //    COUNTDOWN ITEM
-// // // -------------------------------- */
+// // // // ============================================================
+// // // // COUNTDOWN ITEM
+// // // // ============================================================
 
 // // // function CountdownItem({
 // // //   value,
 // // //   label,
-// // //   last = false,
 // // // }: {
 // // //   value: number;
 // // //   label: string;
-// // //   last?: boolean;
 // // // }) {
 // // //   return (
-// // //     <div
-// // //       className={`flex flex-col items-center justify-center py-5 sm:py-6 ${
-// // //         !last
-// // //           ? "border-r border-white/20"
-// // //           : ""
-// // //       }`}
-// // //     >
-// // //       <span className="text-3xl font-semibold text-white sm:text-4xl">
+// // //     <div className="growware-countdown-item">
+
+// // //       <div className="growware-countdown-number">
 // // //         {String(value).padStart(2, "0")}
-// // //       </span>
+// // //       </div>
 
-// // //       <span className="mt-1 text-sm text-white sm:text-base">
+// // //       <div className="growware-countdown-label">
 // // //         {label}
-// // //       </span>
-// // //     </div>
-// // //   );
-// // // }
+// // //       </div>
 
+// // //       <style jsx>{`
 
-// // // /* --------------------------------
-// // //    BENEFIT ITEM
-// // // -------------------------------- */
+// // //         .growware-countdown-item {
+// // //           flex: 0 0 120px;
 
-// // // function Benefit({
-// // //   icon,
-// // //   title,
-// // //   subtitle,
-// // // }: {
-// // //   icon: string;
-// // //   title: string;
-// // //   subtitle: string;
-// // // }) {
-// // //   return (
-// // //     <div className="flex flex-col items-center justify-center border-r border-white/20 px-3 py-2 text-center last:border-r-0">
+// // //           width: 120px;
+// // //           height: 120px;
 
-// // //       <span className="mb-2 text-3xl text-white">
-// // //         {icon}
-// // //       </span>
+// // //           display: flex;
 
-// // //       <span className="text-sm font-medium text-white sm:text-base">
-// // //         {title}
-// // //       </span>
+// // //           flex-direction: column;
 
-// // //       <span className="text-sm font-medium text-white sm:text-base">
-// // //         {subtitle}
-// // //       </span>
+// // //           align-items: center;
+// // //           justify-content: center;
+
+// // //           box-sizing: border-box;
+
+// // //           border-radius: 20px;
+
+// // //           background:
+// // //             rgba(255, 255, 255, 0.07);
+
+// // //           border:
+// // //             1px solid
+// // //             rgba(255, 255, 255, 0.14);
+
+// // //           box-shadow:
+// // //             0 18px 45px
+// // //             rgba(0, 0, 0, 0.18);
+
+// // //           backdrop-filter: blur(15px);
+// // //         }
+
+// // //         .growware-countdown-number {
+// // //           color: #ffffff;
+
+// // //           font-size: 42px;
+
+// // //           line-height: 1;
+
+// // //           font-weight: 800;
+// // //         }
+
+// // //         .growware-countdown-label {
+// // //           margin-top: 10px;
+
+// // //           color: #55d5ff;
+
+// // //           font-size: 10px;
+
+// // //           font-weight: 700;
+
+// // //           letter-spacing: 2px;
+// // //         }
+
+// // //         @media (max-width: 700px) {
+
+// // //           .growware-countdown-item {
+// // //             flex: 0 0 68px;
+
+// // //             width: 68px;
+// // //             height: 78px;
+
+// // //             border-radius: 14px;
+// // //           }
+
+// // //           .growware-countdown-number {
+// // //             font-size: 26px;
+// // //           }
+
+// // //           .growware-countdown-label {
+// // //             font-size: 7px;
+
+// // //             letter-spacing: 1px;
+// // //           }
+
+// // //         }
+
+// // //       `}</style>
 
 // // //     </div>
 // // //   );
 // // // }
 // // "use client";
 
-// // import { useEffect, useState } from "react";
+// // import { useEffect, useMemo, useState } from "react";
 
-// // type TimeLeft = {
-// //   days: number;
-// //   hours: number;
-// //   minutes: number;
-// //   seconds: number;
-// // };
+// // const LAUNCH_BACKGROUND = "/images/launch-bg.jpg";
 
-// // const LAUNCH_DATE = new Date("2026-10-01T10:00:00+05:30").getTime();
+// // const BANNER_IMAGES = [
+// //   "/images/growware-ib35-banner.png",
+// //   "/images/gutrevivepro-banner.png",
+// // ];
 
-// // function getTimeLeft(): TimeLeft {
-// //   const difference = LAUNCH_DATE - Date.now();
+// // function getNextThursday930AM() {
+// //   const now = new Date();
+// //   const target = new Date(now);
+
+// //   // Thursday = 4
+// //   const daysUntilThursday = (4 - now.getDay() + 7) % 7;
+
+// //   target.setDate(now.getDate() + daysUntilThursday);
+// //   target.setHours(9, 30, 0, 0);
+
+// //   // If Thursday 9:30 AM has already passed,
+// //   // move to next Thursday.
+// //   if (target.getTime() <= now.getTime()) {
+// //     target.setDate(target.getDate() + 7);
+// //   }
+
+// //   return target;
+// // }
+
+// // function calculateTimeLeft(target: Date) {
+// //   const difference = target.getTime() - Date.now();
 
 // //   if (difference <= 0) {
 // //     return {
+// //       total: 0,
 // //       days: 0,
 // //       hours: 0,
 // //       minutes: 0,
@@ -625,1148 +6155,1491 @@
 // //     };
 // //   }
 
+// //   const totalSeconds = Math.floor(difference / 1000);
+
 // //   return {
-// //     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+// //     total: difference,
+
+// //     days: Math.floor(
+// //       totalSeconds / (24 * 60 * 60)
+// //     ),
+
 // //     hours: Math.floor(
-// //       (difference / (1000 * 60 * 60)) % 24
+// //       (totalSeconds % (24 * 60 * 60)) /
+// //         (60 * 60)
 // //     ),
+
 // //     minutes: Math.floor(
-// //       (difference / (1000 * 60)) % 60
+// //       (totalSeconds % (60 * 60)) / 60
 // //     ),
-// //     seconds: Math.floor(
-// //       (difference / 1000) % 60
-// //     ),
+
+// //     seconds: totalSeconds % 60,
 // //   };
 // // }
 
-// // function LeafIcon() {
-// //   return (
-// //     <svg
-// //       width="38"
-// //       height="38"
-// //       viewBox="0 0 24 24"
-// //       fill="none"
-// //       stroke="currentColor"
-// //       strokeWidth="1.7"
-// //     >
-// //       <path d="M20.5 3.5C12 4 5.5 8 5.5 14c0 3.3 2.7 6 6 6 6 0 9-7.5 9-16.5Z" />
-// //       <path d="M3.5 20.5c3-4.5 7-7.5 12-9.5" />
-// //     </svg>
-// //   );
-// // }
-
-// // function ShieldIcon() {
-// //   return (
-// //     <svg
-// //       width="38"
-// //       height="38"
-// //       viewBox="0 0 24 24"
-// //       fill="none"
-// //       stroke="currentColor"
-// //       strokeWidth="1.7"
-// //     >
-// //       <path d="M12 3 20 6v5c0 5.2-3.4 8.5-8 10-4.6-1.5-8-4.8-8-10V6l8-3Z" />
-// //       <path d="m9 12 2 2 4-4" />
-// //     </svg>
-// //   );
-// // }
-
-// // function ChartIcon() {
-// //   return (
-// //     <svg
-// //       width="38"
-// //       height="38"
-// //       viewBox="0 0 24 24"
-// //       fill="none"
-// //       stroke="currentColor"
-// //       strokeWidth="1.7"
-// //     >
-// //       <path d="M4 19V9" />
-// //       <path d="M10 19V5" />
-// //       <path d="M16 19v-8" />
-// //       <path d="M22 19V3" />
-// //       <path d="M3 21h20" />
-// //     </svg>
-// //   );
-// // }
-
-// // function WaterIcon() {
-// //   return (
-// //     <svg
-// //       width="38"
-// //       height="38"
-// //       viewBox="0 0 24 24"
-// //       fill="none"
-// //       stroke="currentColor"
-// //       strokeWidth="1.7"
-// //     >
-// //       <path d="M12 2s7 7.3 7 13a7 7 0 0 1-14 0c0-5.7 7-13 7-13Z" />
-// //       <path d="M9 16c.6 1.1 1.5 1.7 3 1.7" />
-// //     </svg>
-// //   );
-// // }
-
 // // export default function ProductLaunch() {
-// //   const [timeLeft, setTimeLeft] = useState<TimeLeft>(
-// //     getTimeLeft()
+// //   const launchDate = useMemo(
+// //     () => getNextThursday930AM(),
+// //     []
 // //   );
+
+// //   const [timeLeft, setTimeLeft] = useState(() =>
+// //     calculateTimeLeft(launchDate)
+// //   );
+
+// //   const [launched, setLaunched] = useState(
+// //     launchDate.getTime() <= Date.now()
+// //   );
+
+// //   const [currentSlide, setCurrentSlide] =
+// //     useState(0);
+
+// //   // ----------------------------------------------------------
+// //   // COUNTDOWN
+// //   // ----------------------------------------------------------
 
 // //   useEffect(() => {
-// //     const timer = window.setInterval(() => {
-// //       setTimeLeft(getTimeLeft());
+// //     if (launched) return;
+
+// //     const interval = window.setInterval(() => {
+// //       const remaining =
+// //         calculateTimeLeft(launchDate);
+
+// //       setTimeLeft(remaining);
+
+// //       if (remaining.total <= 0) {
+// //         setLaunched(true);
+// //         window.clearInterval(interval);
+// //       }
 // //     }, 1000);
 
-// //     return () => window.clearInterval(timer);
-// //   }, []);
+// //     return () => {
+// //       window.clearInterval(interval);
+// //     };
+// //   }, [launchDate, launched]);
+
+// //   // ----------------------------------------------------------
+// //   // CAROUSEL
+// //   // ----------------------------------------------------------
+
+// //   useEffect(() => {
+// //     if (!launched) return;
+
+// //     const interval = window.setInterval(() => {
+// //       setCurrentSlide((current) =>
+// //         current === BANNER_IMAGES.length - 1
+// //           ? 0
+// //           : current + 1
+// //       );
+// //     }, 5000);
+
+// //     return () => {
+// //       window.clearInterval(interval);
+// //     };
+// //   }, [launched]);
+
+// //   const previousSlide = () => {
+// //     setCurrentSlide((current) =>
+// //       current === 0
+// //         ? BANNER_IMAGES.length - 1
+// //         : current - 1
+// //     );
+// //   };
+
+// //   const nextSlide = () => {
+// //     setCurrentSlide((current) =>
+// //       current === BANNER_IMAGES.length - 1
+// //         ? 0
+// //         : current + 1
+// //     );
+// //   };
+
+// //   // ==========================================================
+// //   // BEFORE LAUNCH
+// //   // ==========================================================
+
+// //   if (!launched) {
+// //     return (
+// //       <section
+// //         className="growware-launch-screen"
+// //         style={{
+// //           backgroundImage: `
+// //             linear-gradient(
+// //               90deg,
+// //               rgba(3, 22, 45, 0.82) 0%,
+// //               rgba(3, 34, 56, 0.68) 48%,
+// //               rgba(3, 22, 45, 0.78) 100%
+// //             ),
+// //             url("${LAUNCH_BACKGROUND}")
+// //           `,
+// //         }}
+// //       >
+
+// //         <div className="growware-launch-inner">
+
+// //           <div className="growware-launch-badge">
+// //             PRODUCT LAUNCH
+// //           </div>
+
+// //           <h1 className="growware-launch-title">
+// //             Something Better
+// //             <span>Is Coming</span>
+// //           </h1>
+
+// //           <p className="growware-launch-description">
+// //             Next-generation aquaculture nutrition
+// //             designed for stronger immunity,
+// //             better growth and healthier harvests.
+// //           </p>
+
+// //           <div className="growware-countdown">
+
+// //             <CountdownItem
+// //               value={timeLeft.days}
+// //               label="DAYS"
+// //             />
+
+// //             <div className="growware-countdown-colon">
+// //               :
+// //             </div>
+
+// //             <CountdownItem
+// //               value={timeLeft.hours}
+// //               label="HOURS"
+// //             />
+
+// //             <div className="growware-countdown-colon">
+// //               :
+// //             </div>
+
+// //             <CountdownItem
+// //               value={timeLeft.minutes}
+// //               label="MINUTES"
+// //             />
+
+// //             <div className="growware-countdown-colon">
+// //               :
+// //             </div>
+
+// //             <CountdownItem
+// //               value={timeLeft.seconds}
+// //               label="SECONDS"
+// //             />
+
+// //           </div>
+
+// //           <div className="growware-launch-date">
+// //             Launching Thursday at 9:30 AM
+// //           </div>
+
+// //         </div>
+
+// //         <style jsx>{`
+
+// //           .growware-launch-screen {
+// //             position: relative;
+
+// //             width: 100%;
+// //             min-height: 650px;
+
+// //             display: flex;
+// //             align-items: center;
+// //             justify-content: center;
+
+// //             padding: 70px 30px;
+
+// //             box-sizing: border-box;
+
+// //             overflow: hidden;
+
+// //             background:
+// //               radial-gradient(
+// //                 circle at 75% 20%,
+// //                 rgba(0, 158, 255, 0.18),
+// //                 transparent 32%
+// //               ),
+// //               radial-gradient(
+// //                 circle at 15% 85%,
+// //                 rgba(0, 94, 180, 0.18),
+// //                 transparent 32%
+// //               ),
+// //               linear-gradient(
+// //                 135deg,
+// //                 #03162d 0%,
+// //                 #052d50 52%,
+// //                 #032238 100%
+// //               );
+// //           }
+
+// //           .growware-launch-inner {
+// //             position: relative;
+
+// //             width: 100%;
+// //             max-width: 1100px;
+
+// //             margin: 0 auto;
+
+// //             text-align: center;
+
+// //             box-sizing: border-box;
+// //           }
+
+// //           .growware-launch-badge {
+// //             display: inline-flex;
+
+// //             padding: 10px 24px;
+
+// //             border: 1px solid
+// //               rgba(71, 202, 255, 0.65);
+
+// //             border-radius: 999px;
+
+// //             color: #52d4ff;
+
+// //             font-size: 13px;
+// //             font-weight: 700;
+
+// //             letter-spacing: 3px;
+
+// //             background:
+// //               rgba(20, 151, 218, 0.08);
+
+// //             margin-bottom: 28px;
+// //           }
+
+// //           .growware-launch-title {
+// //             margin: 0;
+
+// //             color: #ffffff;
+
+// //             font-size: clamp(
+// //               45px,
+// //               6vw,
+// //               82px
+// //             );
+
+// //             line-height: 1.05;
+
+// //             font-weight: 800;
+
+// //             letter-spacing: -3px;
+// //           }
+
+// //           .growware-launch-title span {
+// //             display: block;
+
+// //             margin-top: 4px;
+
+// //             background:
+// //               linear-gradient(
+// //                 90deg,
+// //                 #69d8ff,
+// //                 #1595ff
+// //               );
+
+// //             -webkit-background-clip: text;
+// //             background-clip: text;
+
+// //             color: transparent;
+// //           }
+
+// //           .growware-launch-description {
+// //             max-width: 720px;
+
+// //             margin: 28px auto 45px;
+
+// //             color:
+// //               rgba(255, 255, 255, 0.72);
+
+// //             font-size: 19px;
+
+// //             line-height: 1.65;
+// //           }
+
+// //           /*
+// //              IMPORTANT:
+// //              Explicitly force horizontal layout.
+// //           */
+
+// //           .growware-countdown {
+// //             width: 100%;
+
+// //             display: flex !important;
+
+// //             flex-direction: row !important;
+
+// //             align-items: center !important;
+
+// //             justify-content: center !important;
+
+// //             flex-wrap: nowrap !important;
+
+// //             gap: 14px;
+
+// //             margin: 0 auto;
+
+// //             box-sizing: border-box;
+// //           }
+
+// //           .growware-countdown-colon {
+// //             flex: 0 0 auto;
+
+// //             color:
+// //               rgba(255, 255, 255, 0.45);
+
+// //             font-size: 38px;
+
+// //             font-weight: 700;
+// //           }
+
+// //           .growware-launch-date {
+// //             margin-top: 30px;
+
+// //             color:
+// //               rgba(255, 255, 255, 0.55);
+
+// //             font-size: 14px;
+
+// //             letter-spacing: 0.5px;
+// //           }
+
+// //           @media (max-width: 700px) {
+
+// //             .growware-launch-screen {
+// //               min-height: 580px;
+
+// //               padding:
+// //                 55px 18px;
+// //             }
+
+// //             .growware-launch-title {
+// //               font-size: 44px;
+
+// //               letter-spacing: -2px;
+// //             }
+
+// //             .growware-launch-description {
+// //               font-size: 15px;
+
+// //               margin-top: 22px;
+// //               margin-bottom: 32px;
+// //             }
+
+// //             .growware-countdown {
+// //               gap: 5px;
+// //             }
+
+// //             .growware-countdown-colon {
+// //               font-size: 22px;
+// //             }
+
+// //           }
+
+// //         `}</style>
+
+// //       </section>
+// //     );
+// //   }
+
+// //   // ==========================================================
+// //   // AFTER LAUNCH — BANNER CAROUSEL
+// //   // ==========================================================
 
 // //   return (
-// //     <section className="product-launch">
-// //       {/* Background image */}
-// //       <div className="product_launch.png" />
+// //     <section className="growware-banner-section">
 
-// //       {/* Dark/red overlay */}
-// //       <div className="product-launch-overlay" />
+// //       <div className="growware-banner-carousel">
 
-// //       <div className="product-launch-content">
-// //         {/* LEFT SIDE */}
-// //         <div className="launch-copy">
-// //           <div className="launch-eyebrow">
-// //             SOMETHING POWERFUL IS COMING
-// //           </div>
-
-// //           <h2 className="launch-title">
-// //             New{" "}
-// //             <span>Product Launch</span>
-// //           </h2>
-
-// //           <p className="launch-main-text">
-// //             A breakthrough in{" "}
-// //             <strong>aquaculture health</strong> is on its way.
-// //           </p>
-
-// //           <p className="launch-sub-text">
-// //             Science-driven solutions for healthier ponds and a
-// //             more sustainable tomorrow.
-// //           </p>
-
-// //           {/* BENEFITS */}
-// //           <div className="launch-benefits">
-// //             <div className="launch-benefit">
-// //               <LeafIcon />
-// //               <span>Healthier<br />Ponds</span>
-// //             </div>
-
-// //             <div className="launch-benefit">
-// //               <ShieldIcon />
-// //               <span>Stronger<br />Immunity</span>
-// //             </div>
-
-// //             <div className="launch-benefit">
-// //               <ChartIcon />
-// //               <span>Better<br />Productivity</span>
-// //             </div>
-
-// //             <div className="launch-benefit">
-// //               <WaterIcon />
-// //               <span>Cleaner<br />Water Ecosystems</span>
-// //             </div>
-// //           </div>
-
-// //           {/* COUNTDOWN */}
-// //           <div className="launch-countdown">
-// //             <div className="count-box">
-// //               <strong>{timeLeft.days}</strong>
-// //               <span>Days</span>
-// //             </div>
-
-// //             <div className="count-box">
-// //               <strong>{timeLeft.hours}</strong>
-// //               <span>Hours</span>
-// //             </div>
-
-// //             <div className="count-box">
-// //               <strong>{timeLeft.minutes}</strong>
-// //               <span>Minutes</span>
-// //             </div>
-
-// //             <div className="count-box">
-// //               <strong>{timeLeft.seconds}</strong>
-// //               <span>Seconds</span>
-// //             </div>
-// //           </div>
-
-// //           {/* CTA */}
-// //           <div className="launch-cta-row">
-// //             <button
-// //               className="launch-button"
-// //               onClick={() => {
-// //                 window.location.href = "/contact";
-// //               }}
+// //         {BANNER_IMAGES.map(
+// //           (image, index) => (
+// //             <div
+// //               key={image}
+// //               className={
+// //                 index === currentSlide
+// //                   ? "growware-banner-slide growware-banner-active"
+// //                   : "growware-banner-slide"
+// //               }
 // //             >
-// //               Be the First to Know
-// //               <span>→</span>
-// //             </button>
 
-// //             <div className="launch-cta-divider" />
+// //               <img
+// //                 src={image}
+// //                 alt={
+// //                   index === 0
+// //                     ? "i.Growvare IB35"
+// //                     : "i.GutRevive Pro+"
+// //                 }
+// //               />
 
-// //             <p>
-// //               Get launch updates, product details and exclusive
-// //               early access.
-// //             </p>
-// //           </div>
-// //         </div>
-
-// //         {/* RIGHT SIDE */}
-// //         <div className="launch-product">
-// //           <div className="product-glow" />
-
-// //           <div className="product-pedestal">
-// //             <div className="product-cover">
-// //               <div className="product-logo">
-// //                 <div className="product-logo-mark">i</div>
-
-// //                 <div className="product-logo-text">
-// //                   <strong>Innovare</strong>
-// //                   <span>Biopharma LLP</span>
-// //                 </div>
-// //               </div>
-
-// //               <div className="product-line" />
-
-// //               <div className="product-tagline">
-// //                 A HEALTHIER
-// //                 <br />
-// //                 AQUATIC TOMORROW
-// //               </div>
 // //             </div>
-// //           </div>
+// //           )
+// //         )}
+
+// //         <button
+// //           className="growware-arrow growware-arrow-left"
+// //           onClick={previousSlide}
+// //           aria-label="Previous banner"
+// //         >
+// //           ‹
+// //         </button>
+
+// //         <button
+// //           className="growware-arrow growware-arrow-right"
+// //           onClick={nextSlide}
+// //           aria-label="Next banner"
+// //         >
+// //           ›
+// //         </button>
+
+// //         <div className="growware-dots">
+
+// //           {BANNER_IMAGES.map(
+// //             (_, index) => (
+// //               <button
+// //                 key={index}
+// //                 onClick={() =>
+// //                   setCurrentSlide(index)
+// //                 }
+// //                 aria-label={`Banner ${index + 1}`}
+// //                 className={
+// //                   index === currentSlide
+// //                     ? "growware-dot growware-dot-active"
+// //                     : "growware-dot"
+// //                 }
+// //               />
+// //             )
+// //           )}
+
 // //         </div>
 
-// //         {/* Bottom label */}
-// //         <div className="launch-bottom-label">
-// //           <span>SCIENCE</span>
-// //           <i />
-// //           <span>SUSTAINABILITY</span>
-// //           <i />
-// //           <span>STRONGER FARMS</span>
-// //         </div>
 // //       </div>
 
 // //       <style jsx>{`
-// //         .product-launch {
-// //           position: relative;
+
+// //         .growware-banner-section {
 // //           width: 100%;
-// //           height: 100svh;
-// //           min-height: 650px;
-// //           max-height: 900px;
+
+// //           margin: 0;
+// //           padding: 0;
+
 // //           overflow: hidden;
-// //           background: #020f1c;
-// //           color: white;
+
+// //           background: #062c4c;
 // //         }
 
-// //         .product-launch-bg {
-// //           position: absolute;
-// //           inset: 0;
-// //           background-image: url("/images/product-launch.jpg");
-// //           background-size: cover;
-// //           background-position: center;
-// //           transform: scale(1.02);
-// //         }
+// //         .growware-banner-carousel {
+// //           position: relative;
 
-// //         .product-launch-overlay {
-// //           position: absolute;
-// //           inset: 0;
+// //           width: 100%;
 
 // //           /*
-// //            * Dark overlay keeps the text readable while
-// //            * allowing the background image to remain visible.
-// //            */
-// //           background:
-// //             linear-gradient(
-// //               90deg,
-// //               rgba(1, 15, 31, 0.97) 0%,
-// //               rgba(1, 20, 39, 0.90) 37%,
-// //               rgba(1, 20, 39, 0.55) 63%,
-// //               rgba(1, 15, 31, 0.20) 100%
-// //             ),
-// //             linear-gradient(
-// //               180deg,
-// //               rgba(1, 15, 31, 0.20),
-// //               rgba(1, 15, 31, 0.55)
-// //             );
-// //         }
-
-// //         .product-launch-content {
-// //           position: relative;
-// //           z-index: 2;
-
-// //           width: 100%;
-// //           height: 100%;
-
-// //           max-width: 1500px;
-// //           margin: 0 auto;
-
-// //           padding:
-// //             clamp(32px, 5vh, 65px)
-// //             clamp(30px, 5vw, 90px);
-
-// //           display: grid;
-// //           grid-template-columns: minmax(0, 1.05fr) minmax(400px, 0.95fr);
-
-// //           align-items: center;
-// //           gap: clamp(20px, 4vw, 70px);
-// //         }
-
-// //         .launch-copy {
-// //           min-width: 0;
-// //           max-width: 720px;
-
-// //           display: flex;
-// //           flex-direction: column;
-// //           justify-content: center;
-// //         }
-
-// //         .launch-eyebrow {
-// //           font-size: clamp(10px, 1vw, 14px);
-// //           font-weight: 500;
-// //           letter-spacing: 0.38em;
-// //           margin-bottom: clamp(10px, 1.5vh, 18px);
-// //           color: rgba(255, 255, 255, 0.9);
-// //         }
-
-// //         .launch-title {
-// //           margin: 0;
-
-// //           font-family: var(--font-body, "DM Sans", sans-serif);
-// //           font-size: clamp(48px, 5.2vw, 82px);
-// //           line-height: 0.98;
-// //           letter-spacing: -0.045em;
-// //           font-weight: 800;
-// //           white-space: nowrap;
-// //         }
-
-// //         .launch-title span {
-// //           color: #48bdf2;
-// //         }
-
-// //         .launch-main-text {
-// //           margin-top: clamp(12px, 1.7vh, 20px);
-// //           margin-bottom: 0;
-
-// //           font-size: clamp(18px, 1.55vw, 27px);
-// //           line-height: 1.25;
-// //           color: white;
-// //         }
-
-// //         .launch-main-text strong {
-// //           color: #51c6f5;
-// //         }
-
-// //         .launch-sub-text {
-// //           margin-top: 5px;
-// //           margin-bottom: clamp(15px, 2vh, 24px);
-
-// //           font-size: clamp(14px, 1.25vw, 20px);
-// //           line-height: 1.45;
-// //           color: #9bdaf5;
-// //         }
-
-// //         .launch-benefits {
-// //           display: grid;
-// //           grid-template-columns: repeat(4, 1fr);
-
-// //           max-width: 690px;
-
-// //           margin-bottom: clamp(15px, 2.3vh, 26px);
-// //         }
-
-// //         .launch-benefit {
-// //           min-height: 78px;
-
-// //           display: flex;
-// //           flex-direction: column;
-// //           align-items: center;
-// //           justify-content: center;
-
-// //           text-align: center;
-
-// //           color: white;
-
-// //           border-right: 1px solid rgba(151, 213, 240, 0.28);
-// //         }
-
-// //         .launch-benefit:last-child {
-// //           border-right: none;
-// //         }
-
-// //         .launch-benefit svg {
-// //           color: white;
-// //           margin-bottom: 5px;
-// //         }
-
-// //         .launch-benefit span {
-// //           font-size: clamp(11px, 0.9vw, 15px);
-// //           line-height: 1.25;
-// //         }
-
-// //         .launch-countdown {
-// //           display: grid;
-// //           grid-template-columns: repeat(4, 1fr);
-
-// //           width: 100%;
-// //           max-width: 690px;
-
-// //           border: 1px solid rgba(125, 196, 229, 0.30);
-// //           border-radius: 16px;
-
-// //           background: rgba(4, 30, 49, 0.58);
-// //           backdrop-filter: blur(12px);
+// //              16:7 works well for your desktop
+// //              launch banners.
+// //           */
+// //           aspect-ratio: 16 / 7;
 
 // //           overflow: hidden;
+
+// //           background: #062c4c;
 // //         }
 
-// //         .count-box {
-// //           min-height: clamp(75px, 10vh, 105px);
-
-// //           display: flex;
-// //           flex-direction: column;
-// //           justify-content: center;
-// //           align-items: center;
-
-// //           border-right: 1px solid rgba(125, 196, 229, 0.28);
-// //         }
-
-// //         .count-box:last-child {
-// //           border-right: none;
-// //         }
-
-// //         .count-box strong {
-// //           font-size: clamp(28px, 3vw, 46px);
-// //           line-height: 1;
-// //           font-weight: 500;
-// //           color: white;
-// //         }
-
-// //         .count-box span {
-// //           margin-top: 5px;
-// //           font-size: clamp(11px, 0.9vw, 15px);
-// //           color: rgba(255, 255, 255, 0.92);
-// //         }
-
-// //         .launch-cta-row {
-// //           display: flex;
-// //           align-items: center;
-// //           gap: 22px;
-
-// //           margin-top: clamp(15px, 2.3vh, 28px);
-// //         }
-
-// //         .launch-button {
-// //           flex-shrink: 0;
-
-// //           min-width: 290px;
-
-// //           padding: 17px 28px;
-
-// //           border: none;
-// //           border-radius: 14px;
-
-// //           background: #1496f3;
-// //           color: white;
-
-// //           font-family: inherit;
-// //           font-size: 17px;
-// //           font-weight: 700;
-
-// //           cursor: pointer;
-
-// //           display: flex;
-// //           align-items: center;
-// //           justify-content: center;
-// //           gap: 24px;
-
-// //           box-shadow: 0 10px 35px rgba(20, 150, 243, 0.25);
-
-// //           transition:
-// //             transform 0.25s ease,
-// //             background 0.25s ease;
-// //         }
-
-// //         .launch-button:hover {
-// //           transform: translateY(-2px);
-// //           background: #249ff5;
-// //         }
-
-// //         .launch-button span {
-// //           font-size: 25px;
-// //           line-height: 1;
-// //         }
-
-// //         .launch-cta-divider {
-// //           width: 1px;
-// //           height: 42px;
-// //           background: rgba(255, 255, 255, 0.35);
-// //           flex-shrink: 0;
-// //         }
-
-// //         .launch-cta-row p {
-// //           margin: 0;
-// //           max-width: 360px;
-
-// //           font-size: clamp(11px, 0.85vw, 14px);
-// //           line-height: 1.45;
-
-// //           color: rgba(255, 255, 255, 0.88);
-// //         }
-
-// //         .launch-product {
-// //           position: relative;
-
-// //           height: 100%;
-// //           min-height: 450px;
-
-// //           display: flex;
-// //           align-items: center;
-// //           justify-content: center;
-// //         }
-
-// //         .product-glow {
+// //         .growware-banner-slide {
 // //           position: absolute;
 
-// //           width: 75%;
-// //           aspect-ratio: 1;
-
-// //           border-radius: 50%;
-
-// //           background: radial-gradient(
-// //             circle,
-// //             rgba(28, 167, 246, 0.28) 0%,
-// //             rgba(28, 167, 246, 0.08) 38%,
-// //             transparent 70%
-// //           );
-
-// //           filter: blur(8px);
-// //         }
-
-// //         .product-pedestal {
-// //           position: relative;
-
-// //           width: min(540px, 90%);
-// //           height: min(430px, 65vh);
-
-// //           display: flex;
-// //           align-items: flex-end;
-// //           justify-content: center;
-
-// //           border-radius: 50%;
-
-// //           background:
-// //             radial-gradient(
-// //               ellipse at center,
-// //               #174f79 0%,
-// //               #092b47 42%,
-// //               #021525 72%
-// //             );
-
-// //           box-shadow:
-// //             0 30px 70px rgba(0, 0, 0, 0.45),
-// //             inset 0 5px 25px rgba(70, 194, 255, 0.15);
-// //         }
-
-// //         .product-cover {
-// //           position: relative;
-
-// //           width: 68%;
-// //           height: 84%;
-
-// //           border-radius: 45% 45% 18% 18%;
-
-// //           background:
-// //             linear-gradient(
-// //               110deg,
-// //               #071e38 0%,
-// //               #0a3157 20%,
-// //               #03152c 50%,
-// //               #0b3a62 78%,
-// //               #020f20 100%
-// //             );
-
-// //           box-shadow:
-// //             -18px 15px 30px rgba(0, 0, 0, 0.4),
-// //             18px 20px 35px rgba(0, 0, 0, 0.35),
-// //             inset 8px 0 30px rgba(67, 191, 255, 0.12);
-
-// //           display: flex;
-// //           flex-direction: column;
-// //           align-items: center;
-// //           justify-content: center;
-
-// //           transform: translateY(-8%);
-// //         }
-
-// //         /*
-// //          * Red cover accent.
-// //          * This gives the cover a red highlight without
-// //          * changing the rest of the launch section.
-// //          */
-// //         .product-cover::before {
-// //           content: "";
-// //           position: absolute;
 // //           inset: 0;
 
-// //           border-radius: inherit;
+// //           width: 100%;
+// //           height: 100%;
 
-// //           background:
-// //             linear-gradient(
-// //               110deg,
-// //               rgba(190, 24, 93, 0.42),
-// //               transparent 30%,
-// //               transparent 68%,
-// //               rgba(220, 38, 38, 0.28)
-// //             );
+// //           opacity: 0;
+
+// //           transition:
+// //             opacity 0.7s ease;
 
 // //           pointer-events: none;
 // //         }
 
-// //         .product-logo {
-// //           position: relative;
-// //           z-index: 2;
+// //         .growware-banner-active {
+// //           opacity: 1;
 
-// //           display: flex;
-// //           flex-direction: column;
-// //           align-items: center;
-
-// //           text-align: center;
+// //           pointer-events: auto;
 // //         }
 
-// //         .product-logo-mark {
-// //           width: 70px;
-// //           height: 70px;
+// //         .growware-banner-slide img {
+// //           display: block;
+
+// //           width: 100%;
+// //           height: 100%;
+
+// //           /*
+// //              DO NOT crop the supplied banners.
+// //           */
+// //           object-fit: contain;
+
+// //           object-position: center;
+
+// //           background: #062c4c;
+// //         }
+
+// //         .growware-arrow {
+// //           position: absolute;
+
+// //           top: 50%;
+
+// //           transform:
+// //             translateY(-50%);
+
+// //           z-index: 10;
+
+// //           width: 54px;
+// //           height: 54px;
+
+// //           border-radius: 50%;
+
+// //           border:
+// //             1px solid
+// //             rgba(255, 255, 255, 0.3);
+
+// //           background:
+// //             rgba(2, 24, 42, 0.58);
+
+// //           color: #ffffff;
+
+// //           font-size: 36px;
+
+// //           line-height: 1;
 
 // //           display: flex;
+
 // //           align-items: center;
 // //           justify-content: center;
 
-// //           border-radius: 18px;
+// //           cursor: pointer;
 
-// //           background: #0b8fe8;
+// //           backdrop-filter: blur(10px);
 
-// //           color: white;
-
-// //           font-family: Georgia, serif;
-// //           font-size: 45px;
-// //           font-style: italic;
-
-// //           box-shadow: 0 8px 25px rgba(0, 143, 232, 0.35);
+// //           transition:
+// //             all 0.2s ease;
 // //         }
 
-// //         .product-logo-text {
-// //           margin-top: 12px;
+// //         .growware-arrow:hover {
+// //           background:
+// //             rgba(0, 125, 205, 0.8);
 
-// //           display: flex;
-// //           flex-direction: column;
-
-// //           line-height: 1.1;
+// //           transform:
+// //             translateY(-50%)
+// //             scale(1.06);
 // //         }
 
-// //         .product-logo-text strong {
-// //           font-size: 23px;
-// //           color: rgba(255, 255, 255, 0.9);
+// //         .growware-arrow-left {
+// //           left: 22px;
 // //         }
 
-// //         .product-logo-text span {
-// //           margin-top: 3px;
-// //           font-size: 17px;
-// //           color: rgba(255, 255, 255, 0.72);
+// //         .growware-arrow-right {
+// //           right: 22px;
 // //         }
 
-// //         .product-line {
-// //           position: relative;
-// //           z-index: 2;
-
-// //           width: 45px;
-// //           height: 3px;
-
-// //           margin-top: 22px;
-
-// //           border-radius: 99px;
-
-// //           background: #40d7d2;
-// //         }
-
-// //         .product-tagline {
-// //           position: relative;
-// //           z-index: 2;
-
-// //           margin-top: 25px;
-
-// //           text-align: center;
-
-// //           font-size: 10px;
-// //           line-height: 1.9;
-// //           letter-spacing: 0.35em;
-
-// //           color: rgba(255, 255, 255, 0.72);
-// //         }
-
-// //         .launch-bottom-label {
+// //         .growware-dots {
 // //           position: absolute;
 
-// //           right: clamp(25px, 5vw, 80px);
-// //           bottom: clamp(18px, 3vh, 32px);
+// //           bottom: 18px;
+
+// //           left: 50%;
+
+// //           transform:
+// //             translateX(-50%);
+
+// //           z-index: 20;
 
 // //           display: flex;
+
 // //           align-items: center;
-// //           gap: 15px;
+
+// //           gap: 8px;
+// //         }
+
+// //         .growware-dot {
+// //           width: 9px;
+// //           height: 9px;
+
+// //           padding: 0;
+
+// //           border: none;
+
+// //           border-radius: 50%;
+
+// //           background:
+// //             rgba(255, 255, 255, 0.55);
+
+// //           cursor: pointer;
+
+// //           transition:
+// //             width 0.25s ease;
+// //         }
+
+// //         .growware-dot-active {
+// //           width: 30px;
+
+// //           border-radius: 999px;
+
+// //           background: #28baff;
+// //         }
+
+// //         @media (max-width: 700px) {
+
+// //           .growware-banner-carousel {
+// //             /*
+// //                Give mobile banners more vertical
+// //                space instead of cutting them.
+// //             */
+// //             aspect-ratio: 4 / 3;
+// //           }
+
+// //           .growware-banner-slide img {
+// //             object-fit: contain;
+// //           }
+
+// //           .growware-arrow {
+// //             width: 42px;
+// //             height: 42px;
+
+// //             font-size: 27px;
+// //           }
+
+// //           .growware-arrow-left {
+// //             left: 10px;
+// //           }
+
+// //           .growware-arrow-right {
+// //             right: 10px;
+// //           }
+
+// //         }
+
+// //       `}</style>
+
+// //     </section>
+// //   );
+// // }
+
+// // // ============================================================
+// // // COUNTDOWN ITEM
+// // // ============================================================
+
+// // function CountdownItem({
+// //   value,
+// //   label,
+// // }: {
+// //   value: number;
+// //   label: string;
+// // }) {
+// //   return (
+// //     <div className="growware-countdown-item">
+
+// //       <div className="growware-countdown-number">
+// //         {String(value).padStart(2, "0")}
+// //       </div>
+
+// //       <div className="growware-countdown-label">
+// //         {label}
+// //       </div>
+
+// //       <style jsx>{`
+
+// //         .growware-countdown-item {
+// //           flex: 0 0 120px;
+
+// //           width: 120px;
+// //           height: 120px;
+
+// //           display: flex;
+
+// //           flex-direction: column;
+
+// //           align-items: center;
+// //           justify-content: center;
+
+// //           box-sizing: border-box;
+
+// //           border-radius: 20px;
+
+// //           background:
+// //             rgba(255, 255, 255, 0.07);
+
+// //           border:
+// //             1px solid
+// //             rgba(255, 255, 255, 0.14);
+
+// //           box-shadow:
+// //             0 18px 45px
+// //             rgba(0, 0, 0, 0.18);
+
+// //           backdrop-filter: blur(15px);
+// //         }
+
+// //         .growware-countdown-number {
+// //           color: #ffffff;
+
+// //           font-size: 42px;
+
+// //           line-height: 1;
+
+// //           font-weight: 800;
+// //         }
+
+// //         .growware-countdown-label {
+// //           margin-top: 10px;
+
+// //           color: #55d5ff;
 
 // //           font-size: 10px;
-// //           letter-spacing: 0.35em;
 
-// //           color: rgba(255, 255, 255, 0.9);
+// //           font-weight: 700;
+
+// //           letter-spacing: 2px;
 // //         }
 
-// //         .launch-bottom-label i {
-// //           width: 1px;
-// //           height: 14px;
-// //           background: rgba(255, 255, 255, 0.55);
-// //         }
+// //         @media (max-width: 700px) {
 
-// //         @media (max-width: 1100px) {
-// //           .product-launch {
-// //             min-height: 620px;
+// //           .growware-countdown-item {
+// //             flex: 0 0 68px;
+
+// //             width: 68px;
+// //             height: 78px;
+
+// //             border-radius: 14px;
 // //           }
 
-// //           .product-launch-content {
-// //             grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-// //             gap: 20px;
-// //             padding-inline: 45px;
+// //           .growware-countdown-number {
+// //             font-size: 26px;
 // //           }
 
-// //           .launch-title {
-// //             font-size: clamp(44px, 5vw, 68px);
-// //           }
-
-// //           .launch-button {
-// //             min-width: 240px;
-// //             padding-inline: 20px;
-// //           }
-
-// //           .product-pedestal {
-// //             width: 430px;
-// //             height: 360px;
-// //           }
-// //         }
-
-// //         @media (max-width: 800px) {
-// //           .product-launch {
-// //             height: auto;
-// //             min-height: 100svh;
-// //             max-height: none;
-// //           }
-
-// //           .product-launch-content {
-// //             height: auto;
-// //             min-height: 100svh;
-
-// //             grid-template-columns: 1fr;
-
-// //             padding: 45px 22px 70px;
-
-// //             gap: 30px;
-// //           }
-
-// //           .launch-copy {
-// //             max-width: 100%;
-// //           }
-
-// //           .launch-title {
-// //             white-space: normal;
-// //             font-size: clamp(42px, 10vw, 64px);
-// //           }
-
-// //           .launch-benefits {
-// //             max-width: 100%;
-// //           }
-
-// //           .launch-countdown {
-// //             max-width: 100%;
-// //           }
-
-// //           .launch-cta-row {
-// //             flex-wrap: wrap;
-// //           }
-
-// //           .launch-product {
-// //             min-height: 350px;
-// //             height: 400px;
-// //           }
-
-// //           .product-pedestal {
-// //             width: 390px;
-// //             height: 320px;
-// //           }
-
-// //           .launch-bottom-label {
-// //             display: none;
-// //           }
-// //         }
-
-// //         @media (max-width: 520px) {
-// //           .product-launch-content {
-// //             padding: 35px 16px 50px;
-// //           }
-
-// //           .launch-eyebrow {
-// //             letter-spacing: 0.25em;
-// //           }
-
-// //           .launch-title {
-// //             font-size: 42px;
-// //           }
-
-// //           .launch-main-text {
-// //             font-size: 18px;
-// //           }
-
-// //           .launch-sub-text {
-// //             font-size: 14px;
-// //           }
-
-// //           .launch-benefit {
-// //             min-height: 70px;
-// //           }
-
-// //           .launch-benefit svg {
-// //             width: 28px;
-// //             height: 28px;
-// //           }
-
-// //           .launch-benefit span {
-// //             font-size: 10px;
-// //           }
-
-// //           .count-box {
-// //             min-height: 70px;
-// //           }
-
-// //           .count-box strong {
-// //             font-size: 25px;
-// //           }
-
-// //           .count-box span {
-// //             font-size: 10px;
-// //           }
-
-// //           .launch-cta-row {
-// //             flex-direction: column;
-// //             align-items: stretch;
-// //             gap: 14px;
-// //           }
-
-// //           .launch-button {
-// //             width: 100%;
-// //             min-width: 0;
-// //           }
-
-// //           .launch-cta-divider {
-// //             display: none;
-// //           }
-
-// //           .launch-cta-row p {
-// //             max-width: 100%;
-// //             text-align: center;
-// //           }
-
-// //           .launch-product {
-// //             min-height: 280px;
-// //             height: 300px;
-// //           }
-
-// //           .product-pedestal {
-// //             width: 300px;
-// //             height: 250px;
-// //           }
-
-// //           .product-logo-mark {
-// //             width: 52px;
-// //             height: 52px;
-// //             font-size: 34px;
-// //           }
-
-// //           .product-logo-text strong {
-// //             font-size: 17px;
-// //           }
-
-// //           .product-logo-text span {
-// //             font-size: 13px;
-// //           }
-
-// //           .product-line {
-// //             margin-top: 14px;
-// //           }
-
-// //           .product-tagline {
-// //             margin-top: 15px;
+// //           .growware-countdown-label {
 // //             font-size: 7px;
+
+// //             letter-spacing: 1px;
 // //           }
+
 // //         }
+
 // //       `}</style>
-// //     </section>
+
+// //     </div>
 // //   );
 // // }
 // "use client";
 
-// import { useEffect, useState } from "react";
+// import { useEffect, useMemo, useState } from "react";
 
-// const LAUNCH_DATE = new Date("2026-10-01T00:00:00").getTime();
+// const LAUNCH_BACKGROUND = "/images/product.png";
+
+// const BANNER_IMAGES = [
+//   "/images/slide1.png",
+//   "/images/slide2.png",
+// ];
+
+// function getNextThursday930AM() {
+//   const now = new Date();
+//   const target = new Date(now);
+
+//   // Thursday = 4
+//   const daysUntilThursday = (4 - now.getDay() + 7) % 7;
+
+//   target.setDate(now.getDate() + daysUntilThursday);
+//   target.setHours(9, 30, 0, 0);
+
+//   // If Thursday 9:30 AM has already passed,
+//   // move to next Thursday.
+//   if (target.getTime() <= now.getTime()) {
+//     target.setDate(target.getDate() + 7);
+//   }
+
+//   return target;
+// }
+
+// function calculateTimeLeft(target: Date) {
+//   const difference = target.getTime() - Date.now();
+
+//   if (difference <= 0) {
+//     return {
+//       total: 0,
+//       days: 0,
+//       hours: 0,
+//       minutes: 0,
+//       seconds: 0,
+//     };
+//   }
+
+//   const totalSeconds = Math.floor(difference / 1000);
+
+//   return {
+//     total: difference,
+
+//     days: Math.floor(
+//       totalSeconds / (24 * 60 * 60)
+//     ),
+
+//     hours: Math.floor(
+//       (totalSeconds % (24 * 60 * 60)) /
+//         (60 * 60)
+//     ),
+
+//     minutes: Math.floor(
+//       (totalSeconds % (60 * 60)) / 60
+//     ),
+
+//     seconds: totalSeconds % 60,
+//   };
+// }
 
 // export default function ProductLaunch() {
-//   const [timeLeft, setTimeLeft] = useState({
-//     days: 0,
-//     hours: 0,
-//     minutes: 0,
-//     seconds: 0,
-//   });
+//   const launchDate = useMemo(
+//     () => getNextThursday930AM(),
+//     []
+//   );
+
+//   const [timeLeft, setTimeLeft] = useState(() =>
+//     calculateTimeLeft(launchDate)
+//   );
+
+//   const [launched, setLaunched] = useState(
+//     launchDate.getTime() <= Date.now()
+//   );
+
+//   const [currentSlide, setCurrentSlide] =
+//     useState(0);
+
+//   // ----------------------------------------------------------
+//   // COUNTDOWN
+//   // ----------------------------------------------------------
 
 //   useEffect(() => {
-//     const calculateTime = () => {
-//       const now = new Date().getTime();
-//       const difference = LAUNCH_DATE - now;
+//     if (launched) return;
 
-//       if (difference <= 0) {
-//         setTimeLeft({
-//           days: 0,
-//           hours: 0,
-//           minutes: 0,
-//           seconds: 0,
-//         });
-//         return;
+//     const interval = window.setInterval(() => {
+//       const remaining =
+//         calculateTimeLeft(launchDate);
+
+//       setTimeLeft(remaining);
+
+//       if (remaining.total <= 0) {
+//         setLaunched(true);
+//         window.clearInterval(interval);
 //       }
+//     }, 1000);
 
-//       setTimeLeft({
-//         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-//         hours: Math.floor(
-//           (difference / (1000 * 60 * 60)) % 24
-//         ),
-//         minutes: Math.floor(
-//           (difference / (1000 * 60)) % 60
-//         ),
-//         seconds: Math.floor(
-//           (difference / 1000) % 60
-//         ),
-//       });
+//     return () => {
+//       window.clearInterval(interval);
 //     };
+//   }, [launchDate, launched]);
 
-//     calculateTime();
+//   // ----------------------------------------------------------
+//   // CAROUSEL
+//   // ----------------------------------------------------------
 
-//     const interval = setInterval(calculateTime, 1000);
+//   useEffect(() => {
+//     if (!launched) return;
 
-//     return () => clearInterval(interval);
-//   }, []);
+//     const interval = window.setInterval(() => {
+//       setCurrentSlide((current) =>
+//         current === BANNER_IMAGES.length - 1
+//           ? 0
+//           : current + 1
+//       );
+//     }, 5000);
 
-//   const features = [
-//     {
-//       icon: (
-//         <svg
-//           viewBox="0 0 48 48"
-//           fill="none"
-//           stroke="currentColor"
-//           strokeWidth="2.5"
-//           className="h-9 w-9"
-//         >
-//           <path d="M38 7C22 8 11 17 10 31c10 3 21-1 25-10 2-5 3-10 3-14Z" />
-//           <path d="M10 39c6-10 13-16 23-22" />
-//         </svg>
-//       ),
-//       title: "Healthier",
-//       subtitle: "Ponds",
-//     },
-//     {
-//       icon: (
-//         <svg
-//           viewBox="0 0 48 48"
-//           fill="none"
-//           stroke="currentColor"
-//           strokeWidth="2.5"
-//           className="h-9 w-9"
-//         >
-//           <path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z" />
-//           <path d="m18 24 4 4 8-9" />
-//         </svg>
-//       ),
-//       title: "Stronger",
-//       subtitle: "Immunity",
-//     },
-//     {
-//       icon: (
-//         <svg
-//           viewBox="0 0 48 48"
-//           fill="none"
-//           stroke="currentColor"
-//           strokeWidth="2.5"
-//           className="h-9 w-9"
-//         >
-//           <path d="M8 39V28" />
-//           <path d="M18 39V20" />
-//           <path d="M28 39V13" />
-//           <path d="M38 39V7" />
-//           <path d="M5 39h38" />
-//         </svg>
-//       ),
-//       title: "Better",
-//       subtitle: "Productivity",
-//     },
-//     {
-//       icon: (
-//         <svg
-//           viewBox="0 0 48 48"
-//           fill="none"
-//           stroke="currentColor"
-//           strokeWidth="2.5"
-//           className="h-9 w-9"
-//         >
-//           <path d="M24 5c0 0-13 15-13 25a13 13 0 0 0 26 0C37 20 24 5 24 5Z" />
-//           <path d="M19 30c1 3 3 5 6 5" />
-//         </svg>
-//       ),
-//       title: "Cleaner",
-//       subtitle: "Water Ecosystems",
-//     },
-//   ];
+//     return () => {
+//       window.clearInterval(interval);
+//     };
+//   }, [launched]);
 
-//   return (
-//     <section
-//       id="product-launch"
-//       className="relative isolate min-h-[100svh] w-full overflow-hidden text-white"
-//       style={{
-//         backgroundImage: "url('/images/product_launch.png')",
-//         backgroundSize: "cover",
-//         backgroundPosition: "center",
-//         backgroundRepeat: "no-repeat",
-//       }}
-//     >
-//       {/* Dark overlay - keeps the text readable without hiding the image */}
-//       <div className="absolute inset-0 -z-10 bg-[#001a2c]/55" />
+//   const previousSlide = () => {
+//     setCurrentSlide((current) =>
+//       current === 0
+//         ? BANNER_IMAGES.length - 1
+//         : current - 1
+//     );
+//   };
 
-//       {/* Subtle gradient */}
-//       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#001524]/75 via-[#00263b]/35 to-transparent" />
+//   const nextSlide = () => {
+//     setCurrentSlide((current) =>
+//       current === BANNER_IMAGES.length - 1
+//         ? 0
+//         : current + 1
+//     );
+//   };
 
-//       <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-center px-6 py-12 sm:px-10 lg:px-16">
-//         {/* Main content */}
-//         <div className="max-w-[760px]">
+//   // ==========================================================
+//   // BEFORE LAUNCH
+//   // ==========================================================
 
-//           {/* Eyebrow */}
-//           <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.42em] text-white/90 sm:text-xs">
-//             Something Powerful Is Coming
+//   if (!launched) {
+//     return (
+//       <section
+//         className="growware-launch-screen"
+//         style={{
+//           backgroundImage: `
+//             linear-gradient(
+//               90deg,
+//               rgba(3, 22, 45, 0.82) 0%,
+//               rgba(3, 34, 56, 0.68) 48%,
+//               rgba(3, 22, 45, 0.78) 100%
+//             ),
+//             url("${LAUNCH_BACKGROUND}")
+//           `,
+//         }}
+//       >
+
+//         <div className="growware-launch-inner">
+
+//           <div className="growware-launch-badge">
+//             PRODUCT LAUNCH
+//           </div>
+
+//           <h1 className="growware-launch-title">
+//             Something Better
+//             <span>Is Coming</span>
+//           </h1>
+
+//           <p className="growware-launch-description">
+//             Next-generation aquaculture nutrition
+//             designed for stronger immunity,
+//             better growth and healthier harvests.
 //           </p>
 
-//           {/* Heading */}
-//           <h2 className="text-[clamp(2.8rem,5.5vw,5.8rem)] font-bold leading-[0.95] tracking-[-0.045em]">
-//             <span className="text-white">New </span>
-//             <span className="text-[#42b9f5]">
-//               Product Launch
-//             </span>
-//           </h2>
+//           <div className="growware-countdown">
 
-//           {/* Description */}
-//           <div className="mt-4 max-w-[700px]">
-//             <p className="text-base font-medium leading-snug text-white sm:text-lg lg:text-xl">
-//               A breakthrough in{" "}
-//               <span className="text-[#43c1fa]">
-//                 aquaculture health
-//               </span>{" "}
-//               is on its way.
-//             </p>
-
-//             <p className="mt-1 text-sm leading-relaxed text-[#a9d9f5] sm:text-base lg:text-lg">
-//               Science-driven solutions for healthier ponds and a more
-//               sustainable tomorrow.
-//             </p>
-//           </div>
-
-//           {/* Features */}
-//           <div className="mt-7 grid max-w-[700px] grid-cols-4">
-//             {features.map((feature, index) => (
-//               <div
-//                 key={feature.title}
-//                 className={`flex min-h-[90px] flex-col items-center justify-center px-3 text-center ${
-//                   index !== 0
-//                     ? "border-l border-white/20"
-//                     : ""
-//                 }`}
-//               >
-//                 <div className="mb-2 text-white">
-//                   {feature.icon}
-//                 </div>
-
-//                 <p className="text-xs font-medium leading-tight sm:text-sm lg:text-base">
-//                   {feature.title}
-//                   <br />
-//                   {feature.subtitle}
-//                 </p>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* Countdown */}
-//           <div className="mt-6 grid max-w-[680px] grid-cols-4 overflow-hidden rounded-2xl border border-[#63c9f7]/30 bg-[#001d31]/45 backdrop-blur-sm">
-//             <CountdownBox
+//             <CountdownItem
 //               value={timeLeft.days}
-//               label="Days"
+//               label="DAYS"
 //             />
 
-//             <CountdownBox
+//             <div className="growware-countdown-colon">
+//               :
+//             </div>
+
+//             <CountdownItem
 //               value={timeLeft.hours}
-//               label="Hours"
+//               label="HOURS"
 //             />
 
-//             <CountdownBox
+//             <div className="growware-countdown-colon">
+//               :
+//             </div>
+
+//             <CountdownItem
 //               value={timeLeft.minutes}
-//               label="Minutes"
+//               label="MINUTES"
 //             />
 
-//             <CountdownBox
+//             <div className="growware-countdown-colon">
+//               :
+//             </div>
+
+//             <CountdownItem
 //               value={timeLeft.seconds}
-//               label="Seconds"
+//               label="SECONDS"
 //             />
+
 //           </div>
 
-//           {/* CTA */}
-//           <div className="mt-6 flex max-w-[820px] flex-col items-start gap-4 sm:flex-row sm:items-center">
-//             <button
-//               type="button"
-//               className="group flex h-14 items-center justify-center gap-7 rounded-xl bg-[#1599f4] px-8 text-base font-semibold text-white shadow-lg shadow-[#008eea]/20 transition-all duration-300 hover:bg-[#0b8de6] hover:scale-[1.02] sm:h-16 sm:min-w-[290px]"
+//           <div className="growware-launch-date">
+//             Launching Thursday at 9:30 AM
+//           </div>
+
+//         </div>
+
+//         <style jsx>{`
+
+//           .growware-launch-screen {
+//             position: relative;
+
+//             width: 100%;
+//             min-height: 650px;
+
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+
+//             padding: 70px 30px;
+
+//             box-sizing: border-box;
+
+//             overflow: hidden;
+
+//             background:
+//               radial-gradient(
+//                 circle at 75% 20%,
+//                 rgba(0, 158, 255, 0.18),
+//                 transparent 32%
+//               ),
+//               radial-gradient(
+//                 circle at 15% 85%,
+//                 rgba(0, 94, 180, 0.18),
+//                 transparent 32%
+//               ),
+//               linear-gradient(
+//                 135deg,
+//                 #03162d 0%,
+//                 #052d50 52%,
+//                 #032238 100%
+//               );
+//           }
+
+//           .growware-launch-inner {
+//             position: relative;
+
+//             width: 100%;
+//             max-width: 1100px;
+
+//             margin: 0 auto;
+
+//             text-align: center;
+
+//             box-sizing: border-box;
+//           }
+
+//           .growware-launch-badge {
+//             display: inline-flex;
+
+//             padding: 10px 24px;
+
+//             border: 1px solid
+//               rgba(71, 202, 255, 0.65);
+
+//             border-radius: 999px;
+
+//             color: #52d4ff;
+
+//             font-size: 13px;
+//             font-weight: 700;
+
+//             letter-spacing: 3px;
+
+//             background:
+//               rgba(20, 151, 218, 0.08);
+
+//             margin-bottom: 28px;
+//           }
+
+//           .growware-launch-title {
+//             margin: 0;
+
+//             color: #ffffff;
+
+//             font-size: clamp(
+//               45px,
+//               6vw,
+//               82px
+//             );
+
+//             line-height: 1.05;
+
+//             font-weight: 800;
+
+//             letter-spacing: -3px;
+//           }
+
+//           .growware-launch-title span {
+//             display: block;
+
+//             margin-top: 4px;
+
+//             background:
+//               linear-gradient(
+//                 90deg,
+//                 #69d8ff,
+//                 #1595ff
+//               );
+
+//             -webkit-background-clip: text;
+//             background-clip: text;
+
+//             color: transparent;
+//           }
+
+//           .growware-launch-description {
+//             max-width: 720px;
+
+//             margin: 28px auto 45px;
+
+//             color:
+//               rgba(255, 255, 255, 0.72);
+
+//             font-size: 19px;
+
+//             line-height: 1.65;
+//           }
+
+//           /*
+//              IMPORTANT:
+//              Explicitly force horizontal layout.
+//           */
+
+//           .growware-countdown {
+//             width: 100%;
+
+//             display: flex !important;
+
+//             flex-direction: row !important;
+
+//             align-items: center !important;
+
+//             justify-content: center !important;
+
+//             flex-wrap: nowrap !important;
+
+//             gap: 14px;
+
+//             margin: 0 auto;
+
+//             box-sizing: border-box;
+//           }
+
+//           .growware-countdown-colon {
+//             flex: 0 0 auto;
+
+//             color:
+//               rgba(255, 255, 255, 0.45);
+
+//             font-size: 38px;
+
+//             font-weight: 700;
+//           }
+
+//           .growware-launch-date {
+//             margin-top: 30px;
+
+//             color:
+//               rgba(255, 255, 255, 0.55);
+
+//             font-size: 14px;
+
+//             letter-spacing: 0.5px;
+//           }
+
+//           @media (max-width: 700px) {
+
+//             .growware-launch-screen {
+//               min-height: 580px;
+
+//               padding:
+//                 55px 18px;
+//             }
+
+//             .growware-launch-title {
+//               font-size: 44px;
+
+//               letter-spacing: -2px;
+//             }
+
+//             .growware-launch-description {
+//               font-size: 15px;
+
+//               margin-top: 22px;
+//               margin-bottom: 32px;
+//             }
+
+//             .growware-countdown {
+//               gap: 5px;
+//             }
+
+//             .growware-countdown-colon {
+//               font-size: 22px;
+//             }
+
+//           }
+
+//         `}</style>
+
+//       </section>
+//     );
+//   }
+
+//   // ==========================================================
+//   // AFTER LAUNCH — BANNER CAROUSEL
+//   // ==========================================================
+
+//   return (
+//     <section className="growware-banner-section">
+
+//       <div className="growware-banner-carousel">
+
+//         {BANNER_IMAGES.map(
+//           (image, index) => (
+//             <div
+//               key={image}
+//               className={
+//                 index === currentSlide
+//                   ? "growware-banner-slide growware-banner-active"
+//                   : "growware-banner-slide"
+//               }
 //             >
-//               <span>Be the First to Know</span>
 
-//               <span className="text-2xl transition-transform duration-300 group-hover:translate-x-1">
-//                 →
-//               </span>
-//             </button>
+//               <img
+//                 src={image}
+//                 alt={
+//                   index === 0
+//                     ? "i.Growvare IB35"
+//                     : "i.GutRevive Pro+"
+//                 }
+//               />
 
-//             <div className="hidden h-12 w-px bg-white/30 sm:block" />
+//             </div>
+//           )
+//         )}
 
-//             <p className="max-w-[390px] text-sm leading-relaxed text-white/90 sm:text-base">
-//               Get launch updates, product details and exclusive
-//               early access.
-//             </p>
-//           </div>
+//         <button
+//           className="growware-arrow growware-arrow-left"
+//           onClick={previousSlide}
+//           aria-label="Previous banner"
+//         >
+//           ‹
+//         </button>
+
+//         <button
+//           className="growware-arrow growware-arrow-right"
+//           onClick={nextSlide}
+//           aria-label="Next banner"
+//         >
+//           ›
+//         </button>
+
+//         <div className="growware-dots">
+
+//           {BANNER_IMAGES.map(
+//             (_, index) => (
+//               <button
+//                 key={index}
+//                 onClick={() =>
+//                   setCurrentSlide(index)
+//                 }
+//                 aria-label={`Banner ${index + 1}`}
+//                 className={
+//                   index === currentSlide
+//                     ? "growware-dot growware-dot-active"
+//                     : "growware-dot"
+//                 }
+//               />
+//             )
+//           )}
+
 //         </div>
 
-//         {/* Bottom label */}
-//         <div className="absolute bottom-5 right-6 hidden text-[9px] font-medium uppercase tracking-[0.4em] text-white/90 sm:block lg:right-16 lg:text-[10px]">
-//           Science
-//           <span className="mx-3 text-white/50">|</span>
-//           Sustainability
-//           <span className="mx-3 text-white/50">|</span>
-//           Stronger Farms
-//         </div>
 //       </div>
+
+//       <style jsx>{`
+
+//         .growware-banner-section {
+//           width: 100%;
+
+//           margin: 0;
+//           padding: 0;
+
+//           overflow: hidden;
+
+//           background: #062c4c;
+//         }
+
+//         .growware-banner-carousel {
+//           position: relative;
+
+//           width: 100%;
+
+//           /*
+//              16:7 works well for your desktop
+//              launch banners.
+//           */
+//           aspect-ratio: 16 / 7;
+
+//           overflow: hidden;
+
+//           background: #062c4c;
+//         }
+
+//         .growware-banner-slide {
+//           position: absolute;
+
+//           inset: 0;
+
+//           width: 100%;
+//           height: 100%;
+
+//           opacity: 0;
+
+//           transition:
+//             opacity 0.7s ease;
+
+//           pointer-events: none;
+//         }
+
+//         .growware-banner-active {
+//           opacity: 1;
+
+//           pointer-events: auto;
+//         }
+
+//         .growware-banner-slide img {
+//           display: block;
+
+//           width: 100%;
+//           height: 100%;
+
+//           /*
+//              DO NOT crop the supplied banners.
+//           */
+//           object-fit: contain;
+
+//           object-position: center;
+
+//           background: #062c4c;
+//         }
+
+//         .growware-arrow {
+//           position: absolute;
+
+//           top: 50%;
+
+//           transform:
+//             translateY(-50%);
+
+//           z-index: 10;
+
+//           width: 54px;
+//           height: 54px;
+
+//           border-radius: 50%;
+
+//           border:
+//             1px solid
+//             rgba(255, 255, 255, 0.3);
+
+//           background:
+//             rgba(2, 24, 42, 0.58);
+
+//           color: #ffffff;
+
+//           font-size: 36px;
+
+//           line-height: 1;
+
+//           display: flex;
+
+//           align-items: center;
+//           justify-content: center;
+
+//           cursor: pointer;
+
+//           backdrop-filter: blur(10px);
+
+//           transition:
+//             all 0.2s ease;
+//         }
+
+//         .growware-arrow:hover {
+//           background:
+//             rgba(0, 125, 205, 0.8);
+
+//           transform:
+//             translateY(-50%)
+//             scale(1.06);
+//         }
+
+//         .growware-arrow-left {
+//           left: 22px;
+//         }
+
+//         .growware-arrow-right {
+//           right: 22px;
+//         }
+
+//         .growware-dots {
+//           position: absolute;
+
+//           bottom: 18px;
+
+//           left: 50%;
+
+//           transform:
+//             translateX(-50%);
+
+//           z-index: 20;
+
+//           display: flex;
+
+//           align-items: center;
+
+//           gap: 8px;
+//         }
+
+//         .growware-dot {
+//           width: 9px;
+//           height: 9px;
+
+//           padding: 0;
+
+//           border: none;
+
+//           border-radius: 50%;
+
+//           background:
+//             rgba(255, 255, 255, 0.55);
+
+//           cursor: pointer;
+
+//           transition:
+//             width 0.25s ease;
+//         }
+
+//         .growware-dot-active {
+//           width: 30px;
+
+//           border-radius: 999px;
+
+//           background: #28baff;
+//         }
+
+//         @media (max-width: 700px) {
+
+//           .growware-banner-carousel {
+//             /*
+//                Give mobile banners more vertical
+//                space instead of cutting them.
+//             */
+//             aspect-ratio: 4 / 3;
+//           }
+
+//           .growware-banner-slide img {
+//             object-fit: contain;
+//           }
+
+//           .growware-arrow {
+//             width: 42px;
+//             height: 42px;
+
+//             font-size: 27px;
+//           }
+
+//           .growware-arrow-left {
+//             left: 10px;
+//           }
+
+//           .growware-arrow-right {
+//             right: 10px;
+//           }
+
+//         }
+
+//       `}</style>
+
 //     </section>
 //   );
 // }
 
-// function CountdownBox({
+// // ============================================================
+// // COUNTDOWN ITEM
+// // ============================================================
+
+// function CountdownItem({
 //   value,
 //   label,
 // }: {
@@ -1774,276 +7647,813 @@
 //   label: string;
 // }) {
 //   return (
-//     <div className="flex h-[90px] flex-col items-center justify-center border-r border-[#63c9f7]/25 last:border-r-0 sm:h-[105px]">
-//       <span className="text-3xl font-semibold leading-none tracking-tight sm:text-4xl lg:text-[42px]">
-//         {String(value).padStart(2, "0")}
-//       </span>
+//     <div className="growware-countdown-item">
 
-//       <span className="mt-2 text-[11px] text-white/85 sm:text-xs lg:text-sm">
+//       <div className="growware-countdown-number">
+//         {String(value).padStart(2, "0")}
+//       </div>
+
+//       <div className="growware-countdown-label">
 //         {label}
-//       </span>
+//       </div>
+
+//       <style jsx>{`
+
+//         .growware-countdown-item {
+//           flex: 0 0 120px;
+
+//           width: 120px;
+//           height: 120px;
+
+//           display: flex;
+
+//           flex-direction: column;
+
+//           align-items: center;
+//           justify-content: center;
+
+//           box-sizing: border-box;
+
+//           border-radius: 20px;
+
+//           background:
+//             rgba(255, 255, 255, 0.07);
+
+//           border:
+//             1px solid
+//             rgba(255, 255, 255, 0.14);
+
+//           box-shadow:
+//             0 18px 45px
+//             rgba(0, 0, 0, 0.18);
+
+//           backdrop-filter: blur(15px);
+//         }
+
+//         .growware-countdown-number {
+//           color: #ffffff;
+
+//           font-size: 42px;
+
+//           line-height: 1;
+
+//           font-weight: 800;
+//         }
+
+//         .growware-countdown-label {
+//           margin-top: 10px;
+
+//           color: #55d5ff;
+
+//           font-size: 10px;
+
+//           font-weight: 700;
+
+//           letter-spacing: 2px;
+//         }
+
+//         @media (max-width: 700px) {
+
+//           .growware-countdown-item {
+//             flex: 0 0 68px;
+
+//             width: 68px;
+//             height: 78px;
+
+//             border-radius: 14px;
+//           }
+
+//           .growware-countdown-number {
+//             font-size: 26px;
+//           }
+
+//           .growware-countdown-label {
+//             font-size: 7px;
+
+//             letter-spacing: 1px;
+//           }
+
+//         }
+
+//       `}</style>
+
 //     </div>
 //   );
 // }
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 
-const LAUNCH_DATE = new Date("2026-10-01T00:00:00").getTime();
+const LAUNCH_BACKGROUND = "/images/product.png";
+
+const BANNER_IMAGES = [
+  "/images/growware-ib35-banner.png",
+  "/images/gutrevivepro-banner.png",
+];
+
+function getNextThursday930AM() {
+  const now = new Date();
+  const target = new Date(now);
+
+  // Thursday = 4
+  const daysUntilThursday = (4 - now.getDay() + 7) % 7;
+
+  target.setDate(now.getDate() + daysUntilThursday);
+  target.setHours(9, 30, 0, 0);
+
+  // If Thursday 9:30 AM has already passed,
+  // move to next Thursday.
+  if (target.getTime() <= now.getTime()) {
+    target.setDate(target.getDate() + 7);
+  }
+
+  return target;
+}
+
+function calculateTimeLeft(target: Date) {
+  const difference = target.getTime() - Date.now();
+
+  if (difference <= 0) {
+    return {
+      total: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  }
+
+  const totalSeconds = Math.floor(difference / 1000);
+
+  return {
+    total: difference,
+
+    days: Math.floor(
+      totalSeconds / (24 * 60 * 60)
+    ),
+
+    hours: Math.floor(
+      (totalSeconds % (24 * 60 * 60)) /
+        (60 * 60)
+    ),
+
+    minutes: Math.floor(
+      (totalSeconds % (60 * 60)) / 60
+    ),
+
+    seconds: totalSeconds % 60,
+  };
+}
 
 export default function ProductLaunch() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const launchDate = useMemo(
+    () => getNextThursday930AM(),
+    []
+  );
+
+  const [timeLeft, setTimeLeft] = useState(() =>
+    calculateTimeLeft(launchDate)
+  );
+
+  const [launched, setLaunched] = useState(
+    launchDate.getTime() <= Date.now()
+  );
+
+  const [currentSlide, setCurrentSlide] =
+    useState(0);
+
+  // ----------------------------------------------------------
+  // COUNTDOWN
+  // ----------------------------------------------------------
 
   useEffect(() => {
-    const calculateTime = () => {
-      const now = new Date().getTime();
-      const difference = LAUNCH_DATE - now;
+    if (launched) return;
 
-      if (difference <= 0) {
-        setTimeLeft({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        });
-        return;
+    const interval = window.setInterval(() => {
+      const remaining =
+        calculateTimeLeft(launchDate);
+
+      setTimeLeft(remaining);
+
+      if (remaining.total <= 0) {
+        setLaunched(true);
+        window.clearInterval(interval);
       }
+    }, 1000);
 
-      setTimeLeft({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(
-          (difference / (1000 * 60 * 60)) % 24
-        ),
-        minutes: Math.floor(
-          (difference / (1000 * 60)) % 60
-        ),
-        seconds: Math.floor(
-          (difference / 1000) % 60
-        ),
-      });
+    return () => {
+      window.clearInterval(interval);
     };
+  }, [launchDate, launched]);
 
-    calculateTime();
+  // ----------------------------------------------------------
+  // CAROUSEL
+  // ----------------------------------------------------------
 
-    const interval = setInterval(calculateTime, 1000);
+  useEffect(() => {
+    if (!launched) return;
 
-    return () => clearInterval(interval);
-  }, []);
+    const interval = window.setInterval(() => {
+      setCurrentSlide((current) =>
+        current === BANNER_IMAGES.length - 1
+          ? 0
+          : current + 1
+      );
+    }, 5000);
 
-  const features = [
-    {
-      icon: (
-        <svg
-          viewBox="0 0 48 48"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          className="h-9 w-9"
-        >
-          <path d="M38 7C22 8 11 17 10 31c10 3 21-1 25-10 2-5 3-10 3-14Z" />
-          <path d="M10 39c6-10 13-16 23-22" />
-        </svg>
-      ),
-      title: "Healthier",
-      subtitle: "Ponds",
-    },
-    {
-      icon: (
-        <svg
-          viewBox="0 0 48 48"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          className="h-9 w-9"
-        >
-          <path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z" />
-          <path d="m18 24 4 4 8-9" />
-        </svg>
-      ),
-      title: "Stronger",
-      subtitle: "Immunity",
-    },
-    {
-      icon: (
-        <svg
-          viewBox="0 0 48 48"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          className="h-9 w-9"
-        >
-          <path d="M8 39V28" />
-          <path d="M18 39V20" />
-          <path d="M28 39V13" />
-          <path d="M38 39V7" />
-          <path d="M5 39h38" />
-        </svg>
-      ),
-      title: "Better",
-      subtitle: "Productivity",
-    },
-    {
-      icon: (
-        <svg
-          viewBox="0 0 48 48"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          className="h-9 w-9"
-        >
-          <path d="M24 5c0 0-13 15-13 25a13 13 0 0 0 26 0C37 20 24 5 24 5Z" />
-          <path d="M19 30c1 3 3 5 6 5" />
-        </svg>
-      ),
-      title: "Cleaner",
-      subtitle: "Water Ecosystems",
-    },
-  ];
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, [launched]);
 
-  return (
-    <section
-      id="product-launch"
-      className="relative isolate min-h-[100svh] w-full overflow-hidden text-white"
-    >
-      {/* Background image - clean, no baked-in text */}
-      <Image
-        src="/images/product.png"
-        alt=""
-        fill
-        priority
-        quality={100}
-        sizes="100vw"
-        className="-z-20 object-cover object-center"
-      />
+  const previousSlide = () => {
+    setCurrentSlide((current) =>
+      current === 0
+        ? BANNER_IMAGES.length - 1
+        : current - 1
+    );
+  };
 
-      {/* Dark overlay - keeps the text readable without hiding the image */}
-      <div className="absolute inset-0 -z-10 bg-[#001a2c]/55" />
+  const nextSlide = () => {
+    setCurrentSlide((current) =>
+      current === BANNER_IMAGES.length - 1
+        ? 0
+        : current + 1
+    );
+  };
 
-      {/* Subtle gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#001524]/75 via-[#00263b]/35 to-transparent" />
+  // ==========================================================
+  // BEFORE LAUNCH
+  // ==========================================================
 
-      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1500px] flex-col justify-center px-6 py-12 sm:px-10 lg:px-16">
-        {/* Main content */}
-        <div className="max-w-[760px]">
+  if (!launched) {
+    return (
+      <section
+        className="growware-launch-screen"
+        style={{
+          backgroundImage: `
+            linear-gradient(
+              90deg,
+              rgba(3, 22, 45, 0.82) 0%,
+              rgba(3, 34, 56, 0.68) 48%,
+              rgba(3, 22, 45, 0.78) 100%
+            ),
+            url("${LAUNCH_BACKGROUND}")
+          `,
+        }}
+      >
 
-          {/* Eyebrow */}
-          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.42em] text-white/90 sm:text-xs">
-            Something Powerful Is Coming
+        <div className="growware-launch-inner">
+
+          <div className="growware-launch-badge">
+            PRODUCT LAUNCH
+          </div>
+
+          <h1 className="growware-launch-title">
+            Something Better
+            <span>Is Coming</span>
+          </h1>
+
+          <p className="growware-launch-description">
+            Next-generation aquaculture nutrition
+            designed for stronger immunity,
+            better growth and healthier harvests.
           </p>
 
-          {/* Heading */}
-          <h2 className="text-[clamp(2.2rem,4.2vw,4.4rem)] font-bold leading-[0.95] tracking-[-0.045em]">
-            <span className="text-white">New </span>
-            <span className="text-[#42b9f5]">
-              Product Launch
-            </span>
-          </h2>
+          <div className="growware-countdown">
 
-          {/* Description */}
-          <div className="mt-5 max-w-[700px]">
-            <p className="text-sm font-medium leading-snug text-white sm:text-base lg:text-lg">
-              A breakthrough in{" "}
-              <span className="text-[#43c1fa]">
-                aquaculture health
-              </span>{" "}
-              is on its way.
-            </p>
-
-            <p className="mt-1 text-xs leading-relaxed text-[#a9d9f5] sm:text-sm lg:text-base">
-              Science-driven solutions for healthier ponds and a more
-              sustainable tomorrow.
-            </p>
-          </div>
-
-          {/* Features */}
-          <div className="mt-8 grid max-w-[700px] grid-cols-4">
-            {features.map((feature, index) => (
-              <div
-                key={feature.title}
-                className={`flex min-h-[64px] flex-col items-center justify-center px-3 text-center ${
-                  index !== 0
-                    ? "border-l border-white/20"
-                    : ""
-                }`}
-              >
-                <div className="mb-2 text-white [&_svg]:h-6 [&_svg]:w-6">
-                  {feature.icon}
-                </div>
-
-                <p className="text-[11px] font-medium leading-tight sm:text-xs lg:text-sm">
-                  {feature.title}
-                  <br />
-                  {feature.subtitle}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Countdown */}
-          <div className="mt-5 grid max-w-[680px] grid-cols-4 overflow-hidden rounded-2xl border border-[#63c9f7]/30 bg-[#001d31]/45 backdrop-blur-sm">
-            <CountdownBox
+            <CountdownItem
               value={timeLeft.days}
-              label="Days"
+              label="DAYS"
             />
 
-            <CountdownBox
+            <div className="growware-countdown-colon">
+              :
+            </div>
+
+            <CountdownItem
               value={timeLeft.hours}
-              label="Hours"
+              label="HOURS"
             />
 
-            <CountdownBox
+            <div className="growware-countdown-colon">
+              :
+            </div>
+
+            <CountdownItem
               value={timeLeft.minutes}
-              label="Minutes"
+              label="MINUTES"
             />
 
-            <CountdownBox
+            <div className="growware-countdown-colon">
+              :
+            </div>
+
+            <CountdownItem
               value={timeLeft.seconds}
-              label="Seconds"
+              label="SECONDS"
             />
+
           </div>
 
-          {/* CTA */}
-          <div className="mt-8 flex max-w-[820px] flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <button
-              type="button"
-              className="group flex h-12 items-center justify-center gap-5 rounded-xl bg-[#1599f4] px-6 text-sm font-semibold text-white shadow-lg shadow-[#008eea]/20 transition-all duration-300 hover:bg-[#0b8de6] hover:scale-[1.02] sm:h-13 sm:min-w-[250px]"
+          <div className="growware-launch-date">
+            Launching Thursday at 9:30 AM
+          </div>
+
+        </div>
+
+        <style jsx>{`
+
+          .growware-launch-screen {
+            position: relative;
+
+            width: 100%;
+            min-height: 650px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 70px 30px;
+
+            box-sizing: border-box;
+
+            overflow: hidden;
+
+            background:
+              radial-gradient(
+                circle at 75% 20%,
+                rgba(0, 158, 255, 0.18),
+                transparent 32%
+              ),
+              radial-gradient(
+                circle at 15% 85%,
+                rgba(0, 94, 180, 0.18),
+                transparent 32%
+              ),
+              linear-gradient(
+                135deg,
+                #03162d 0%,
+                #052d50 52%,
+                #032238 100%
+              );
+          }
+
+          .growware-launch-inner {
+            position: relative;
+
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            text-align: center;
+
+            box-sizing: border-box;
+          }
+
+          .growware-launch-badge {
+            display: inline-flex;
+
+            padding: 10px 24px;
+
+            border: 1px solid
+              rgba(71, 202, 255, 0.65);
+
+            border-radius: 999px;
+
+            color: #52d4ff;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            background:
+              rgba(20, 151, 218, 0.08);
+
+            margin-bottom: 28px;
+          }
+
+          .growware-launch-title {
+            margin: 0;
+
+            color: #ffffff;
+
+            font-size: clamp(
+              45px,
+              6vw,
+              82px
+            );
+
+            line-height: 1.05;
+
+            font-weight: 800;
+
+            letter-spacing: -3px;
+          }
+
+          .growware-launch-title span {
+            display: block;
+
+            margin-top: 4px;
+
+            background:
+              linear-gradient(
+                90deg,
+                #69d8ff,
+                #1595ff
+              );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+          }
+
+          .growware-launch-description {
+            max-width: 720px;
+
+            margin: 28px auto 45px;
+
+            color:
+              rgba(255, 255, 255, 0.72);
+
+            font-size: 19px;
+
+            line-height: 1.65;
+          }
+
+          /*
+             IMPORTANT:
+             Explicitly force horizontal layout.
+          */
+
+          .growware-countdown {
+            width: 100%;
+
+            display: flex !important;
+
+            flex-direction: row !important;
+
+            align-items: center !important;
+
+            justify-content: center !important;
+
+            flex-wrap: nowrap !important;
+
+            gap: 14px;
+
+            margin: 0 auto;
+
+            box-sizing: border-box;
+          }
+
+          .growware-countdown-colon {
+            flex: 0 0 auto;
+
+            color:
+              rgba(255, 255, 255, 0.45);
+
+            font-size: 38px;
+
+            font-weight: 700;
+          }
+
+          .growware-launch-date {
+            margin-top: 30px;
+
+            color:
+              rgba(255, 255, 255, 0.55);
+
+            font-size: 14px;
+
+            letter-spacing: 0.5px;
+          }
+
+          @media (max-width: 700px) {
+
+            .growware-launch-screen {
+              min-height: 580px;
+
+              padding:
+                55px 18px;
+            }
+
+            .growware-launch-title {
+              font-size: 44px;
+
+              letter-spacing: -2px;
+            }
+
+            .growware-launch-description {
+              font-size: 15px;
+
+              margin-top: 22px;
+              margin-bottom: 32px;
+            }
+
+            .growware-countdown {
+              gap: 5px;
+            }
+
+            .growware-countdown-colon {
+              font-size: 22px;
+            }
+
+          }
+
+        `}</style>
+
+      </section>
+    );
+  }
+
+  // ==========================================================
+  // AFTER LAUNCH — BANNER CAROUSEL
+  // ==========================================================
+
+  return (
+    <section className="growware-banner-section">
+
+      <div className="growware-banner-carousel">
+
+        {BANNER_IMAGES.map(
+          (image, index) => (
+            <div
+              key={image}
+              className={
+                index === currentSlide
+                  ? "growware-banner-slide growware-banner-active"
+                  : "growware-banner-slide"
+              }
             >
-              <span>Be the First to Know</span>
 
-              <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </button>
+              <img
+                src={image}
+                alt={
+                  index === 0
+                    ? "i.Growvare IB35"
+                    : "i.GutRevive Pro+"
+                }
+              />
 
-            <div className="hidden h-12 w-px bg-white/30 sm:block" />
+            </div>
+          )
+        )}
 
-            <p className="max-w-[390px] text-xs leading-relaxed text-white/90 sm:text-sm">
-              Get launch updates, product details and exclusive
-              early access.
-            </p>
-          </div>
+        <button
+          className="growware-arrow growware-arrow-left"
+          onClick={previousSlide}
+          aria-label="Previous banner"
+        >
+          ‹
+        </button>
+
+        <button
+          className="growware-arrow growware-arrow-right"
+          onClick={nextSlide}
+          aria-label="Next banner"
+        >
+          ›
+        </button>
+
+        <div className="growware-dots">
+
+          {BANNER_IMAGES.map(
+            (_, index) => (
+              <button
+                key={index}
+                onClick={() =>
+                  setCurrentSlide(index)
+                }
+                aria-label={`Banner ${index + 1}`}
+                className={
+                  index === currentSlide
+                    ? "growware-dot growware-dot-active"
+                    : "growware-dot"
+                }
+              />
+            )
+          )}
+
         </div>
 
-        {/* Bottom label */}
-        <div className="absolute bottom-5 right-6 hidden text-[9px] font-medium uppercase tracking-[0.4em] text-white/90 sm:block lg:right-16 lg:text-[10px]">
-          Science
-          <span className="mx-3 text-white/50">|</span>
-          Sustainability
-          <span className="mx-3 text-white/50">|</span>
-          Stronger Farms
-        </div>
       </div>
+
+      <style jsx>{`
+
+        .growware-banner-section {
+          width: 100%;
+
+          margin: 0;
+          padding: 0;
+
+          overflow: hidden;
+
+          background: #062c4c;
+        }
+
+        .growware-banner-carousel {
+          position: relative;
+
+          width: 100%;
+
+          /*
+             16:7 works well for your desktop
+             launch banners.
+          */
+          aspect-ratio: 16 / 7;
+
+          overflow: hidden;
+
+          background: #062c4c;
+        }
+
+        .growware-banner-slide {
+          position: absolute;
+
+          inset: 0;
+
+          width: 100%;
+          height: 100%;
+
+          opacity: 0;
+
+          transition:
+            opacity 0.7s ease;
+
+          pointer-events: none;
+        }
+
+        .growware-banner-active {
+          opacity: 1;
+
+          pointer-events: auto;
+        }
+
+        .growware-banner-slide img {
+          display: block;
+
+          width: 100%;
+          height: 100%;
+
+          /*
+             DO NOT crop the supplied banners.
+          */
+          object-fit: contain;
+
+          object-position: center;
+
+          background: #062c4c;
+        }
+
+        .growware-arrow {
+          position: absolute;
+
+          top: 50%;
+
+          transform:
+            translateY(-50%);
+
+          z-index: 10;
+
+          width: 54px;
+          height: 54px;
+
+          border-radius: 50%;
+
+          border:
+            1px solid
+            rgba(255, 255, 255, 0.3);
+
+          background:
+            rgba(2, 24, 42, 0.58);
+
+          color: #ffffff;
+
+          font-size: 36px;
+
+          line-height: 1;
+
+          display: flex;
+
+          align-items: center;
+          justify-content: center;
+
+          cursor: pointer;
+
+          backdrop-filter: blur(10px);
+
+          transition:
+            all 0.2s ease;
+        }
+
+        .growware-arrow:hover {
+          background:
+            rgba(0, 125, 205, 0.8);
+
+          transform:
+            translateY(-50%)
+            scale(1.06);
+        }
+
+        .growware-arrow-left {
+          left: 22px;
+        }
+
+        .growware-arrow-right {
+          right: 22px;
+        }
+
+        .growware-dots {
+          position: absolute;
+
+          bottom: 18px;
+
+          left: 50%;
+
+          transform:
+            translateX(-50%);
+
+          z-index: 20;
+
+          display: flex;
+
+          align-items: center;
+
+          gap: 8px;
+        }
+
+        .growware-dot {
+          width: 9px;
+          height: 9px;
+
+          padding: 0;
+
+          border: none;
+
+          border-radius: 50%;
+
+          background:
+            rgba(255, 255, 255, 0.55);
+
+          cursor: pointer;
+
+          transition:
+            width 0.25s ease;
+        }
+
+        .growware-dot-active {
+          width: 30px;
+
+          border-radius: 999px;
+
+          background: #28baff;
+        }
+
+        @media (max-width: 700px) {
+
+          .growware-banner-carousel {
+            /*
+               Give mobile banners more vertical
+               space instead of cutting them.
+            */
+            aspect-ratio: 4 / 3;
+          }
+
+          .growware-banner-slide img {
+            object-fit: contain;
+          }
+
+          .growware-arrow {
+            width: 42px;
+            height: 42px;
+
+            font-size: 27px;
+          }
+
+          .growware-arrow-left {
+            left: 10px;
+          }
+
+          .growware-arrow-right {
+            right: 10px;
+          }
+
+        }
+
+      `}</style>
+
     </section>
   );
 }
 
-function CountdownBox({
+// ============================================================
+// COUNTDOWN ITEM
+// ============================================================
+
+function CountdownItem({
   value,
   label,
 }: {
@@ -2051,14 +8461,96 @@ function CountdownBox({
   label: string;
 }) {
   return (
-    <div className="flex h-[72px] flex-col items-center justify-center border-r border-[#63c9f7]/25 last:border-r-0 sm:h-[84px]">
-      <span className="text-2xl font-semibold leading-none tracking-tight sm:text-3xl lg:text-[32px]">
-        {String(value).padStart(2, "0")}
-      </span>
+    <div className="growware-countdown-item">
 
-      <span className="mt-2 text-[10px] text-white/85 sm:text-[11px] lg:text-xs">
+      <div className="growware-countdown-number">
+        {String(value).padStart(2, "0")}
+      </div>
+
+      <div className="growware-countdown-label">
         {label}
-      </span>
+      </div>
+
+      <style jsx>{`
+
+        .growware-countdown-item {
+          flex: 0 0 120px;
+
+          width: 120px;
+          height: 120px;
+
+          display: flex;
+
+          flex-direction: column;
+
+          align-items: center;
+          justify-content: center;
+
+          box-sizing: border-box;
+
+          border-radius: 20px;
+
+          background:
+            rgba(255, 255, 255, 0.07);
+
+          border:
+            1px solid
+            rgba(255, 255, 255, 0.14);
+
+          box-shadow:
+            0 18px 45px
+            rgba(0, 0, 0, 0.18);
+
+          backdrop-filter: blur(15px);
+        }
+
+        .growware-countdown-number {
+          color: #ffffff;
+
+          font-size: 42px;
+
+          line-height: 1;
+
+          font-weight: 800;
+        }
+
+        .growware-countdown-label {
+          margin-top: 10px;
+
+          color: #55d5ff;
+
+          font-size: 10px;
+
+          font-weight: 700;
+
+          letter-spacing: 2px;
+        }
+
+        @media (max-width: 700px) {
+
+          .growware-countdown-item {
+            flex: 0 0 68px;
+
+            width: 68px;
+            height: 78px;
+
+            border-radius: 14px;
+          }
+
+          .growware-countdown-number {
+            font-size: 26px;
+          }
+
+          .growware-countdown-label {
+            font-size: 7px;
+
+            letter-spacing: 1px;
+          }
+
+        }
+
+      `}</style>
+
     </div>
   );
 }
