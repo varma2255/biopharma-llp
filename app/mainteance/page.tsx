@@ -15,3 +15,6 @@ export default function MaintenancePage() {
     </main>
   );
 }
+{
+    <p>the progress that can be done through the database server request to the client and also i need the sample database server request to the client that can be done through the server request terminal </p>
+}

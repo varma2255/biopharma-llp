@@ -5957,7 +5957,7 @@ export default function Footer() {
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <span style={{ fontSize: 13, flexShrink: 0 }}>📞</span>
               <span style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>
-                +91 7799872555 &nbsp;|&nbsp; +91 040-35837199
+                +91 9848019985 &nbsp;|&nbsp; +91 040-35837199
               </span>
             </div>
           </div>
