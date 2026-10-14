@@ -5727,7 +5727,7 @@ export default function Footer() {
 
   const socialLinks: { label: string; href: string; icon: React.ReactNode; hoverBg: string }[] = [
     {
-      label: "Instagram", href: "#", hoverBg: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+      label: "Instagram", href: "https://www.instagram.com/innovare_2022/", hoverBg: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
       icon: (
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -5755,7 +5755,7 @@ export default function Footer() {
       ),
     },
     {
-      label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592578942241", hoverBg: "#1877F2",
+      label: "Facebook", href: "https://www.facebook.com/people/Innovare-Biopharma-LLP/61592578942241/", hoverBg: "#1877F2",
       icon: (
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="10" fill="#1877F2"/>
@@ -5951,7 +5951,7 @@ export default function Footer() {
             <div style={{ display: "flex", gap: 8, marginBottom: 6, alignItems: "center" }}>
               <span style={{ fontSize: 13, flexShrink: 0 }}>📧</span>
               <span style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", lineHeight: 1.5, wordBreak: "break-all" }}>
-                info@innovarebiopharma.com
+                israju@innovarebiopharma.com
               </span>
             </div>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
