@@ -11705,6 +11705,21 @@ const productLaunchEvent: GalleryEvent = {
   ],
 };
 
+const aquaex26Event: GalleryEvent = {
+  id: 3,
+  category: "Exhibition",
+  title: "Aquaex India 2026",
+  date: "October 2026",
+  location: "India",
+  description: "Innovare's participation at Aquaex India 2026 — showcasing GMP-certified aquaculture supplements to buyers, farmers, and industry leaders.",
+  photoCount: 16,
+  coverBg: BLUE_COVERS.aquaex26,
+  accent: "#7dd3fc",
+  span: "wide",
+  photos: [
+  ],
+};
+
 const annualMeetEvent: GalleryEvent = {
   id: 2,
   category: "Conference",
