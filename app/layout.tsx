@@ -457,6 +457,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import GlobalLoader from "@/components/GlobalLoader";
 import { CartProvider } from "@/components/cart-content";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -511,6 +512,7 @@ export default function RootLayout({
             {children}
           </main>
         </CartProvider>
+        <GoogleTagManager gtmId="GTM-KDRS3QZV" />
       </body>
     </html>
   );
