@@ -512,7 +512,11 @@ export default function RootLayout({
             {children}
           </main>
         </CartProvider>
-        <GoogleTagManager gtmId="GTM-KDRS3QZV" />
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+  <GoogleTagManager
+    gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+  />
+)}
       </body>
     </html>
   );
