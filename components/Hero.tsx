@@ -24127,6 +24127,7 @@ const TIMELINE = [
     { year: "2023", title: "Export Ready", desc: "Achieved international quality certifications and began exporting to 15+ countries across Asia and the Middle East.", color: "#0288d1" },
     { year: "2024", title: "Expansion", desc: "Strengthened global presence with deeper market penetration, expanded distribution and enhanced product reliability.", color: "#0288d1" },
     { year: "2025", title: "Global Growth", desc: "Delivering 35+ innovative aquaculture products trusted by farms worldwide for quality and performance.", color: "#0288d1" },
+    { year: "2026", title: "New Product Launches", desc: "Expanded our aquaculture product portfolio with the launch of two innovative solutions — i.Growvare IB35 and i.Gut Revivare Pro+ — strengthening our commitment to advanced aquaculture nutrition, gut health and sustainable farming solutions.", color: "#0288d1" },
 ];
 
 // ─── CSS ──────────────────────────────────────────────────────────────────────
@@ -24528,7 +24529,7 @@ export default function InnovareLanding() {
                             From advanced <strong>probiotics &amp; minerals</strong> to eco-friendly farm solutions — dedicated to healthier aquatic ecosystems and <strong>sustainable aquaculture</strong> across India and beyond.
                         </p>
                         <div className="hero-stats">
-                            {[["5+", "Years"], ["3", "Solution Domains"], ["1000+", "Clients"], ["35+", "Products"]].map(([n, l]) => (
+                            {[["6+", "Years"], ["3", "Solution Domains"], ["1000+", "Clients"], ["35+", "Products"]].map(([n, l]) => (
                                 <div key={l} className="hstat"><span className="hstat-num">{n}</span><span className="hstat-lbl">{l}</span></div>
                             ))}
                         </div>
@@ -24571,7 +24572,7 @@ export default function InnovareLanding() {
                 </div>
                 <div className="stats-row">
                     {[
-                        ["5+", "YEARS GROWTH"],
+                        ["6+", "YEARS GROWTH"],
                         ["3", "SOLUTION DOMAINS"],
                         ["1000+", "CLIENTS"],
                         ["35+", "PRODUCTS"],

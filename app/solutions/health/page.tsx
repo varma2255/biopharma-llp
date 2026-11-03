@@ -3885,7 +3885,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 const stats = [
   { label: "Years of R&D",     value: 5,    suffix: "+", icon: "🔬" },
-   { label: "Products",         value: 33,   suffix: "+", icon: "🧪" },
+   { label: "Products",         value: 35,   suffix: "+", icon: "🧪" },
    { label: "Export Countries", value: 15,   suffix: "+", icon: "🌍" },
   { label: "Partner Farms",    value: 1000,  suffix: "+", icon: "🏡" },
  

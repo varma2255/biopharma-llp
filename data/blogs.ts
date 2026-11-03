@@ -5738,6 +5738,7 @@ export const blogs: BlogPost[] = [
         bullets: [
           "Night respiration increases carbon dioxide.",
           "Morning pH is commonly lower.",
+          "the morning data base that can be  done through",
           "Daylight photosynthesis consumes carbon dioxide.",
           "Afternoon pH is commonly higher.",
           "Large daily swings can indicate unstable pond biology or limited buffering.",

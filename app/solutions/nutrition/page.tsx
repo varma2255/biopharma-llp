@@ -2544,7 +2544,7 @@ function Hero() {
           {/* RIGHT */}
           <div className="nut-hero-right-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, minWidth: 0 }}>
             {[
-              { icon: "🧪", n: "33+", label: "Aquaculture Products", sub: "GMP certified formulations" },
+              { icon: "🧪", n: "35+", label: "Aquaculture Products", sub: "GMP certified formulations" },
               { icon: "🦐", n: "98%", label: "Customer Satisfaction", sub: "Across shrimp farms" },
               { icon: "📦", n: "1000+", label: "Farm Partners", sub: "Andhra Pradesh & beyond" },
               {
@@ -2977,7 +2977,7 @@ function NutrientSection() {
    SECTION — STATS COUNTER BANNER
 ══════════════════════════════════════════════════ */
 const STATS = [
-  { icon: "🧪", n: 33, suffix: "+", label: "Aquaculture products", color: B.teal },
+  { icon: "🧪", n: 35, suffix: "+", label: "Aquaculture products", color: B.teal },
   { icon: "🦐", n: 1000, suffix: "+", label: "Active farm partners", color: B.blue },
   { icon: "📉", n: 35, suffix: "%", label: "Avg. FCR improvement", color: "#7c3aed" },
   { icon: "🌿", n: 100, suffix: "%", label: "GMP certified range", color: B.green },

@@ -7445,7 +7445,7 @@ export default function AboutUsPage() {
               {[
                 { label: "Headquarters",   val: "Hyderabad, Telangana, India" },
                 { label: "Founded",        val: "2020 — by aquaculture scientists & pharma experts" },
-                { label: "Products",       val: "33+ Aqua Healthcare & Feed supplement products" },
+                { label: "Products",       val: "35+ Aqua Healthcare & Feed supplement products" },
                 { label: "Manufacturing",  val: "Own GMP-certified processing plant" },
                 { label: "Certifications", val: "GMP · ISO 9001 · CAA Approved" },
                 { label: "Product Range",  val: "Feed Supplements · Sanitizers · Vitamins & Minerals · Water Treatments · Growth Promoters · Gut Probiotics · Immunity" },
