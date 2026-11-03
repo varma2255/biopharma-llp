@@ -24704,7 +24704,7 @@ export default function InnovareLanding() {
                 <p className="sec-desc" style={{ color: "var(--t50)" }}>From aquaculture conferences and product launches to international tours — every event is a step toward healthier aquatic ecosystems.</p>
                 <div className="ev-grid"></div>
                 <div style={{ marginTop: 0 }}>
-                    <button className="btn-primary" onClick={() => router.push("/events")}>View All Events <Icons.ArrowRight /></button>
+                    <button className="btn-primary" onClick={() => router.push("/event")}>View All Events <Icons.ArrowRight /></button>
                 </div>
             </section>
 
